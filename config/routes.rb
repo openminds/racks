@@ -1,15 +1,15 @@
 Racks::Application.routes.draw do
-  resources :connections
+  	resources :connections
 
-  resources :interfaces
+  	resources :interfaces
 
-  resources :devices
+  	resources :companies
 
-  resources :server_racks
+	resources :server_racks
 
-  resources :companies
-
-  resources :datacenters
+  	resources :datacenters do
+		resources :server_racks 
+	end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

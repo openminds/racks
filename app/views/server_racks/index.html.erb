@@ -15,13 +15,13 @@
     <td><%= server_rack.datacenter_id %></td>
     <td><%= server_rack.name %></td>
     <td><%= server_rack.comment %></td>
-    <td><%= link_to 'Show', server_rack %></td>
-    <td><%= link_to 'Edit', edit_server_rack_path(server_rack) %></td>
-    <td><%= link_to 'Destroy', server_rack, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', [server_rack.datacenter, server_rack] %></td>
+    <td><%= link_to 'Edit', edit_datacenter_server_rack_path(server_rack.datacenter, server_rack) %></td>
+    <td><%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Server rack', new_server_rack_path %>
+<%= link_to 'New Server rack', new_datacenter_server_rack_path %>

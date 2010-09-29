@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @server_rack %> |
-<%= link_to 'Back', server_racks_path %>
+<%= link_to 'Show', [@server_rack.datacenter, @server_rack] %> |
+<%= link_to 'Back', datacenter_server_racks_path %>

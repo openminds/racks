@@ -25,7 +25,7 @@ class ServerRacksController < ApplicationController
   # GET /server_racks/new.xml
   def new
     @server_rack = ServerRack.new
-
+	@server_rack.datacenter = Datacenter.find(params[:datacenter_id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @server_rack }
@@ -44,7 +44,7 @@ class ServerRacksController < ApplicationController
 
     respond_to do |format|
       if @server_rack.save
-        format.html { redirect_to(@server_rack, :notice => 'Server rack was successfully created.') }
+        format.html { redirect_to([@server_rack.datacenter, @server_rack], :notice => 'Server rack was successfully created.') }
         format.xml  { render :xml => @server_rack, :status => :created, :location => @server_rack }
       else
         format.html { render :action => "new" }
@@ -76,7 +76,7 @@ class ServerRacksController < ApplicationController
     @server_rack.destroy
 
     respond_to do |format|
-      format.html { redirect_to(server_racks_url) }
+      format.html { redirect_to(datacenter_server_racks_url) }
       format.xml  { head :ok }
     end
   end
