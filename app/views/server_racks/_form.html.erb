@@ -1,0 +1,29 @@
+<%= form_for(@server_rack) do |f| %>
+  <% if @server_rack.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@server_rack.errors.count, "error") %> prohibited this server_rack from being saved:</h2>
+
+      <ul>
+      <% @server_rack.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :datacenter_id %><br />
+    <%= f.text_field :datacenter_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_field :comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

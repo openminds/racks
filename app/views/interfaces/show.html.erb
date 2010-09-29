@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Device:</b>
+  <%= @interface.device_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @interface.type %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @interface.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_interface_path(@interface) %> |
+<%= link_to 'Back', interfaces_path %>

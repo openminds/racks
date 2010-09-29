@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  datacenter_id: 1
+  name: MyString
+  comment: MyString
+
+two:
+  datacenter_id: 1
+  name: MyString
+  comment: MyString

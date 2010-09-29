@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  device_id: 
+  type: MyString
+  name: MyString
+
+two:
+  device_id: 
+  type: MyString
+  name: MyString

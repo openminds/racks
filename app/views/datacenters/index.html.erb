@@ -1,0 +1,27 @@
+<h1>Listing datacenters</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @datacenters.each do |datacenter| %>
+  <tr>
+    <td><%= datacenter.name %></td>
+    <td><%= datacenter.location %></td>
+    <td><%= datacenter.comment %></td>
+    <td><%= link_to 'Show', datacenter %></td>
+    <td><%= link_to 'Edit', edit_datacenter_path(datacenter) %></td>
+    <td><%= link_to 'Destroy', datacenter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Datacenter', new_datacenter_path %>

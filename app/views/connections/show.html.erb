@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Left interface:</b>
+  <%= @connection.left_interface_id %>
+</p>
+
+<p>
+  <b>Right interface:</b>
+  <%= @connection.right_interface_id %>
+</p>
+
+<p>
+  <b>Color:</b>
+  <%= @connection.color %>
+</p>
+
+
+<%= link_to 'Edit', edit_connection_path(@connection) %> |
+<%= link_to 'Back', connections_path %>
