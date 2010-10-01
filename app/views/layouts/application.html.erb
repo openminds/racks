@@ -8,7 +8,11 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<p id="notice"><%= notice %></p>
+	<div id='notice'>
+		<% if flash[:notice] %>
+		<%= render :partial => 'shared/notice' %>
+		<% end %>
+	</div>
 <%= yield %>
 
 </body>
