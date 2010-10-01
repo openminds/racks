@@ -15,9 +15,9 @@
     <td><%= server_rack.datacenter_id %></td>
     <td><%= server_rack.name %></td>
     <td><%= server_rack.comment %></td>
-    <td><%= link_to 'Show', [server_rack.datacenter, server_rack] %></td>
-    <td><%= link_to 'Edit', edit_datacenter_server_rack_path(server_rack.datacenter, server_rack) %></td>
-    <td><%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show',  datacenter_server_rack_path(server_rack.datacenter, server_rack) %></td>
+    <td><%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack] %></td>
+    <td><%= link_to 'Destroy', datacenter_server_rack_path(server_rack.datacenter, server_rack), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

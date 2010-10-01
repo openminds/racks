@@ -2,7 +2,7 @@ class ServerRacksController < ApplicationController
   # GET /server_racks
   # GET /server_racks.xml
   def index
-    @server_racks = ServerRack.all
+    @server_racks = ServerRack.where(:datacenter_id => params[:datacenter_id])
 
     respond_to do |format|
       format.html # index.html.erb
