@@ -27,9 +27,4 @@ Scenario: Delete a datacenter
 	And I fill in "datacenter_comment" with "Some comment"
 	And I press "Update Datacenter"
 	Then I should see "Datacenter was successfully updated."
-	And I should see "Just a datacenter"
-	
-	
-	
-
-	
+	And I should see "Just a datacenter"	

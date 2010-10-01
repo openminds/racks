@@ -76,7 +76,7 @@ class DatacentersController < ApplicationController
     @datacenter.destroy
 
     respond_to do |format|
-      format.html { redirect_to(datacenters_url) }
+      format.html { redirect_to(datacenters_url, :notice => 'Datacenter was destroyed.') }
       format.xml  { head :ok }
     end
   end
