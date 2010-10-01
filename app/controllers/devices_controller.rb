@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
   # GET /devices/new.xml
   def new
     @device = Device.new
-	@server_rack = ServerRack.find(params[:server_rack_id])
+	@device.units  << ServerRack.find(params[:server_rack_id]).available_units.first
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @device }

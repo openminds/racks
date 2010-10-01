@@ -1,4 +1,4 @@
-<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |f| %>
+
   <% if @device.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
@@ -12,26 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :company_id %><br />
-    <%= f.text_field :company_id %>
+    <%= form.label :company_id %><br />
+    <%= form.text_field :company_id %>
   </div>
   <div class="field">
-    <%= f.label :device_type %><br />
-    <%= f.select :device_type, Device::DeviceType.to_select %>
+    <%= form.label :device_type %><br />
+    <%= form.select :device_type, Device::DeviceType.to_select %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
+    <%= form.label :comment %><br />
+    <%= form.text_area :comment %>
   </div>
-  <div class="field">
-    <%= f.label :unit_ids %><br />
-    <%= f.collection_select :unit_ids, @device.server_rack.available_units, :id, :number, {},{:size => 10, :multiple => 'multiple'} %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
