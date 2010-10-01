@@ -41,7 +41,6 @@ class ServerRacksController < ApplicationController
   # POST /server_racks.xml
   def create
     @server_rack = ServerRack.new(params[:server_rack])
-	logger.debug(params[:server_rack])
 	1.upto(params[:number_of_units].to_i) {|i| logger.debug  @server_rack.units << Unit.new(:number => i)}
 	
     respond_to do |format|
