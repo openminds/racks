@@ -17,9 +17,9 @@
     <td><%= device.type %></td>
     <td><%= device.name %></td>
     <td><%= device.comment %></td>
-    <td><%= link_to 'Show', device %></td>
-    <td><%= link_to 'Edit', edit_device_path(device) %></td>
-    <td><%= link_to 'Destroy', device, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', [device.server_rack.datacenter, device.server_rack, device] %></td>
+    <td><%= link_to 'Edit', [:edit, device.server_rack.datacenter, device.server_rack, device] %></td>
+    <td><%= link_to 'Destroy', [device.server_rack.datacenter, device.server_rack, device], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -5,10 +5,10 @@ Racks::Application.routes.draw do
 
   	resources :companies
 
-	resources :devices
-
   	resources :datacenters do
-		resources :server_racks 
+		resources :server_racks do
+			resources :devices
+		end
 	end
 
   # The priority is based upon order of creation:

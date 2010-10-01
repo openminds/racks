@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
   # GET /devices/new.xml
   def new
     @device = Device.new
-
+	@server_rack = ServerRack.find(params[:server_rack_id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @device }
@@ -44,7 +44,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
-        format.html { redirect_to(@device, :notice => 'Device was successfully created.') }
+        format.html { redirect_to(datacenters_path, :notice => 'Device was successfully created.') }
         format.xml  { render :xml => @device, :status => :created, :location => @device }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.update_attributes(params[:device])
-        format.html { redirect_to(@device, :notice => 'Device was successfully updated.') }
+        format.html { redirect_to(datacenters_path, :notice => 'Device was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class DevicesController < ApplicationController
     @device.destroy
 
     respond_to do |format|
-      format.html { redirect_to(devices_url) }
+      format.html { redirect_to(request.referrer) }
       format.xml  { head :ok }
     end
   end
