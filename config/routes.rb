@@ -5,7 +5,7 @@ Racks::Application.routes.draw do
 
   	resources :companies
 
-	resources :server_racks
+	resources :devices
 
   	resources :datacenters do
 		resources :server_racks 
@@ -60,7 +60,7 @@ Racks::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "datacenter#index"
+  root :to => "datacenters#index"
 
   # See how all your routes lay out with "rake routes"
 
