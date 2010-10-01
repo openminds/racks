@@ -1,4 +1,4 @@
 class Unit < ActiveRecord::Base
 	belongs_to :server_rack
-	belongs_to :device
+	belongs_to :device, :dependent => :destroy
 end
