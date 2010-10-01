@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :datacenter_id %><br />
-    <%= f.text_field :datacenter_id %>
+    
+    <%= f.hidden_field :datacenter_id %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :comment %><br />
-    <%= f.text_field :comment %>
+    <%= f.text_area :comment %>
   </div>
 	<div class="field">
 	    <%= label 'number_of_units', :number_of_units %><br />

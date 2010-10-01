@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20100929143953) do
 
   create_table "devices", :force => true do |t|
     t.integer  "company_id"
-    t.string   "type"
+    t.integer  "device_type"
     t.string   "name"
     t.string   "comment"
     t.datetime "created_at"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20100929143953) do
   end
 
   create_table "interfaces", :force => true do |t|
-    t.integer  "device_id",  :null => false
-    t.string   "type"
+    t.integer  "device_id",      :null => false
+    t.string   "interface_type"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

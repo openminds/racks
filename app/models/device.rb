@@ -3,6 +3,14 @@ class Device < ActiveRecord::Base
 	belongs_to :company
 	has_many :interfaces
 	
+	enumerate :device_type do
+		value :id => 1, :name => 'Server'
+		value :id => 2, :name => 'Router'
+		value :id => 3, :name => 'Switch'
+		value :id => 4, :name => 'Powerbar'
+		value :id => 5, :name => 'Rented out'
+	end
+	
 	def unit_ids(ids=[])
 		ids.each do |id|
 			unit = Unit.find(id)

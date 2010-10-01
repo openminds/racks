@@ -2,7 +2,7 @@ class CreateDevices < ActiveRecord::Migration
   def self.up
     create_table :devices do |t|
       t.integer :company_id, :options => "CONSTRAINT fk_device_company REFERENCES companies(id)"
-      t.string :type
+      t.integer :device_type
       t.string :name
       t.string :comment
 

@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Company</th>
-    <th>Type</th>
+    <th>device_type</th>
     <th>Name</th>
     <th>Comment</th>
     <th></th>
@@ -14,7 +14,7 @@
 <% @devices.each do |device| %>
   <tr>
     <td><%= device.company_id %></td>
-    <td><%= device.type %></td>
+    <td><%= device.device_type %></td>
     <td><%= device.name %></td>
     <td><%= device.comment %></td>
     <td><%= link_to 'Show', [device.server_rack.datacenter, device.server_rack, device] %></td>

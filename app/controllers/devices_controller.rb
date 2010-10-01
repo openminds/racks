@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   # GET /devices.xml
   def index
     @devices = Device.all
-
+	
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @devices }
@@ -41,7 +41,6 @@ class DevicesController < ApplicationController
   # POST /devices.xml
   def create
     @device = Device.new(params[:device])
-
     respond_to do |format|
       if @device.save
         format.html { redirect_to(datacenters_path, :notice => 'Device was successfully created.') }

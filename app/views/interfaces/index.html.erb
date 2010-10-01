@@ -13,7 +13,7 @@
 <% @interfaces.each do |interface| %>
   <tr>
     <td><%= interface.device_id %></td>
-    <td><%= interface.type %></td>
+    <td><%= interface.interface_type %></td>
     <td><%= interface.name %></td>
     <td><%= link_to 'Show', interface %></td>
     <td><%= link_to 'Edit', edit_interface_path(interface) %></td>

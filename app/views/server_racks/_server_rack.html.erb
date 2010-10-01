@@ -5,10 +5,8 @@
 	<p><%= link_to 'Show',  [server_rack.datacenter, server_rack] %>
     <%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack] %>
     <%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %></p>
-	<ul>
-		<% server_rack.devices.each do |device| %>
-			<li><%= device.name %></li>
-		<% end %>
-	</ul>
+	<div class='devices_accordion'>
+		<%= render :partial => 'devices/device', :collection => server_rack.devices, :as => :device %>
+	</div>
 	<%= link_to 'Add device', [:new, server_rack.datacenter, server_rack, :device] %>
 </fieldset>

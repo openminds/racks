@@ -1,0 +1,12 @@
+<h3><a href="#"><%= "#{device.units.first.number} - #{device.units.last.number}: #{device.device_type(:name)}: #{device.name}" %></a></h3>
+	<div>
+		<p>
+			<%= device.device_type(:name) %>
+		</p>
+		<p>
+			<%= device.comment %>
+		</p>
+		<p><%= link_to 'Show',  [device.server_rack.datacenter, device.server_rack, device] %>
+	    <%= link_to 'Edit', [:edit, device.server_rack.datacenter, device.server_rack, device] %>
+	    <%= link_to 'Destroy', [device.server_rack.datacenter, device.server_rack, device], :confirm => 'Are you sure?', :method => :delete %></p>	
+	</div>
