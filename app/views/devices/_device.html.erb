@@ -6,6 +6,14 @@
 		<p>
 			<%= device.comment %>
 		</p>
+		<table>
+			<% device.interfaces.each do |interface| %>
+				<tr>
+					<td><%= interface.interface_type(:name) %></td>
+					<td><%= interface.name %></td>
+				</tr>
+			<% end %>
+		</table>
 		<p><%= link_to 'Show',  [device.server_rack.datacenter, device.server_rack, device] %>
 	    <%= link_to 'Edit', [:edit, device.server_rack.datacenter, device.server_rack, device] %>
 	    <%= link_to 'Destroy', [device.server_rack.datacenter, device.server_rack, device], :confirm => 'Are you sure?', :method => :delete %></p>	
