@@ -2,12 +2,12 @@
 <%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
 	<%= render form %>
 	<div class="field">
-    <%= form.label :unit_ids %><br />
-    <%= form.collection_select :unit_ids, @device.server_rack.available_units, :id, :number, {},{:size => 10, :multiple => 'multiple'} %>
-  </div>
-  	<div class="actions">
-    	<%= form.submit %>
-  	</div>
+		<%= form.label :unit_ids %><br />
+		<%= form.collection_select :unit_ids, @device.server_rack.available_units, :id, :number, {},{:size => 10, :multiple => 'multiple'} %>
+	</div>
+	<div class="actions">
+		<%= form.submit %>
+	</div>
 <% end %>
 
 <%= link_to 'Back', datacenters_path %>

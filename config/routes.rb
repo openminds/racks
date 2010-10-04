@@ -1,9 +1,9 @@
 Racks::Application.routes.draw do
-  	resources :connections
+  	#resources :connections
 
-  	resources :interfaces
+  	#resources :interfaces
 
-  	resources :companies
+  	#resources :companies
 
   	resources :datacenters do
 		resources :server_racks do

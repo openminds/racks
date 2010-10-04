@@ -16,4 +16,15 @@ class ServerRack < ActiveRecord::Base
 		end
 		rack_devices
 	end
+	def available_interfaces
+		available_interfaces = Array.new
+		devices.each do |device|
+			device.interfaces.each do |interface|
+				if interface.connection.nil?
+					available_interfaces << interface
+				end
+			end
+		end
+		available_interfaces
+	end
 end
