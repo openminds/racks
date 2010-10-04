@@ -47,7 +47,7 @@
 				<% end %>
 			</td>
 			<td>
-				<%= interface_form.select :connected_to, ServerRack.find(params[:server_rack_id]).interfaces.map {|i| [i.to_s, i.id]},{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
+				<%= interface_form.select :connected_to, @device.server_rack.interfaces.map {|i| [i.to_s, i.id]},{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
 			</td>
 			<td>
 				<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection)  %>
@@ -55,7 +55,7 @@
 		</tr>
 		<% end %>
 	</table>
-	<%= link_to 'Add Interface' %>
+	<%= link_to 'Add Interface', device_add_interface_path(@device.server_rack.datacenter, @device.server_rack, @device), :method => :post %>
 
 </fieldset>
 
