@@ -2,7 +2,8 @@ class Interface < ActiveRecord::Base
 	belongs_to :device
 	#belongs_to :cable_connection, :dependent => :destroy
 	
-	after_save :update_cable_connection
+	#after_save :update_cable_connection
+	before_destroy :destroy_cable_connections
 	
 	attr_accessor :connected_to
 	attr_accessor :cable_connection_color
@@ -24,9 +25,16 @@ class Interface < ActiveRecord::Base
 		"#{self.name} on #{self.device.name}"
 	end
 	
+	def destroy_cable_connections
+		unless cable_connection.nil? 
+			to_destroy = cable_connection
+			to_destroy.destroy
+		end
+	end
+	
 	def update_cable_connection
 		if self.cable_connection.nil?
-			if !(self.connected_to == '')
+			if self.connected_to != '' && !self.connected_to.nil?
 				new_connection = CableConnection.new
 				new_connection.right_interface_id = self.id
 				new_connection.left_interface_id = self.connected_to
@@ -35,7 +43,7 @@ class Interface < ActiveRecord::Base
 			end
 		else
 			to_update = cable_connection
-			if (self.connected_to == '')
+			if self.connected_to == '' || self.connected_to.nil?
 				to_update.destroy
 			else
 				if to_update.right_interface_id == self.id

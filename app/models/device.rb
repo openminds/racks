@@ -2,7 +2,7 @@ class Device < ActiveRecord::Base
 	has_many :units, :dependent => :nullify
 	belongs_to :company
 	has_many :interfaces, :dependent => :destroy
-	accepts_nested_attributes_for :interfaces
+	accepts_nested_attributes_for :interfaces, :allow_destroy => true
 	
 	after_update :update_cable_connection
 	
