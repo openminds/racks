@@ -7,14 +7,17 @@ class Interface < ActiveRecord::Base
 	attr_accessor :connected_to
 	attr_accessor :cable_connection_color
 	
-	
 	enumerate :interface_type do
 		value :id => 1, :name => 'Ethernet'
 		value :id => 2, :name => 'Power'
 	end
-	
+
 	def cable_connection
-		CableConnection.first(:conditions => "left_interface_id = #{self.id} OR right_interface_id = #{self.id}")
+		if self.id
+			CableConnection.first(:conditions => "left_interface_id = #{self.id} OR right_interface_id = #{self.id}")
+		else
+			nil
+		end
 	end
 	
 	def to_s
@@ -31,15 +34,15 @@ class Interface < ActiveRecord::Base
 				new_connection.save!
 			end
 		else
+			to_update = cable_connection
 			if (self.connected_to == '')
-				cable_connection.destroy
+				to_update.destroy
 			else
-				if cable_connection.right_interface_id == self.id
-					cable_connection.left_interface_id = self.connected_to
+				if to_update.right_interface_id == self.id
+					to_update.update_attributes(:left_interface_id => self.connected_to, :color => self.cable_connection_color)
 				else
-					cable_connection.right_interface_id = self.connected_to
+					to_update.update_attributes(:right_interface_id => self.connected_to, :color => self.cable_connection_color)
 				end
-				cable_connection.save!
 			end
 		end
 	end

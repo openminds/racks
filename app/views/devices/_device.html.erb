@@ -9,15 +9,12 @@
 		<table>
 			<% device.interfaces.each do |interface| %>
 				<tr>
-					<td><%= interface.interface_type(:name) %></td>
 					<td><%= interface.name %></td>
 					<td>
 						<% if interface.cable_connection %>
-							<p>
-								Connected to <%= interface.cable_connection.other_interface(interface).to_s %>
-							</p>
+								<em style="background-color:<%= interface.cable_connection.color%>;">&lt;-----&gt;</em>
+								<%= interface.cable_connection.other_interface(interface).to_s %>
 						<%end%>
-						
 					</td>
 				</tr>
 			<% end %>
