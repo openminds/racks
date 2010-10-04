@@ -1,7 +1,7 @@
 class ServerRack < ActiveRecord::Base
 	belongs_to :datacenter
 	has_many :units, :dependent => :destroy
-	
+
 	def available_units
 		units.where(:device_id => nil)
 	end
@@ -16,13 +16,11 @@ class ServerRack < ActiveRecord::Base
 		end
 		rack_devices
 	end
-	def available_interfaces
+	def interfaces
 		available_interfaces = Array.new
 		devices.each do |device|
 			device.interfaces.each do |interface|
-				if interface.cable_connection.nil?
-					available_interfaces << interface
-				end
+				available_interfaces << interface
 			end
 		end
 		available_interfaces

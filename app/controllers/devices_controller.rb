@@ -26,7 +26,7 @@ class DevicesController < ApplicationController
 	def new
 		@device = Device.new
 		@device.units  << ServerRack.find(params[:server_rack_id]).available_units.first
-		3.times { @device.interfaces.build }
+		@device.interfaces.build
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -58,7 +58,7 @@ class DevicesController < ApplicationController
 	# PUT /devices/1.xml
 	def update
 		@device = Device.find(params[:id])
-
+		
 		respond_to do |format|
 			if @device.update_attributes(params[:device])
 				format.html { redirect_to(datacenters_path, :notice => 'Device was successfully updated.') }

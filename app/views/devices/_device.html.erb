@@ -11,6 +11,14 @@
 				<tr>
 					<td><%= interface.interface_type(:name) %></td>
 					<td><%= interface.name %></td>
+					<td>
+						<% if interface.cable_connection %>
+							<p>
+								Connected to <%= interface.cable_connection.other_interface(interface).to_s %>
+							</p>
+						<%end%>
+						
+					</td>
 				</tr>
 			<% end %>
 		</table>
