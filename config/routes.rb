@@ -1,5 +1,5 @@
 Racks::Application.routes.draw do
-  	#resources :connections
+  	#resources :cable_connections
 
   	#resources :interfaces
 

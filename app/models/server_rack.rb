@@ -20,7 +20,7 @@ class ServerRack < ActiveRecord::Base
 		available_interfaces = Array.new
 		devices.each do |device|
 			device.interfaces.each do |interface|
-				if interface.connection.nil?
+				if interface.cable_connection.nil?
 					available_interfaces << interface
 				end
 			end
