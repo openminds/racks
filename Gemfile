@@ -25,14 +25,14 @@ gem 'mysql'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 group :test do
-  gem "sqlite3-ruby", :require => 'sqlite3'
-  gem 'capybara'
-  gem 'database_cleaner', :git => 'git://github.com/bmabey/database_cleaner.git'
-  gem 'cucumber-rails', "0.3.2" #,  :git => 'git://github.com/aslakhellesoy/cucumber-rails.git'
-  gem "factory_girl" #, :git => "git://github.com/thoughtbot/factory_girl_rails.git"
-  gem "test-unit"
-  gem "launchy"
-  gem "pickle"
+	gem "sqlite3-ruby", :require => 'sqlite3'
+	gem 'capybara'
+	gem 'database_cleaner', :git => 'git://github.com/bmabey/database_cleaner.git'
+	gem 'cucumber-rails', "0.3.2" #,  :git => 'git://github.com/aslakhellesoy/cucumber-rails.git'
+	gem "factory_girl" #, :git => "git://github.com/thoughtbot/factory_girl_rails.git"
+	gem "test-unit"
+	gem "launchy"
+	gem "pickle"
 end
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
