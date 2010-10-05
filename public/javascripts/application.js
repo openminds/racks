@@ -3,7 +3,7 @@
 $(function(){
 	//datacenters should show as tabs
 	$("#datacenters").tabs();
-	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false});
+	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
 	//create the add interface links
 	$('#add_interface').click(function(){
 		//var interface_row = $('.interface_row').fi.html();

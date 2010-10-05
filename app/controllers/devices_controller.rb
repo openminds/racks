@@ -37,6 +37,9 @@ class DevicesController < ApplicationController
 	# GET /devices/1/edit
 	def edit
 		@device = Device.find(params[:id])
+		unless @device.interfaces.any?
+			@device.interfaces.build
+		end
 	end
 
 	# POST /devices
