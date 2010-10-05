@@ -7,7 +7,7 @@ Racks::Application.routes.draw do
 
   	resources :datacenters do
 		resources :server_racks do
-			resources :devices 
+			resources :devices, :except => [:show, :index]
 		end
 	end
 

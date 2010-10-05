@@ -1,33 +1,26 @@
-<%= form_for [@server_rack.datacenter, @server_rack] do |f| %>
-  <% if @server_rack.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@server_rack.errors.count, "error") %> prohibited this server_rack from being saved:</h2>
 
-      <ul>
-      <% @server_rack.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if @server_rack.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@server_rack.errors.count, "error") %> prohibited this server_rack from being saved:</h2>
 
-  <div class="field">
-    
-    <%= f.hidden_field :datacenter_id %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </div>
-	<div class="field">
-	    <%= label 'number_of_units', :number_of_units %><br />
-	    <%= text_field_tag :number_of_units %>
-	  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<ul>
+		<% @server_rack.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
 <% end %>
+
+<div class="field">
+	<%= form.hidden_field :datacenter_id %>
+</div>
+<div class="field">
+	<%= form.label :name %><br />
+	<%= form.text_field :name %>
+</div>
+<div class="field">
+	<%= form.label :comment %><br />
+	<%= form.text_area :comment %>
+</div>
+
+
