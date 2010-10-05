@@ -3,7 +3,7 @@
 	<%= render form %>
 	<div class="field">
 		<%= form.label :unit_ids %><br />
-		<%= form.collection_select :unit_ids, @device.server_rack.available_units, :id, :number, {},{:size => 10, :multiple => 'multiple'} %>
+		<%= form.collection_select :unit_ids, @device.server_rack.available_units, :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
 	</div>
 	<div class="actions">
 		<%= form.submit %>

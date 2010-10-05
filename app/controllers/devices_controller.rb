@@ -80,7 +80,7 @@ class DevicesController < ApplicationController
 		@device.destroy
 
 		respond_to do |format|
-			format.html { redirect_to(request.referrer) }
+			format.html { redirect_to(request.referrer, :notice => 'Device was successfully deleted.') }
 			format.xml  { head :ok }
 		end
 	end
