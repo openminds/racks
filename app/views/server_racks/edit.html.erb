@@ -1,6 +1,10 @@
 <h1>Editing server_rack</h1>
 <%= form_for [@server_rack.datacenter, @server_rack] do |form| %>
-	<%= render form %>
+<%= render form %>
+
+<div class="actions">
+	<%= form.submit %>
+</div>
 <%end%>
 <%= link_to 'Show', [@server_rack.datacenter, @server_rack] %> |
 <%= link_to 'Back', datacenter_server_racks_path %>

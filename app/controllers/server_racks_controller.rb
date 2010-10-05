@@ -77,7 +77,7 @@ class ServerRacksController < ApplicationController
     @server_rack.destroy
 
     respond_to do |format|
-      format.html { redirect_to(datacenters_path) }
+      format.html { redirect_to(datacenters_path, :notice => 'Server rack was successfully deleted.') }
       format.xml  { head :ok }
     end
   end
