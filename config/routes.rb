@@ -7,9 +7,7 @@ Racks::Application.routes.draw do
 
   	resources :datacenters do
 		resources :server_racks do
-			resources :devices do
-				post 'add_interface'
-			end
+			resources :devices 
 		end
 	end
 

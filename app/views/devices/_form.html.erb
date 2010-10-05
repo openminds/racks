@@ -30,9 +30,9 @@
 </fieldset>
 <fieldset style="float:left">
 	<legend>Interfaces</legend>
-	<table>
+	<table id='interface_form'>
 		<%= form.fields_for :interfaces do |interface_form| %>
-		<tr>
+		<tr class='interface_row'>
 			<td class="field">
 				<%= interface_form.select :interface_type, Interface::InterfaceType.to_select %>
 			</td>
@@ -45,17 +45,16 @@
 					<%= interface_form.check_box :_destroy %>
 					<%= interface_form.label :_destroy, 'Remove' %>
 				<% end %>
-			</td>
+			</td class="field">
 			<td>
 				<%= interface_form.select :connected_to, @device.server_rack.interfaces.map {|i| [i.to_s, i.id]},{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
-			</td>
-			<td>
+			</td class="field">
+			<td class="field">
 				<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection)  %>
 			</td>
 		</tr>
 		<% end %>
 	</table>
-	<%= link_to 'Add Interface', device_add_interface_path(@device.server_rack.datacenter, @device.server_rack, @device), :method => :post %>
-
+	<%= link_to 'Add Interface','#', :id => 'add_interface' %>
 </fieldset>
 

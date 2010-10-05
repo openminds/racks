@@ -81,17 +81,4 @@ class DevicesController < ApplicationController
 			format.xml  { head :ok }
 		end
 	end
-	def add_interface
-		if params[:device_id]
-			@device = Device.find(params[:device_id])
-			@device.attributes = params[:device]
-			@device.interfaces.build
-			respond_to do |format|
-				format.html { render :action => "edit" }
-			end
-		else
-			logger.debug "Add interface and redirect to edit"
-			
-		end
-	end
 end
