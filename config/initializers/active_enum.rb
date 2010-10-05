@@ -15,10 +15,14 @@ ActiveEnum.setup do |config|
 
 end
 
-# ActiveEnum.define do
-# 
-#   enum(:enum_name) do
-#     value 1 => 'Name'
-#   end
-# 
-# end
+ActiveEnum.define do
+
+  enum(:device_type) do
+   		value :id => 1, :name => 'Server'
+		value :id => 2, :name => 'Router'
+		value :id => 3, :name => 'Switch'
+		value :id => 4, :name => 'Powerbar'
+		value :id => 5, :name => 'Rented out'
+  end
+
+end

@@ -12,5 +12,5 @@ Factory.define(:device) do |d|
 	d.device_type 1
 end
 Factory.define(:unit) do |u|
-	u.sequence(:device_id){|n| n}
+	
 end
