@@ -1,16 +1,17 @@
-<h1>New server_rack</h1>
-<%= form_for [@server_rack.datacenter, @server_rack] do |form| %>
-<%= render form %>
-<div class="field">
-    <%= label 'number_of_units', :number_of_units %><br />
-    <%= text_field_tag :number_of_units %>
- </div>
+<div class='ui-dialog ui-widget ui-widget-content ui-corner-all' style='width:98%; '>
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+		<span class='ui-dialog-title'>New rack</span>
+	</div>
+	<%= form_for [@server_rack.datacenter, @server_rack] do |form| %>
+	<%= render form %>
+	<div class="field">
+		<%= label 'number_of_units', :number_of_units %><br />
+		<%= text_field_tag :number_of_units %>
+	</div>
 
-<div class="actions">
-	<%= form.submit %>
+	<div class="actions">
+		<%= form.submit %>
+	</div>
+	<% end %>
+	<%= link_to 'Back', datacenters_path %>
 </div>
-<% end %>
-
-
-
-<%= link_to 'Back', datacenter_server_racks_path %>

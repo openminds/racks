@@ -1,5 +1,7 @@
-<h1>New company</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', companies_path %>
+<h2 class="title">New company</h2>
+<div class='entry'>
+	<%= form_for @company do |form| %>
+		<%= render form %>
+		<%= form.submit 'Add company' %>
+	<% end %>
+</div>

@@ -13,6 +13,10 @@
 					<td>
 						<% if interface.cable_connection %>
 								<em style="background-color:<%= interface.cable_connection.color%>;">&lt;-&gt;</em>
+						<% end %>
+					</td>
+					<td>
+						<% if interface.cable_connection %>
 								<%= interface.cable_connection.other_interface(interface).to_s %>
 						<%end%>
 					</td>

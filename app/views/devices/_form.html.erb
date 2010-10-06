@@ -10,25 +10,6 @@
 </div>
 <% end %>
 <fieldset style="float:left">
-	<legend>The device</legend>
-  	<div class="field">
-    	<%= form.label :company_id %><br />
-    	<%= form.text_field :company_id %>
-  	</div>
-  	<div class="field">
-    	<%= form.label :device_type %><br />
-    	<%= form.select :device_type, DeviceType.to_select %>
-  	</div>
-  	<div class="field">
-    	<%= form.label :name %><br />
-    	<%= form.text_field :name %>
-  	</div>
-  	<div class="field">
-    	<%= form.label :comment %><br />
-    	<%= form.text_area :comment %>
-  	</div>
-</fieldset>
-<fieldset style="float:left">
 	<legend>Interfaces</legend>
 	<table id='interface_form'>
 		<%= form.fields_for :interfaces do |interface_form| %>
@@ -57,4 +38,24 @@
 	</table>
 	<%= link_to 'Add Interface','#', :id => 'add_interface' %>
 </fieldset>
+<fieldset style="float:left">
+	<legend>The device</legend>
+  	<div class="field">
+    	<%= form.label :company_id %><br />
+    	<%= form.text_field :company_id %>
+  	</div>
+  	<div class="field">
+    	<%= form.label :device_type %><br />
+    	<%= form.select :device_type, DeviceType.to_select %>
+  	</div>
+  	<div class="field">
+    	<%= form.label :name %><br />
+    	<%= form.text_field :name %>
+  	</div>
+  	<div class="field">
+    	<%= form.label :comment %><br />
+    	<%= form.text_area :comment, {:size => '90x4'} %>
+  	</div>
+</fieldset>
+
 

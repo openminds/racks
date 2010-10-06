@@ -1,6 +1,9 @@
-<h1>Editing company</h1>
+<h2 class='title'>Edit company</h2>
+<div class="entry">
+	<%= form_for @company do |form| %>
+		<%= render form %>
+		<%= form.submit 'Save company' %>
+	<% end %>
+</div>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>

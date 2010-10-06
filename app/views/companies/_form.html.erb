@@ -1,7 +1,6 @@
-<%= form_for(@company) do |f| %>
-  <% if @company.errors.any? %>
+<% if @company.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this datacenter from being saved:</h2>
 
       <ul>
       <% @company.errors.full_messages.each do |msg| %>
@@ -10,40 +9,41 @@
       </ul>
     </div>
   <% end %>
+<p>
+	<%= form.label :name %><br />
+	<%= form.text_field :name %>
+</p>
+<h2>Contact information</h2>
+<p>
+	<%= form.label :address %><br />
+	<%= form.text_field :address %>
+</p>
+<p>
+	<%= form.label :postal_code %><br />
+	<%= form.text_field :postal_code %>
+	<%= form.label :city %>
+	<%= form.text_field :city %>
+	
+</p>
+<p>
+	<%= form.label :telephone %><br />
+	<%= form.text_field :telephone %>
+</p>
+<p>
+	<%= form.label :email %><br />
+	<%= form.text_field :email %>
+</p>
+<h2>Other</h2>
+<p>
+	<%= form.label :url %><br />
+	<%= form.text_field :url %>
+</p>
+<p>
+	<%= form.label :btw_nr %><br />
+	<%= form.text_field :btw_nr %>
+</p>
+<p>
+	<%= form.label :comment %><br />
+	<%= form.text_area :comment %>
+</p>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :telephone %><br />
-    <%= f.text_field :telephone %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :btw_nr %><br />
-    <%= f.text_field :btw_nr %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_field :comment %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

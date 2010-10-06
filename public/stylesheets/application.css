@@ -1,10 +1,10 @@
 html{
 	margin:0px;
-	font-family: Verdana,Arial,sans-serif; font-size: 1.1em; 
+	font-family: Verdana,Arial,sans-serif; font-size: 1em; 
 	padding:5px;
 }
-.devices_accordion{
-	max-width:250px;
+#datacenters fieldset{
+	max-width:20%;
 }
 #wrapper {
 	margin:0px;
