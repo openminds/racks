@@ -74,16 +74,18 @@
 						<% end %>
 						yDevice = yDevice + deviceHeight + 5;
 					<% end %>
+					var controlX = 350;
 					<% @server_rack.cable_connections.each do |cable_connection| %>
 						//draw the connection
 						var leftY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)];
 						var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)];
-						context.strokeStyle = "<%= cable_connection.color %>"
+						context.strokeStyle = "<%= cable_connection.color %>";
+						context.lineWidth = 2;
 						context.beginPath();
 						context.moveTo(310, leftY);
-						context.quadraticCurveTo(500,500, 310, rightY);
-						context.closePath();
+						context.quadraticCurveTo(controlX,(leftY+rightY)/2, 310, rightY);
 						context.stroke();
+						controlX += 10;
 					<% end %>
 					
 				}
@@ -91,7 +93,7 @@
 			
 			</script>
 			
-			<canvas id="myDrawing" width='1000px' height='1000px'style='float:left;border-style:solid;'>
+			<canvas id="myDrawing" width='1000' height='1000' style='float:left;border-style:solid;'>
 				<p>Your browser doesn't support canvas.</p>
 			</canvas>
 			<div style="clear: both;">&nbsp;</div>
