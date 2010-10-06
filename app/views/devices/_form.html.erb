@@ -28,7 +28,7 @@
 				<% end %>
 			</td class="field">
 			<td>
-				<%= interface_form.select :connected_to, @device.server_rack.interfaces.map {|i| [i.to_s, i.id]},{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
+				<%= interface_form.select :connected_to, @device.server_rack.available_interfaces.map {|i| [i.to_s, i.id]},{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
 			</td class="field">
 			<td class="field">
 				<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection)  %>

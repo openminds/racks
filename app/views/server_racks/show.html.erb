@@ -1,20 +1,100 @@
+<div class='ui-dialog ui-widget ui-widget-content ui-corner-all' style='width:98%; '>
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+		<span class='ui-dialog-title'><%= "#{@server_rack.name} in #{@server_rack.datacenter.name} (#{@server_rack.datacenter.location})" %></span>
+	</div>
+	<div id="server_rack_info">
+		<ul>
+			<li><a href='#rack_info'>Rack info</a></li>
+			<li><a href='#devices_list'>Devices</a></li>
+			<li><a href='#connections'>Connections</a></li>
+		</ul>
+		<div id='rack_info'>
+			<p>
+			  <b>Datacenter:</b>
+			  <%= @server_rack.datacenter_id %>
+			</p>
 
+			<p>
+			  <b>Name:</b>
+			  <%= @server_rack.name %>
+			</p>
 
-<p>
-  <b>Datacenter:</b>
-  <%= @server_rack.datacenter_id %>
-</p>
+			<p>
+			  <b>Comment:</b>
+			  <%= @server_rack.comment %>
+			</p>
+			<%= link_to 'Edit', edit_datacenter_server_rack_path(@server_rack) %> |
+			<%= link_to 'Back', datacenters_path %>
+		</div>
+		
+		<div id='devices_list'>
+			<div class='devices_accordion'>
+				<%= render :partial => 'devices/device', :collection => @server_rack.devices, :as => :device %>
+			</div>
 
-<p>
-  <b>Name:</b>
-  <%= @server_rack.name %>
-</p>
+		</div>
+		<div id='connections'>
+			<script type="text/javascript">
+			window.onload = function() {
+				var drawingCanvas = document.getElementById('myDrawing');
 
-<p>
-  <b>Comment:</b>
-  <%= @server_rack.comment %>
-</p>
-
-
-<%= link_to 'Edit', edit_datacenter_server_rack_path(@server_rack) %> |
-<%= link_to 'Back', datacenter_server_racks_path %>
+				// Check the element is in the DOM and the browser supports canvas
+				if(drawingCanvas && drawingCanvas.getContext) {
+					// Initaliase a 2-dimensional drawing context
+					var context = drawingCanvas.getContext('2d');
+					var interfaceIds = [];
+					var interfaceLocations = [];
+					
+					var yDevice = 10
+					<% @server_rack.devices.each do |device| %>
+						//draw the device device
+						var deviceHeight = 50 + <%= device.interfaces.count %> * 5
+						context.fillStyle = "rgba(00,0,150, 0.5)";
+						context.fillRect (10, yDevice, 300, deviceHeight);
+						context.font = "12px Helvetica";  
+						context.fillStyle = "Black";  
+						context.fillText('<%= "#{device.units.first.number} - #{device.units.last.number}:" %>', 15, yDevice + 15 );
+						context.fillText('<%= "#{device.device_type(:name)}: #{device.name}" %>', 15, yDevice + 30 );
+						
+						var yInterface = yDevice +10;
+						var xInterface = 310;
+						<% device.interfaces.each do |interface| %>
+							//draw the interfaces
+							context.fillStyle = "rgba(00,0,000, 1)";
+							context.beginPath();
+							context.arc(xInterface,yInterface,5,2.5, Math.PI, true) 
+							context.closePath();
+							context.fill();
+							context.font = "10px Helvetica"; 
+							context.fillText('<%= "#{interface.interface_type(:name)} - #{interface.name}" %>', xInterface - 100, yInterface +2);
+							interfaceLocations.push(yInterface);
+							interfaceIds.push(<%= interface.id %>);
+							yInterface +=12;
+							
+						<% end %>
+						yDevice = yDevice + deviceHeight + 5;
+					<% end %>
+					<% @server_rack.cable_connections.each do |cable_connection| %>
+						//draw the connection
+						var leftY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)];
+						var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)];
+						context.strokeStyle = "<%= cable_connection.color %>"
+						context.beginPath();
+						context.moveTo(310, leftY);
+						context.quadraticCurveTo(500,500, 310, rightY);
+						context.closePath();
+						context.stroke();
+					<% end %>
+					
+				}
+			}
+			
+			</script>
+			
+			<canvas id="myDrawing" width='1000px' height='1000px'style='float:left;border-style:solid;'>
+				<p>Your browser doesn't support canvas.</p>
+			</canvas>
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+	</div>
+</div>

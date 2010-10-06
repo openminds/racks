@@ -2,7 +2,6 @@ class ServerRack < ActiveRecord::Base
 	belongs_to :datacenter
 	has_many :units, :dependent => :destroy
 	validates_presence_of :name, :message => "can't be blank"
-	
 
 	def available_units
 		units.where(:device_id => nil)
@@ -19,12 +18,30 @@ class ServerRack < ActiveRecord::Base
 		rack_devices
 	end
 	def interfaces
-		available_interfaces = Array.new
+		interfaces = Array.new
 		devices.each do |device|
 			device.interfaces.each do |interface|
-				available_interfaces << interface
+				interfaces << interface
 			end
 		end
-		available_interfaces
+		interfaces
+	end
+	def available_interfaces
+		interfaces = Array.new
+		devices.each do |device|
+			device.interfaces.each do |interface|
+				if interface.cable_connection.nil?
+					interfaces << interface
+				end
+			end
+		end
+		interfaces
+	end
+	def cable_connections
+		connections = Array.new
+		interfaces.each do |interface|
+			connections << CableConnection.first(:conditions => "left_interface_id = #{interface.id} OR right_interface_id = #{interface.id}")
+		end
+		connections.uniq.compact
 	end
 end

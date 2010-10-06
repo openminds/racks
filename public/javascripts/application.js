@@ -1,8 +1,9 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(function(){
-	//datacenters should show as tabs
+	//init tabs
 	$("#datacenters").tabs();
+	$("#server_rack_info").tabs();
 	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
 	//create the add interface links
 	$('#add_interface').click(function(){
