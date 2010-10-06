@@ -4,6 +4,9 @@ class Device < ActiveRecord::Base
 	has_many :interfaces, :dependent => :destroy
 	accepts_nested_attributes_for :interfaces, :allow_destroy => true, :reject_if => proc { |attrs| attrs['name'].blank? }
 	
+	validates_presence_of :name, :message => "can't be blank"
+	
+	
 	after_save :update_cable_connection
 	
 	enumerate :device_type, :with => DeviceType

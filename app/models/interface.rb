@@ -5,6 +5,8 @@ class Interface < ActiveRecord::Base
 	#after_save :update_cable_connection
 	before_destroy :destroy_cable_connections
 	
+	validates_presence_of :name, :message => "can't be blank"
+	
 	attr_accessor :connected_to
 	attr_accessor :cable_connection_color
 	
