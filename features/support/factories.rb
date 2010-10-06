@@ -14,3 +14,6 @@ end
 Factory.define(:unit) do |u|
 	u.sequence(:number){|n| n}
 end
+Factory.define(:company) do |c|
+	c.sequence(:name){|n| "Company#{n}"}
+end

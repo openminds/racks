@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.xml
   def index
-    @companies = Company.all
+    @companies = Company.all(:order => 'name ASC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -76,7 +76,7 @@ class CompaniesController < ApplicationController
     @company.destroy
 
     respond_to do |format|
-      format.html { redirect_to(companies_url) }
+      format.html { redirect_to(companies_url, :notice => 'Company deleted.') }
       format.xml  { head :ok }
     end
   end
