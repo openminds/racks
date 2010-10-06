@@ -2,7 +2,7 @@ class ServerRack < ActiveRecord::Base
 	belongs_to :datacenter
 	has_many :units, :dependent => :destroy
 	validates_presence_of :name, :message => "can't be blank"
-	validates_presence_of :units, :on => :create, :message => ", you'll need some..."
+	
 
 	def available_units
 		units.where(:device_id => nil)

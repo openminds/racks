@@ -12,7 +12,12 @@ Factory.define(:device) do |d|
 	d.device_type 1
 end
 Factory.define(:unit) do |u|
-	u.sequence(:number){|n| n}
+	u.sequence(:number) do |n|
+		if n>42
+			n=1
+		end
+		n
+	end
 end
 Factory.define(:company) do |c|
 	c.sequence(:name){|n| "Company#{n}"}

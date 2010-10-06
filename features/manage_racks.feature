@@ -17,7 +17,8 @@ Scenario: Create a rack
 
 Scenario: Delete a rack
 	Given 10 datacenters exist
-	And 9 server_racks exist with datacenter_id: 1
+	And 1 server_racks exist with datacenter_id: 1
+	And 42 units exist with server_rack: the server_rack
 	And I am on the datacenters page
 	When I follow "Destroy" within "fieldset"
 	Then I should see "Server rack was successfully deleted."

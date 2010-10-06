@@ -55,7 +55,6 @@ Scenario: Create a device with an interface
 	And I select "1" from "device_unit_ids"
 	And I fill in "device_interfaces_attributes_0_name" with "eth0"
 	And I press "Create Device"
-	Then show me the page
 	Then I should see "Device was successfully created."
 	And I should see "1 - 1: Server: Testserver"
 	And I should see "eth0"
