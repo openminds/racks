@@ -1,9 +1,11 @@
 Racks::Application.routes.draw do
+  get "search/search_companies"
+
   	#resources :cable_connections
 
   	#resources :interfaces
 
-  	#resources :companies
+  	resources :companies
 
   	resources :datacenters do
 		resources :server_racks do

@@ -6,6 +6,14 @@
 		<p>
 			<%= device.comment %>
 		</p>
+		<p>
+			Used by: 
+			<% if device.company.nil? %>
+			Openminds
+			<% else %>
+				<%= link_to device.company.name, device.company %>
+			<% end %>
+		</p>
 		<table>
 			<% device.interfaces.each do |interface| %>
 				<tr>

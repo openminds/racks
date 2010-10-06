@@ -1,18 +1,19 @@
+
 <div class='ui-dialog ui-widget ui-widget-content ui-corner-all' style='width:98%; '>
 	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
 		<span class='ui-dialog-title'>New device</span>
 	</div>
 	<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
-		<%= render form %>
-		<fieldset  style="float:left;">
-			<legend>Rack</legend>
-			<%= form.label :unit_ids %><br />
-			<%= form.collection_select :unit_ids, @device.server_rack.available_units, :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
-		</fieldset>
-		<fieldset class="actions" style="float:left;">
-			<legend>Save</legend>
-			<%= form.submit %>
-			<%= link_to 'Back', datacenters_path %>
-		</div>
+	<%= render form %>
+	<fieldset  style="float:left;">
+		<legend>Rack</legend>
+		<%= form.label :unit_ids %><br />
+		<%= form.collection_select :unit_ids, @device.server_rack.available_units, :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
+	</fieldset>
+	<fieldset class="actions" style="float:left;">
+		<legend>Save</legend>
+		<%= form.submit %>
+		<%= link_to 'Back', datacenters_path %>
+	</fieldset>
 	<% end %>
 </div>

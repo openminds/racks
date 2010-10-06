@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/Reprazent/acts_as_url.git
+  revision: db7ae61e6990a56a7879cf1332dc11e35b73f953
+  specs:
+    acts_as_url (0.1.0)
+
+GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: 57807b032187fb245cecbd971564062528c40a70
   specs:
@@ -126,6 +132,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_enum
+  acts_as_url!
   capybara
   cucumber-rails (= 0.3.2)
   database_cleaner!
