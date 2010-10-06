@@ -1,3 +1,41 @@
+html{
+	margin:0px;
+	font-family: Verdana,Arial,sans-serif; font-size: 1.1em; 
+	padding:5px;
+}
 .devices_accordion{
 	max-width:250px;
+}
+#wrapper {
+	margin:0px;
+	width:99%;
+}
+#header {
+	padding:5px;
+	float:left;
+	width:100%;
+}
+#notice {
+	margin:0px;
+	float:left;
+	width:60%;
+}
+#content {
+	margin:0px;
+	width:100%;
+	float:left;
+}
+#menu{
+	float:left;
+	width:40%;
+}
+#menu a{
+	padding: 0.4em 1em 0.4em 20px;
+	text-decoration: none;
+}
+#menu a:hover{
+	background: #79C9EC url(start/images/ui-bg_glass_75_79c9ec_1x400.png) repeat-x 50% 50%;
+	border: 1px solid #448DAE;
+	color: #026890;
+	font-weight: normal;
 }

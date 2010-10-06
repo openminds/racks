@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Racks</title>
-  <%= stylesheet_link_tag :all %>
+	<title>Racks</title>
+	<%= stylesheet_link_tag :all %>
 	<link type="text/css" href="/stylesheets/start/jquery-ui-1.8.5.custom.css" rel="stylesheet" />
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+	<%= javascript_include_tag :defaults %>
+	<%= csrf_meta_tag %>
 </head>
 <body>
-	<div id='notice'>
-		<% if flash[:notice] %>
-		<%= render :partial => 'shared/notice' %>
-		<% end %>
-	</div>
-<%= yield %>
+	<div id="wrapper">
+		<div id="header">
+			<div id="menu">
+				<%= link_to "Datacenter management", "#", {:class => "ui-state-default ui-corner-all"} %>
+				<%= link_to "Companies", "#", {:class => "ui-state-default ui-corner-all"} %>
 
+			</div>
+			<div id='notice'>
+				<% if flash[:notice] %>
+				<%= render :partial => 'shared/notice' %>
+				<% end %>
+			</div>
+		</div>
+		<div id="content">
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>
