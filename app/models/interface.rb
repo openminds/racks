@@ -1,8 +1,5 @@
 class Interface < ActiveRecord::Base
 	belongs_to :device
-	#belongs_to :cable_connection, :dependent => :destroy
-	
-	#after_save :update_cable_connection
 	before_destroy :destroy_cable_connections
 	
 	validates_presence_of :name, :message => "can't be blank"
@@ -15,12 +12,25 @@ class Interface < ActiveRecord::Base
 		value :id => 2, :name => 'Power'
 	end
 
+	class << self
+		def available
+			all.inject([]) do |interfaces, interface|
+				interfaces << interface if interface.available?
+				interfaces
+			end
+		end
+	end
+
 	def cable_connection
 		if self.id
 			CableConnection.first(:conditions => "left_interface_id = #{self.id} OR right_interface_id = #{self.id}")
 		else
 			nil
 		end
+	end
+	
+	def available?
+		cable_connection.nil?
 	end
 	
 	def to_s
