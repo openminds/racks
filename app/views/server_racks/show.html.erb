@@ -37,16 +37,18 @@
 			<script type="text/javascript">
 			var interfaceIds = [];
 			var interfaceLocations = [];
-			var deviceRectangles = [];
+			var deviceYs = [];
+			var deviceIds = [];
+			var deviceConnections = [];
 			var drawingCanvas;
-			var context
+			var context;
 			window.onload = function() {
 				drawingCanvas = document.getElementById('myDrawing');
 				if(drawingCanvas && drawingCanvas.getContext) {
 					context = drawingCanvas.getContext('2d');
 					drawingCanvas.addEventListener('mousedown', ev_canvas, false);
 					drawDevices();
-					// Check the element is in the DOM and the browser supports canvas
+					
 					drawAllConnections();
 					context.save();
 				}
@@ -58,17 +60,24 @@
 					//draw the connection
 					var leftY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)];
 					var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)];
-					context.strokeStyle = "<%= cable_connection.color %>";
-					context.lineWidth = 2;
-					context.beginPath();
-					context.moveTo(310, leftY);
-					context.bezierCurveTo(controlX, leftY, controlX,rightY , 310, rightY);
-					context.stroke();
+					var color = "<%= cable_connection.color %>"
+					drawConnection(leftY, rightY, controlX, color);
 					controlX += 20;
 				<% end %>
 			}
+			function drawConnection(left, right, controlX , color){
+				context.strokeStyle = color;
+				context.lineWidth = 2;
+				context.beginPath();
+				context.moveTo(310, left);
+				context.bezierCurveTo(controlX, left, controlX, right , 310, right);
+				context.stroke();
+			};
 
 			function drawDevices(){
+				deviceYs = [];
+				deviceIds = [];
+				deviceConnections = [];
 				var yDevice = 10
 				<% @server_rack.devices.each do |device| %>
 					//draw the device device
@@ -92,8 +101,11 @@
 						context.fillText('<%= "#{interface.interface_type(:name)} - #{interface.name}" %>', xInterface - 100, yInterface +2);
 						interfaceLocations.push(yInterface);
 						interfaceIds.push(<%= interface.id %>);
+						
 						yInterface +=12;
 					<% end %>
+					deviceIds.push([<%= device.id %>, ]);
+					deviceYs.push([yDevice, yDevice + deviceHeight])
 					yDevice = yDevice + deviceHeight + 5;
 				<% end %>
 
@@ -101,7 +113,20 @@
 
 
 			function ev_canvas(evt){
-				alert("Y: " + evt.layerY);
+				var clickY = evt.pageY - drawingCanvas.offsetTop - 80;
+				var clickX = evt.pageX - drawingCanvas.offsetLeft;
+				context.clearRect(0,0, drawingCanvas.width, drawingCanvas.height);
+				drawDevices();
+				if (clickX < 310) {
+					for (var num = deviceYs.length - 1; num >= 0; num--){
+						if (clickY > deviceYs[num][0] && clickY < deviceYs[num][1] ) {
+							//context.clearRect(10, deviceYs[num][0], 300, deviceYs[num][1])
+							alert(deviceIds[num]);
+						};
+					};
+				}else{
+					drawAllConnections();
+				}
 
 			};
 

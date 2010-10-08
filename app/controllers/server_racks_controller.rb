@@ -1,8 +1,4 @@
 class ServerRacksController < ApplicationController
-	def index
-		@server_racks = ServerRack.where(:datacenter_id => params[:datacenter_id])
-	end
-
 	def show
 		@server_rack = ServerRack.find(params[:id])
 	end

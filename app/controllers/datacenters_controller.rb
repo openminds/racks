@@ -3,10 +3,6 @@ class DatacentersController < ApplicationController
 		@datacenters = Datacenter.all
 	end
 
-	def show
-		@datacenter = Datacenter.find(params[:id])
-	end
-
 	def new
 		@datacenter = Datacenter.new
 	end
