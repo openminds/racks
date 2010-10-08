@@ -26,6 +26,7 @@ class DevicesController < ApplicationController
 	def new
 		@device = Device.new
 		@device.units  << ServerRack.find(params[:server_rack_id]).available_units.first
+		@interfaces = @device.server_rack.available_interfaces
 		@device.interfaces.build
 
 		respond_to do |format|
@@ -37,6 +38,7 @@ class DevicesController < ApplicationController
 	# GET /devices/1/edit
 	def edit
 		@device = Device.find(params[:id])
+		@interfaces = @device.server_rack.available_interfaces + @device.interfaces
 		unless @device.interfaces.any?
 			@device.interfaces.build
 		end
