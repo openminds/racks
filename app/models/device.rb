@@ -26,7 +26,7 @@ class Device < ActiveRecord::Base
 	end
 	
 	def server_rack
-		ServerRack.find(units.first.server_rack.id)
+		units.first.server_rack
 	end
 	
 	def update_cable_connection
