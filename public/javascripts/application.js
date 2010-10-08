@@ -36,6 +36,8 @@ $(function(){
 			};
 			$(this).attr("name", new_name)
 			
+			//clear the current values
+			$(this).attr("value", "reset");
 			
 		});
 		

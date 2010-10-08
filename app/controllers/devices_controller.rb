@@ -38,7 +38,9 @@ class DevicesController < ApplicationController
 	# GET /devices/1/edit
 	def edit
 		@device = Device.find(params[:id])
-		@interfaces = @device.server_rack.available_interfaces + @device.interfaces
+		@device.interfaces.build
+		@interfaces = @device.server_rack.available_interfaces
+		@interfaces.uniq
 		unless @device.interfaces.any?
 			@device.interfaces.build
 		end
