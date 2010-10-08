@@ -1,6 +1,6 @@
 class CableConnection < ActiveRecord::Base
-	has_one :left_interface, :class_name => 'interface'
-	has_one :right_interface, :class_name => 'interface'
+	belongs_to :left_interface, :class_name => 'interface'
+	belongs_to :right_interface, :class_name => 'interface'
 	validates_uniqueness_of :left_interface_id
 	validates_uniqueness_of :right_interface_id
 	
