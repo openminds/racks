@@ -9,7 +9,8 @@ $(function(){
 	$('#add_interface').click(function(){
 		//var interface_row = $('.interface_row').fi.html();
 		var $interface_table = $('#interface_form:nth-child(2)');
-		var $interface_row = $interface_table.children(':last-child').clone();
+		var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
+		//alert($interface_row.html());
 		$interface_row.find('*[id*=device_interfaces_attributes_]').each(function(index){
 			//set the correct ID
 			var current_id = $(this).attr('id').split('_');
@@ -21,11 +22,9 @@ $(function(){
 					new_id = '_' + new_id 
 				};
 			};
-			//alert(new_id)
 			$(this).attr("id", new_id)
 			
 			//set the correct name
-			
 			var current_name = $(this).attr('name').split('][');
 			current_name[1] = parseInt(current_name[1])+1;
 			var new_name = ''
@@ -35,11 +34,13 @@ $(function(){
 					new_name = '][' + new_name
 				};
 			};
-			
 			$(this).attr("name", new_name)
+			
+			
 		});
 		
-		$interface_table.append($interface_row)
+		$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
 	});
 	
 });
+
