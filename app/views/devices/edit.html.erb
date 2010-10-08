@@ -7,7 +7,7 @@
 		<fieldset  style="float:left;">
 			<legend>Rack</legend>
 			<%= form.label :unit_ids %><br />
-			<%= form.collection_select :unit_ids,  @device.units+@device.server_rack.available_units , :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
+			<%= form.collection_select :unit_ids,  @device.units+@device.server_rack.units.available , :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
 		</fieldset>
 		<fieldset class="actions" style="float:left;">
 			<legend>Actions</legend>

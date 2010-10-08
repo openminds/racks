@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
 	# GET /devices/new.xml
 	def new
 		@device = Device.new
-		@device.units  << ServerRack.find(params[:server_rack_id]).available_units.first
+		@device.units  << ServerRack.find(params[:server_rack_id]).units.available.first
 		@interfaces = @device.server_rack.available_interfaces
 		@device.interfaces.build
 
