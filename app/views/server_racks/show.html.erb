@@ -10,23 +10,23 @@
 		</ul>
 		<div id='rack_info'>
 			<p>
-			  <b>Datacenter:</b>
-			  <%= @server_rack.datacenter_id %>
+				<b>Datacenter:</b>
+				<%= @server_rack.datacenter_id %>
 			</p>
 
 			<p>
-			  <b>Name:</b>
-			  <%= @server_rack.name %>
+				<b>Name:</b>
+				<%= @server_rack.name %>
 			</p>
 
 			<p>
-			  <b>Comment:</b>
-			  <%= @server_rack.comment %>
+				<b>Comment:</b>
+				<%= @server_rack.comment %>
 			</p>
 			<%= link_to 'Edit', edit_datacenter_server_rack_path(@server_rack) %> |
 			<%= link_to 'Back', datacenters_path %>
 		</div>
-		
+
 		<div id='devices_list'>
 			<div class='devices_accordion'>
 				<%= render :partial => 'devices/device', :collection => @server_rack.devices, :as => :device %>
@@ -35,64 +35,78 @@
 		</div>
 		<div id='connections'>
 			<script type="text/javascript">
+			var interfaceIds = [];
+			var interfaceLocations = [];
+			var deviceRectangles = [];
+			var drawingCanvas;
+			var context
 			window.onload = function() {
-				var drawingCanvas = document.getElementById('myDrawing');
-
-				// Check the element is in the DOM and the browser supports canvas
+				drawingCanvas = document.getElementById('myDrawing');
 				if(drawingCanvas && drawingCanvas.getContext) {
-					// Initaliase a 2-dimensional drawing context
-					var context = drawingCanvas.getContext('2d');
-					var interfaceIds = [];
-					var interfaceLocations = [];
-					
-					var yDevice = 10
-					<% @server_rack.devices.each do |device| %>
-						//draw the device device
-						var deviceHeight = 50 + <%= device.interfaces.count %> * 15
-						context.fillStyle = "rgba(00,0,150, 0.5)";
-						context.fillRect (10, yDevice, 300, deviceHeight);
-						context.font = "12px Helvetica";  
-						context.fillStyle = "Black";  
-						context.fillText('<%= "#{device.units.first.number} - #{device.units.last.number}:" %>', 15, yDevice + 15 );
-						context.fillText('<%= "#{device.device_type(:name)}: #{device.name}" %>', 15, yDevice + 30 );
-						
-						var yInterface = yDevice +10;
-						var xInterface = 310;
-						<% device.interfaces.each do |interface| %>
-							//draw the interfaces
-							context.fillStyle = "rgba(00,0,000, 1)";
-							context.beginPath();
-							context.arc(xInterface,yInterface,5,2.5, Math.PI, true) 
-							context.closePath();
-							context.fill();
-							context.font = "10px Helvetica"; 
-							context.fillText('<%= "#{interface.interface_type(:name)} - #{interface.name}" %>', xInterface - 100, yInterface +2);
-							interfaceLocations.push(yInterface);
-							interfaceIds.push(<%= interface.id %>);
-							yInterface +=12;
-							
-						<% end %>
-						yDevice = yDevice + deviceHeight + 5;
-					<% end %>
-					var controlX = 350;
-					<% @server_rack.cable_connections.each do |cable_connection| %>
-						//draw the connection
-						var leftY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)];
-						var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)];
-						context.strokeStyle = "<%= cable_connection.color %>";
-						context.lineWidth = 2;
-						context.beginPath();
-						context.moveTo(310, leftY);
-						context.bezierCurveTo(controlX, leftY, controlX,rightY , 310, rightY);
-						context.stroke();
-						controlX += 20;
-					<% end %>
-					
+					context = drawingCanvas.getContext('2d');
+					drawingCanvas.addEventListener('mousedown', ev_canvas, false);
+					drawDevices();
+					// Check the element is in the DOM and the browser supports canvas
+					drawAllConnections();
+					context.save();
 				}
 			}
-			
+
+			function drawAllConnections(){
+				var controlX = 350;
+				<% @server_rack.cable_connections.each do |cable_connection| %>
+					//draw the connection
+					var leftY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)];
+					var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)];
+					context.strokeStyle = "<%= cable_connection.color %>";
+					context.lineWidth = 2;
+					context.beginPath();
+					context.moveTo(310, leftY);
+					context.bezierCurveTo(controlX, leftY, controlX,rightY , 310, rightY);
+					context.stroke();
+					controlX += 20;
+				<% end %>
+			}
+
+			function drawDevices(){
+				var yDevice = 10
+				<% @server_rack.devices.each do |device| %>
+					//draw the device device
+					var deviceHeight = 50 + <%= device.interfaces.count %> * 11
+					context.fillStyle = "rgba(00,0,150, 0.5)";
+					context.fillRect (10, yDevice, 300, deviceHeight);
+					context.font = "12px Helvetica";  
+					context.fillStyle = "Black";  
+					context.fillText('<%= "#{device.units.first.number} - #{device.units.last.number}:" %>', 15, yDevice + 15 );
+					context.fillText('<%= "#{device.device_type(:name)}: #{device.name}" %>', 15, yDevice + 30 );
+					var yInterface = yDevice +10;
+					var xInterface = 310;
+					<% device.interfaces.each do |interface| %>
+					//draw the interfaces
+						context.fillStyle = "rgba(00,0,000, 1)";
+						context.beginPath();
+						context.arc(xInterface,yInterface,5,2.5, Math.PI, true) 
+						context.closePath();
+						context.fill();
+						context.font = "10px Helvetica"; 
+						context.fillText('<%= "#{interface.interface_type(:name)} - #{interface.name}" %>', xInterface - 100, yInterface +2);
+						interfaceLocations.push(yInterface);
+						interfaceIds.push(<%= interface.id %>);
+						yInterface +=12;
+					<% end %>
+					yDevice = yDevice + deviceHeight + 5;
+				<% end %>
+
+			}
+
+
+			function ev_canvas(evt){
+				alert("Y: " + evt.layerY);
+
+			};
+
 			</script>
-			
+
 			<canvas id="myDrawing" width='1000' height='1000' style='float:left;border-style:solid;'>
 				<p>Your browser doesn't support canvas.</p>
 			</canvas>
