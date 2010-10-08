@@ -3,9 +3,6 @@ class ServerRack < ActiveRecord::Base
 	has_many :units, :dependent => :destroy
 	validates_presence_of :name, :message => "can't be blank"
 
-	# def available_units
-	# 		units.where(:device_id => nil)
-	# 	end
 	def devices
 		rack_devices = Array.new
 		current_device=nil
@@ -18,31 +15,17 @@ class ServerRack < ActiveRecord::Base
 		rack_devices
 	end
 	def interfaces
-		# interfaces = Array.new
-		# 		devices.each do |device|
-		# 			device.interfaces.each do |interface|
-		# 				interfaces << interface
-		# 			end
-		# 		end
-		# interfaces
-		devices.inject([]) do |interfaces, device|
+		devices.inject(Array.new) do |interfaces, device|
 			interfaces << device.interfaces
 			interfaces
 		end
 	end
 	def available_interfaces
-		# interfaces = Array.new
-		# 		devices.each do |device|
-		# 			device.interfaces.each do |interface|
-		# 				if interface.cable_connection.nil?
-		# 					interfaces << interface
-		# 				end
-		# 			end
-		# 		end
-		# interfaces
-		interfaces.inject([]) do |available_interfaces, interface|
-			available_interfaces << interface if interface.cable_connection.nil?
-			available_interfaces
+		devices.inject([]) do |interfaces, device|
+		  device.interfaces.each do |interface|
+		    interfaces << interface unless interface.cable_connection
+		  end
+		  interfaces
 		end
 	end
 	def cable_connections
