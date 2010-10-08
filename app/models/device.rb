@@ -25,6 +25,10 @@ class Device < ActiveRecord::Base
 		ids
 	end
 	
+	def cable_connections
+		interfaces.map(&:cable_connection).flatten.compact.uniq
+	end
+	
 	def server_rack
 		units.first.server_rack
 	end

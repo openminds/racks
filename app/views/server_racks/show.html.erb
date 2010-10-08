@@ -101,10 +101,12 @@
 						context.fillText('<%= "#{interface.interface_type(:name)} - #{interface.name}" %>', xInterface - 100, yInterface +2);
 						interfaceLocations.push(yInterface);
 						interfaceIds.push(<%= interface.id %>);
-						
 						yInterface +=12;
 					<% end %>
 					deviceIds.push([<%= device.id %>, ]);
+					<% device.cable_connections.each do |cable_connection| %>
+						deviceConnections.push([<%= device.id %>, [<%= cable_connection.left_interface_id %>, <%= cable_connection.right_interface_id %>, "<%= cable_connection.color %>"]])
+					<% end %>
 					deviceYs.push([yDevice, yDevice + deviceHeight])
 					yDevice = yDevice + deviceHeight + 5;
 				<% end %>
@@ -121,7 +123,18 @@
 					for (var num = deviceYs.length - 1; num >= 0; num--){
 						if (clickY > deviceYs[num][0] && clickY < deviceYs[num][1] ) {
 							//context.clearRect(10, deviceYs[num][0], 300, deviceYs[num][1])
-							alert(deviceIds[num]);
+							var controlX = 350
+							for (var i = deviceConnections.length - 1; i >= 0; i--){
+								if (deviceConnections[i][0] == deviceIds[num]) {
+									var leftY = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][0])];
+									var rightY = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][1])];
+									var color = deviceConnections[i][1][2]
+									drawConnection(leftY, rightY, controlX, color);
+									controlX += 20;
+								};
+								
+							};
+							
 						};
 					};
 				}else{
