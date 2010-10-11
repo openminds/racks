@@ -1,6 +1,6 @@
 Racks::Application.routes.draw do
-  get "search/search_companies"
-
+  get "search/search"
+	get "search/ajax_search"
   	#resources :cable_connections
 
   	#resources :interfaces
