@@ -23,11 +23,14 @@
 				<b>Comment:</b>
 				<%= @server_rack.comment %>
 			</p>
-			<%= link_to 'Edit', edit_datacenter_server_rack_path(@server_rack) %> |
+			<%= link_to 'Edit', edit_datacenter_server_rack_path(@server_rack.datacenter, @server_rack), :remote => true %> |
 			<%= link_to 'Back', datacenters_path %>
 		</div>
 
 		<div id='devices_list'>
+			<p>
+				<%= link_to 'Add device', [:new, @server_rack.datacenter, @server_rack, :device], :remote => true, :class => 'button' %>
+			</p>
 			<div class='devices_accordion'>
 				<%= render :partial => 'devices/device', :collection => @server_rack.devices, :as => :device %>
 			</div>
