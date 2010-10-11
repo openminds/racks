@@ -1,15 +1,22 @@
-<div class='ui-dialog ui-widget ui-widget-content ui-corner-all' style='width:98%; '>
-	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-		<span class='ui-dialog-title'>Edit device</span>
-	</div>
-	<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
-	<%= render form %>
-	<fieldset  style="float:left;">
-		<legend>Rack</legend>
-		<%= form.label :unit_ids %><br />
-		<%= form.collection_select :unit_ids,  @device.units+@device.server_rack.units.available , :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
-	</fieldset>
+<div id="modal_form_for_device<%= @device.id %>" title='Edit device'>
 
+	<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
+	<div class='tabs'>
+		<ul>
+			<li><a href='#device_info'>Device Info</a></li>
+			<li><a href='#units'>Units</a></li>
+			<li><a href='#interfaces'>Interfaces</a></li>
+		</ul>
+		<%= render form %>
+		<div id="units">
+			<fieldset  style="float:left;">
+				<legend>Rack</legend>
+				<%= form.label :unit_ids %><br />
+				<%= form.collection_select :unit_ids,  @device.units+@device.server_rack.units.available , :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
+			</fieldset>
+		</div>
+		<div style="clear: both;">&nbsp;</div>
+	</div>
 	<%= form.submit %>
 	<%#= link_to 'Back', datacenters_path %>
 	<%#= link_to 'Show', [@device.server_rack.datacenter, @device.server_rack] %>
