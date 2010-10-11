@@ -29,6 +29,16 @@ class Device < ActiveRecord::Base
 		interfaces.map(&:cable_connection).flatten.compact.uniq
 	end
 	
+	def connected_to_interfaces
+		connected_to = []
+		interfaces.each do |interface|
+			if interface.cable_connection
+				connected_to << interface.cable_connection.other_interface(interface)
+			end
+		end
+		connected_to
+	end
+	
 	def server_rack
 		units.first.server_rack
 	end

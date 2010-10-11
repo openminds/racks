@@ -13,7 +13,7 @@ class DevicesController < ApplicationController
 	def edit
 		@device = Device.find(params[:id])
 		@device.interfaces.build
-		@interfaces = current_server_rack.available_interfaces
+		@interfaces = current_server_rack.available_interfaces + @device.connected_to_interfaces
 		@interfaces.uniq
 		unless @device.interfaces.any?
 			@device.interfaces.build
