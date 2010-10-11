@@ -6,6 +6,11 @@ $(function(){
 	// $("#server_rack_info").tabs();
 	$('.tabs').tabs();
 	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
+	if (getParameterByName('device') != '') {
+		$('.tabs').tabs({selected: 1});
+		$('.devices_accordion').accordion("activate", "#" + getParameterByName("device"));
+	};
+	
 	//Create buttons
 	$(".button").button();
 	
@@ -36,4 +41,15 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
 		});
 	}
 });
+function getParameterByName( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 

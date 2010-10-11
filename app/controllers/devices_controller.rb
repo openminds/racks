@@ -1,6 +1,7 @@
 class DevicesController < ApplicationController
 	def show
 		@device = Device.find(params[:id])
+		redirect_to(datacenter_server_rack_path(@device.server_rack.datacenter, @device.server_rack, :device => "show_device_#{@device.id}"))
 	end
 
 	def new

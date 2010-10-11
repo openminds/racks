@@ -1,4 +1,4 @@
-<h3><a href="#"><%= "#{device.units.first.number} - #{device.units.last.number}: #{device.device_type(:name)}: #{device.name}" %></a></h3>
+<h3 id='show_device_<%= device.id %>'><a href="#"><%= "#{device.units.first.number} - #{device.units.last.number}: #{device.device_type(:name)}: #{device.name}" %></a></h3>
 	<div>
 		<p>
 			<%= device.device_type(:name) %>

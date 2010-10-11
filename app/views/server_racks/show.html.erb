@@ -152,7 +152,7 @@
 
 			</script>
 
-			<canvas id="myDrawing" width='1000' height='<%= @server_rack.interfaces.count * 25 %>' style='float:left;'>
+			<canvas id="myDrawing" width='1000' height='<%= @server_rack.devices.count * 50 + @server_rack.interfaces.count * 15 %>' style='float:left;'>
 				<p>Your browser doesn't support canvas.</p>
 			</canvas>
 			<div style="clear: both;">&nbsp;</div>
