@@ -17,7 +17,7 @@ class ServerRacksController < ApplicationController
 
 		respond_to do |format|
 			if @server_rack.save
-				format.html { redirect_to(datacenters_path, :notice => 'Server rack was successfully created.') }
+				format.html { redirect_to([@server_rack.datacenter, @server_rack], :notice => 'Server rack was successfully created.') }
 			else
 				format.html { render :action => "new" }
 			end
@@ -29,7 +29,7 @@ class ServerRacksController < ApplicationController
 
 		respond_to do |format|
 			if @server_rack.update_attributes(params[:server_rack])
-				format.html { redirect_to(datacenters_path, :notice => 'Server rack was successfully updated.') }
+				format.html { redirect_to(@server_rack, :notice => 'Server rack was successfully updated.') }
 			else
 				format.html { render :action => "edit" }
 			end
@@ -41,7 +41,7 @@ class ServerRacksController < ApplicationController
 		@server_rack.destroy
 
 		respond_to do |format|
-			format.html { redirect_to(datacenters_path, :notice => 'Server rack was successfully deleted.') }
+			format.html { redirect_to(@server_rack.datacenter, :notice => 'Server rack was successfully deleted.') }
 		end
 	end
 end

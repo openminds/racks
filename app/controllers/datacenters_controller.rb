@@ -20,7 +20,7 @@ class DatacentersController < ApplicationController
 
 		respond_to do |format|
 			if @datacenter.save
-				format.html { redirect_to(datacenters_path, :notice => 'Datacenter was successfully created.') }
+				format.html { redirect_to(@datacenter, :notice => 'Datacenter was successfully created.') }
 			else
 				format.html { render :action => "new" }
 			end
@@ -32,7 +32,7 @@ class DatacentersController < ApplicationController
 
 		respond_to do |format|
 			if @datacenter.update_attributes(params[:datacenter])
-				format.html { redirect_to(datacenters_path, :notice => 'Datacenter was successfully updated.') }
+				format.html { redirect_to(@datacenter, :notice => 'Datacenter was successfully updated.') }
 			else
 				format.html { render :action => "edit" }
 			end

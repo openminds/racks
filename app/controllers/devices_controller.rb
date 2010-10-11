@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
 		@device = Device.new(params[:device])
 		respond_to do |format|
 			if @device.save
-				format.html { redirect_to(datacenters_path, :notice => 'Device was successfully created.') }
+				format.html { redirect_to([@device.server_rack.datacenter, @device.server_rack, @device], :notice => 'Device was successfully created.') }
 			else
 				format.html { render :action => "new" }
 			end
@@ -37,7 +37,7 @@ class DevicesController < ApplicationController
 		
 		respond_to do |format|
 			if @device.update_attributes(params[:device])
-				format.html { redirect_to(datacenters_path, :notice => 'Device was successfully updated.') }
+				format.html { redirect_to([@device.server_rack.datacenter, @device.server_rack, @device], :notice => 'Device was successfully updated.') }
 			else
 				format.html { render :action => "edit" }
 			end
