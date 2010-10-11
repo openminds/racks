@@ -17,8 +17,8 @@ html{
 }
 #notice {
 	margin:0px;
-	float:left;
-	width:60%;
+	float:right;
+	width:33%;
 }
 #content {
 	margin:0px;
@@ -27,7 +27,7 @@ html{
 }
 #menu{
 	float:left;
-	width:40%;
+	width:auto;
 }
 #menu a{
 	padding: 0.4em 1em 0.4em 20px;
@@ -38,4 +38,11 @@ html{
 	border: 1px solid #448DAE;
 	color: #026890;
 	font-weight: normal;
+}
+#search{
+	float:right;
+	width:auto;
+}
+#search form {
+	lfoat:right;
 }

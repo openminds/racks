@@ -13,12 +13,11 @@
 			<div id="menu">
 				<%= link_to "Datacenter management", datacenters_path, {:class => "ui-state-default ui-corner-all"} %>
 				<%= link_to "Companies", companies_path, {:class => "ui-state-default ui-corner-all"} %>
-
 			</div>
 			<div id="search">
 				<%= form_tag('search_path', :method => 'get') do %>
 				<%= text_field_tag :s, nil, :autocomplete => false %>
-				<%= submit_tag "GO", :name => nil, :id => 'search-submit'%>
+				<%= submit_tag "Find!", :name => nil, :id => 'search-submit', :class => 'button'%>
 				<% end %>
 			</div>
 			<div id='notice'>

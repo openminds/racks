@@ -22,7 +22,6 @@ $(function(){
 		source: "/search/ajax_search",
 		select: function(event, ui){
 			var url = ui.item.url
-			alert(url);
 			window.location = url;
 			return false;
 		}
