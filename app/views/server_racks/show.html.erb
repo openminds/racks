@@ -49,6 +49,7 @@
 				drawingCanvas = document.getElementById('myDrawing');
 				if(drawingCanvas && drawingCanvas.getContext) {
 					context = drawingCanvas.getContext('2d');
+					
 					drawingCanvas.addEventListener('mousedown', ev_canvas, false);
 					drawDevices();
 					
@@ -151,7 +152,7 @@
 
 			</script>
 
-			<canvas id="myDrawing" width='1000' height='1000' style='float:left;border-style:solid;'>
+			<canvas id="myDrawing" width='1000' height='<%= @server_rack.interfaces.count * 25 %>' style='float:left;'>
 				<p>Your browser doesn't support canvas.</p>
 			</canvas>
 			<div style="clear: both;">&nbsp;</div>
