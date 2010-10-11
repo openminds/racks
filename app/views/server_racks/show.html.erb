@@ -2,7 +2,7 @@
 	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
 		<span class='ui-dialog-title'><%= "#{@server_rack.name} in #{@server_rack.datacenter.name} (#{@server_rack.datacenter.location})" %></span>
 	</div>
-	<div id="server_rack_info">
+	<div id="server_rack_info" class='tabs'>
 		<ul>
 			<li><a href='#rack_info'>Rack info</a></li>
 			<li><a href='#devices_list'>Devices</a></li>

@@ -3,17 +3,16 @@
 		<span class='ui-dialog-title'>Edit device</span>
 	</div>
 	<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
-		<%= render form %>
-		<fieldset  style="float:left;">
-			<legend>Rack</legend>
-			<%= form.label :unit_ids %><br />
-			<%= form.collection_select :unit_ids,  @device.units+@device.server_rack.units.available , :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
-		</fieldset>
-		<fieldset class="actions" style="float:left;">
-			<legend>Actions</legend>
-			<%= form.submit %>
-			<%= link_to 'Back', datacenters_path %>
-			<%= link_to 'Show', [@device.server_rack.datacenter, @device.server_rack] %>
-		</div>
+	<%= render form %>
+	<fieldset  style="float:left;">
+		<legend>Rack</legend>
+		<%= form.label :unit_ids %><br />
+		<%= form.collection_select :unit_ids,  @device.units+@device.server_rack.units.available , :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
+	</fieldset>
+
+	<%= form.submit %>
+	<%#= link_to 'Back', datacenters_path %>
+	<%#= link_to 'Show', [@device.server_rack.datacenter, @device.server_rack] %>
+
 	<% end %>
 </div>

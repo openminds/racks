@@ -9,6 +9,29 @@
 	</ul>
 </div>
 <% end %>
+
+<div id="device_info">
+<fieldset style="float:left">
+	<legend>The device</legend>
+  	<div class="ui-widget">
+    	<%= form.label :company_id %><br />
+    	<%= form.select :company_id, Company.all.map {|c| [c.name, c.id]}, {:prompt => 'Choose a company'} %>
+  	</div>
+  	<div class="field">
+    	<%= form.label :device_type %><br />
+    	<%= form.select :device_type, DeviceType.to_select %>
+  	</div>
+  	<div class="field">
+    	<%= form.label :name %><br />
+    	<%= form.text_field :name %>
+  	</div>
+  	<div class="field">
+    	<%= form.label :comment %><br />
+    	<%= form.text_area :comment, {:size => '90x4'} %>
+  	</div>
+</fieldset>
+</div>
+<div id="interfaces">
 <fieldset style="float:left">
 	<legend>Interfaces</legend>
 	<table id='interface_form'>
@@ -38,24 +61,5 @@
 	</table>
 	<%= link_to 'Add Interface','#', :id => 'add_interface' %>
 </fieldset>
-<fieldset style="float:left">
-	<legend>The device</legend>
-  	<div class="ui-widget">
-    	<%= form.label :company_id %><br />
-    	<%= form.select :company_id, Company.all.map {|c| [c.name, c.id]}, {:prompt => 'Choose a company'} %>
-  	</div>
-  	<div class="field">
-    	<%= form.label :device_type %><br />
-    	<%= form.select :device_type, DeviceType.to_select %>
-  	</div>
-  	<div class="field">
-    	<%= form.label :name %><br />
-    	<%= form.text_field :name %>
-  	</div>
-  	<div class="field">
-    	<%= form.label :comment %><br />
-    	<%= form.text_area :comment, {:size => '90x4'} %>
-  	</div>
-</fieldset>
-
+</div>
 

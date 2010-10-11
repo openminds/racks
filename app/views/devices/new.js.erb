@@ -1,0 +1,9 @@
+$("#modal-form").load("<%= new_datacenter_server_rack_device_path %>", function(){
+	$("#modal_form_for_new_device").dialog({
+		modal: true,
+		close: function(event, ui) { $("#modal-form").html("")  },
+		width:900
+		});
+	$('.tabs').tabs();
+	$("#modal_form_for_new_device").dialog("open");
+});

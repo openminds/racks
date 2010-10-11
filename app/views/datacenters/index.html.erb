@@ -3,7 +3,7 @@ $(function(){
 	$("#new_datacenter_tab").load('<%= new_datacenter_path %> #content');
 });
 </script>
-<div id="datacenters">
+<div id="datacenters" class='tabs'>
 	<ul>
 		<% @datacenters.each do |datacenter| %>
 				<li><a href='#datacenter<%= datacenter.id %>'><%= datacenter.name %></a></li>
