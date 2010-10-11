@@ -1,7 +1,10 @@
 $("#modal-form").load("<%= new_datacenter_server_rack_device_path %>", function(){
 	$("#modal_form_for_new_device").dialog({
 		modal: true,
-		close: function(event, ui) { $("#modal-form").html("")  },
+		close: function(event, ui) { 
+			$("#modal_form_for_new_device").dialog("destroy");
+			$("#modal-form").empty()  
+		},
 		width:900
 		});
 	$('.tabs').tabs();

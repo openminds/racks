@@ -1,7 +1,10 @@
 $("#modal-form").load("<%= edit_datacenter_path(@datacenter) %>", function(){
 	$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog({
 		modal: true,
-		close: function(event, ui) { $("#modal-form").html("")  },
+		close: function(event, ui) { 
+			$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog("destroy");
+			$("#modal-form").empty() ; 
+		},
 		width:400
 		});
 	$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog("open");
