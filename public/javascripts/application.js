@@ -10,6 +10,9 @@ $(function(){
 		$('.tabs').tabs({selected: 1});
 		$('.devices_accordion').accordion("activate", "#" + getParameterByName("device"));
 	};
+	if (getParameterByName('datacenter') != '') {
+		$('.tabs').tabs("select", "#" + getParameterByName('datacenter'));
+	};
 	
 	//Create buttons
 	$(".button").button();

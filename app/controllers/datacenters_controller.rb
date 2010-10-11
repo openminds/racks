@@ -10,6 +10,10 @@ class DatacentersController < ApplicationController
 	def edit
 		@datacenter = Datacenter.find(params[:id])
 	end
+	def show
+		@datacenter = Datacenter.find(params[:id])
+		redirect_to datacenters_path(:datacenter => "datacenter#{params[:id]}")
+	end
 
 	def create
 		@datacenter = Datacenter.new(params[:datacenter])
