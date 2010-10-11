@@ -1,11 +1,14 @@
 <div id='datacenter<%= datacenter.id %>'>
 	<p>Location: <%= datacenter.location %></p>
 	<p>Comment: <%= datacenter.comment %></p>
-	<%= link_to "Edit", [:edit, datacenter], :remote => true %>
-	<%= link_to "Destroy", datacenter, :method => :delete, :confirm => 'Are you sure?' %>
-	<br />
+	<p>
+		<%= link_to "Edit", [:edit, datacenter], :remote => true, :class => "button" %>
+		<%= link_to "Destroy", datacenter, :method => :delete, :confirm => 'Are you sure?', :class => "button" %>
+	</p>
+	<p>
+		<%= link_to 'Add rack', new_datacenter_server_rack_path(datacenter), :remote => true, :class => "button" %>
+	</p>
 	<%= render :partial => 'server_racks/server_rack', :collection => datacenter.server_racks, :as => :server_rack %>
-	<br />
-	<%= link_to 'Add rack', new_datacenter_server_rack_path(datacenter)%>
+
 	<div style="clear: both;">&nbsp;</div>
 </div>

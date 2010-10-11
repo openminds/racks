@@ -1,0 +1,8 @@
+$("#modal-form").load("<%= edit_datacenter_server_rack_path(@server_rack.datacenter, @server_rack) %>", function(){
+	$("#modal_form_for_server_rack<%= @server_rack.id %>").dialog({
+		modal: true,
+		close: function(event, ui) { $("#modal-form").html("")  },
+		width:400
+		});
+	$("#modal_form_for_server_rack<%= @server_rack.id %>").dialog("open");
+});

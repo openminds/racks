@@ -5,6 +5,8 @@ $(function(){
 	$("#datacenters").tabs();
 	$("#server_rack_info").tabs();
 	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
+	//Create buttons
+	$(".button").button();
 	//create the add interface links
 	$('#add_interface').click(function(){
 		//var interface_row = $('.interface_row').fi.html();
