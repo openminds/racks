@@ -1,12 +1,21 @@
+<script type="text/javascript" language="javascript">
+$(function(){
+	$("#new_datacenter_tab").load('<%= new_datacenter_path %> #content');
+});
+</script>
 <div id="datacenters">
 	<ul>
 		<% @datacenters.each do |datacenter| %>
 				<li><a href='#datacenter<%= datacenter.id %>'><%= datacenter.name %></a></li>
 		<% end %>
+		<li class='right'><a href='#new_datacenter_tab'>New datacenter</a></li>
 	</ul>
 	<%= render :partial => 'datacenter_tab', :collection => @datacenters, :as => :datacenter%>
+	<div  id="new_datacenter_tab" style='height:600px;'>
+		
+	</div>
+	
 </div>
+<div id="modal-form">
 
-<br />
-
-<%= link_to 'New Datacenter', new_datacenter_path %>
+</div>

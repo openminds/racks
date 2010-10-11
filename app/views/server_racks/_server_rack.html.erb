@@ -1,10 +1,12 @@
 <fieldset style='width:auto; float:left;' title="<%= server_rack.name %>">
 	<legend><%= server_rack.name %></legend>
 	<p><%= server_rack.comment %></p>
-	Available units: <%= "#{server_rack.units.available.count}/#{server_rack.units.count}" %></p>
-	<p><%= link_to 'Show',  [server_rack.datacenter, server_rack] %>
-    <%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack] %>
-    <%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %></p>
+	<p>Available units: <%= "#{server_rack.units.available.count}/#{server_rack.units.count}" %></p>
+	<p>
+		<%= link_to 'Show',  [server_rack.datacenter, server_rack] %>
+    	<%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack] %>
+    	<%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %>
+	</p>
 	<div class='devices_accordion'>
 		<%= render :partial => 'devices/device', :collection => server_rack.devices, :as => :device %>
 	</div>
