@@ -1,11 +1,12 @@
-$("#modal-form").load("<%= edit_datacenter_path(@datacenter) %>", function(){
-	$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog({
-		modal: true,
-		close: function(event, ui) { 
-			$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog("destroy");
-			$("#modal-form").empty() ; 
-		},
-		width:400
-		});
-	$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog("open");
-});
+$("#modal_form").html("<%= escape_javascript(render :partial => 'edit', :locals => {:datacenter => @datacenter}) %>");
+$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog({
+	modal: true,
+	close: function(event, ui) { 
+		$("#edit_datacenter_<%= @datacenter.id %> > div.tabs ").tabs("destroy");
+		$("#edit_datacenter_<%= @datacenter.id %> > div.tabs ").html(" ");
+		$("#modal_form_for_datacenter<%= @datacenter.id %>").dialog("destroy");
+		$("#modal_form").html("  ");
+	 },
+	width:400
+	});
+$('#edit_server_rack_<%= @datacenter.id %> > div.tabs ').tabs();
