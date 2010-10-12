@@ -2,7 +2,7 @@
 <div id="error_explanation">
 	<h2><%= pluralize(device.errors.count, "error") %> prohibited this device from being saved:</h2>
 	<ul>
-		<% interfaces.errors.full_messages.each do |msg| %>
+		<% device.errors.full_messages.each do |msg| %>
 		<li><%= msg %></li>
 		<% end %>
 	</ul>
@@ -12,91 +12,56 @@
 <div id="device_info">
 	<fieldset style="float:left">
 		<legend>The device</legend>
-  		<div class="ui-widget">
-    		<%= form.label :company_id %><br />
-    		<%= form.select :company_id, Company.all.map {|c| [c.name, c.id]}, {:prompt => 'Choose a company'} %>
-  		</div>
-  		<div class="field">
-    		<%= form.label :device_type %><br />
-    		<%= form.select :device_type, DeviceType.to_select %>
-  		</div>
-  		<div class="field">
-    		<%= form.label :name %><br />
-    		<%= form.text_field :name %>
-  		</div>
-  		<div class="field">
-    		<%= form.label :comment %><br />
-    		<%= form.text_area :comment, {:size => '90x4'} %>
-  		</div>
+		<div class="ui-widget">
+			<%= form.label :company_id %><br />
+			<%= form.select :company_id, Company.all.map {|c| [c.name, c.id]}, {:prompt => 'Choose a company'} %>
+		</div>
+		<div class="field">
+			<%= form.label :device_type %><br />
+			<%= form.select :device_type, DeviceType.to_select %>
+		</div>
+		<div class="field">
+			<%= form.label :name %><br />
+			<%= form.text_field :name %>
+		</div>
+		<div class="field">
+			<%= form.label :comment %><br />
+			<%= form.text_area :comment, {:size => '90x4'} %>
+		</div>
 	</fieldset>
 </div>
 <script type='text/javascript'>
-	//create the add interface links
-	$('#add_interface').click(function(){
-		//var interface_row = $('.interface_row').fi.html();
-		var $interface_table = $('#interface_form:nth-child(2)');
-		var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
-		//alert($interface_row.html());
-		$interface_row.find('*[id*=device_interfaces_attributes_]').each(function(index){
-			//set the correct ID
-			var current_id = $(this).attr('id').split('_');
-			current_id[3] = parseInt(current_id[3])+1;
-			var new_id = ''
-			for (var i = current_id.length - 1; i >= 0; i--){
-				new_id =  current_id[i] + new_id 
-				if (i>0) {
-					new_id = '_' + new_id 
-				};
-			};
-			$(this).attr("id", new_id)
-			
-			//set the correct name
-			var current_name = $(this).attr('name').split('][');
-			current_name[1] = parseInt(current_name[1])+1;
-			var new_name = ''
-			for (var i = current_name.length - 1; i >= 0; i--){
-				new_name =  current_name[i] + new_name
-				if (i > 0) {
-					new_name = '][' + new_name
-				};
-			};
-			$(this).attr("name", new_name)
-			
-			//clear the current values
-			$(this).attr("value", "reset");device	
-		});
-		$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
-	});
+
 </script>
 <div id="interfaces">
-<fieldset style="float:left">
-	<legend>Interfaces</legend>
-	<table id='interface_form'>
-		<%= form.fields_for :interfaces do |interface_form| %>
-		<tr class='interface_row'>
-			<td class="field">
-				<%= interface_form.select :interface_type, Interface::InterfaceType.to_select %>
-			</td>
-			<td class="field">
-				<%= interface_form.text_field :name %>
-			</td>
-			<td>
-				<% unless interface_form.object.new_record? %>
+	<fieldset style="float:left">
+		<legend>Interfaces</legend>
+		<table id='interface_form'>
+			<%= form.fields_for :interfaces do |interface_form| %>
+			<tr class='interface_row'>
+				<td class="field">
+					<%= interface_form.select :interface_type, Interface::InterfaceType.to_select %>
+				</td>
+				<td class="field">
+					<%= interface_form.text_field :name %>
+				</td>
+				<td>
+					<% unless interface_form.object.new_record? %>
 					<%= interface_form.hidden_field :id %>	
 					<%= interface_form.check_box :_destroy %>
 					<%= interface_form.label :_destroy, 'Remove' %>
-				<% end %>
-			</td class="field">
-			<td>
-				<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id] },{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
-			</td class="field">
-			<td class="field">
-				<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection)  %>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	<%= link_to 'Add Interface','#', :id => 'add_interface' %>
-</fieldset>
+					<% end %>
+				</td class="field">
+				<td>
+					<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id] },{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
+				</td class="field">
+				<td class="field">
+					<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection)  %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<%= link_to 'Add Interface','#', :id => 'add_interface' %>
+	</fieldset>
 </div>
 
