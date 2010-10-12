@@ -4,7 +4,7 @@ gem 'rails', '3.0.0'
 gem 'active_enum'
 gem 'jquery-rails'
 gem 'acts_as_url', :git => 'git://github.com/Reprazent/acts_as_url.git'
-
+gem 'will_paginate', '~> 3.0.beta'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

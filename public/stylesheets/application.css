@@ -46,3 +46,7 @@ html{
 #search form {
 	float:right;
 }
+.pagination{
+	float:left;
+	width:100%;
+}

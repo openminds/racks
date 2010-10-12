@@ -17,7 +17,7 @@ class ServerRacksController < ApplicationController
 
 		respond_to do |format|
 			if @server_rack.save
-				format.html { redirect_to([@server_rack.datacenter, @server_rack], :notice => 'Server rack was successfully created.') }
+				format.html { redirect_to(@server_rack.datacenter, :notice => 'Server rack was successfully created.') }
 			else
 				format.html { render :action => "new" }
 			end
