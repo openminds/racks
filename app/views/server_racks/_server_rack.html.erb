@@ -4,7 +4,7 @@
 	<p>Available units: <%= "#{server_rack.units.available.count}/#{server_rack.units.count}" %></p>
 	<p>
 		<%= link_to 'Show',  [server_rack.datacenter, server_rack] %>
-    	<%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack], :remote => true %>
+    	<%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack], :class => "remote" %>
     	<%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %>
 	</p>
 	<p>

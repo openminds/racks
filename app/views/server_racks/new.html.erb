@@ -1,7 +1,7 @@
-<div id="modal_form_for_new_rack" title="Add a rack">
+<div id="modal_form" title="Add a rack">
 
-	<%= form_for [server_rack.datacenter, server_rack] do |form| %>
-	<%= render :partial => 'form', :locals => {:server_rack => server_rack, :form => form} %>
+	<%= form_for [@server_rack.datacenter, @server_rack] do |form| %>
+	<%= render :partial => 'form', :locals => {:server_rack => @server_rack, :form => form} %>
 	<div class="field">
 		<%= label 'number_of_units', :number_of_units %><br />
 		<%= text_field_tag :number_of_units %>

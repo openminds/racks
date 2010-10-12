@@ -6,7 +6,7 @@
 		<%= link_to "Destroy", datacenter, :method => :delete, :confirm => 'Are you sure?' %>
 	</p>
 	<p>
-		<%= link_to 'Add rack', new_datacenter_server_rack_path(datacenter), :remote => true, :class => "button" %>
+		<%= link_to 'Add rack', new_datacenter_server_rack_path(datacenter),  :class => "remote button" %>
 	</p>
 	<%= render :partial => 'server_racks/server_rack', :collection => datacenter.server_racks, :as => :server_rack %>
 
