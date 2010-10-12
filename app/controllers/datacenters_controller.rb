@@ -12,7 +12,7 @@ class DatacentersController < ApplicationController
 	end
 	def show
 		@datacenter = Datacenter.find(params[:id])
-		redirect_to datacenters_path(:datacenter => "datacenter#{params[:id]}"), :notice => flash[:notice]
+		redirect_to datacenters_path(:datacenter => "#{params[:id]}"), :notice => flash[:notice]
 	end
 
 	def create

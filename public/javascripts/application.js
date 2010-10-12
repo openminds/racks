@@ -8,10 +8,10 @@ $(function(){
 	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
 	if (getParameterByName('device') != '') {
 		$('.tabs').tabs({selected: 1});
-		$('.devices_accordion').accordion("activate", "#" + getParameterByName("device"));
+		$('.devices_accordion').accordion("activate", "#show_device_" + getParameterByName("device"));
 	};
 	if (getParameterByName('datacenter') != '') {
-		$('.tabs').tabs("select", "#" + getParameterByName('datacenter'));
+		$('.tabs').tabs("select", "#datacenter" + getParameterByName('datacenter'));
 	};
 	
 	//Create buttons
