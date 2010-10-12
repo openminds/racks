@@ -1,4 +1,5 @@
-<div id='modal_form_for_new_device' title="New device">
+<div id="modal_form_for_device<%= device.id %>" title='Edit device'>
+
 	<%= form_for([device.server_rack.datacenter, device.server_rack, device]) do |form| %>
 	<div class='tabs'>
 		<ul>
@@ -11,12 +12,14 @@
 			<fieldset  style="float:left;">
 				<legend>Rack</legend>
 				<%= form.label :unit_ids %><br />
-				<%= form.collection_select :unit_ids, device.server_rack.units.available, :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
+				<%= form.collection_select :unit_ids,  device.units+device.server_rack.units.available , :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
 			</fieldset>
 		</div>
 		<div style="clear: both;">&nbsp;</div>
 	</div>
 	<%= form.submit %>
+	<%#= link_to 'Back', datacenters_path %>
+	<%#= link_to 'Show', [device.server_rack.datacenter, device.server_rack] %>
+
 	<% end %>
 </div>
-device
