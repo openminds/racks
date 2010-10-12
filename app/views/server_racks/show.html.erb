@@ -9,27 +9,16 @@
 			<li><a href='#connections'>Connections</a></li>
 		</ul>
 		<div id='rack_info'>
-			<p>
-				<b>Datacenter:</b>
-				<%= @server_rack.datacenter_id %>
-			</p>
-
-			<p>
-				<b>Name:</b>
-				<%= @server_rack.name %>
-			</p>
-
-			<p>
-				<b>Comment:</b>
-				<%= @server_rack.comment %>
-			</p>
+			<p><%= @server_rack.comment %></p>
+			<p>Available units: <%= "#{@server_rack.units.available.count}/#{@server_rack.units.count}" %></p>
+			
 			<%= link_to 'Edit', edit_datacenter_server_rack_path(@server_rack.datacenter, @server_rack), :remote => true %> |
 			<%= link_to 'Back', datacenters_path %>
 		</div>
 
 		<div id='devices_list'>
 			<p>
-				<%= link_to 'Add device', [:new, @server_rack.datacenter, @server_rack, :device], :remote => true, :class => 'button' %>
+				<%= link_to 'Add device', [:new, @server_rack.datacenter, @server_rack, :device], :class => 'remote button' %>
 			</p>
 			<div class='devices_accordion'>
 				<%= render :partial => 'devices/device', :collection => @server_rack.devices, :as => :device %>
