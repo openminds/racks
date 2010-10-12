@@ -27,6 +27,25 @@ $(function(){
 		}
 	});
 	
+	$("a.remote").live('click', function(){
+		// alert($(this).attr("href"));
+		$("#modal_wrapper").load($(this).attr("href"), "#modal_form", function(){
+			$("#modal_form").dialog({
+				modal: true,
+				close: function(event, ui) { 
+					$("#modal_form > form > div.tabs").tabs("destroy");
+					$("#modal_form > form > div.tabs").html(" ");
+					$("#modal_form").dialog("destroy");
+					$("#modal_form").html("  ");
+					$("#modal_wrapper").html( " " );
+				 },
+				width:900
+				});
+			$('#modal_form > form > div.tabs ').tabs();
+		});
+		return false;
+	});
+	
 	
 });
 //A custom search autocomplete (using categories)

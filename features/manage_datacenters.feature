@@ -5,7 +5,7 @@ Feature: Manage datacenters
 
 Scenario: Add a datacenter
 	Given I am on the datacenters page
-	When I follow "New Datacenter"
+	# When I follow "New Datacenter" Now a tab on the index page
 	And I fill in "datacenter_name" with "Just a datacenter"
 	And I fill in "datacenter_location" with "Brussels"
 	And I fill in "datacenter_comment" with "Some comment"
@@ -18,7 +18,7 @@ Scenario: Delete a datacenter
 	When I follow "Destroy"
 	Then I should see "Datacenter was destroyed."
 
-Scenario: Delete a datacenter
+Scenario: Edit a datacenter
 	Given 10 datacenters exist
 	Given I am on the datacenters page
 	When I follow "Edit"

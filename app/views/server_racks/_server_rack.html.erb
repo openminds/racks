@@ -8,7 +8,7 @@
     	<%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %>
 	</p>
 	<p>
-		<%= link_to 'Add device', [:new, server_rack.datacenter, server_rack, :device], :remote => true, :class => 'button' %>
+		<%= link_to 'Add device', [:new, server_rack.datacenter, server_rack, :device], :class => 'button remote' %>
 	</p>
 	
 	<div class='devices_accordion'>
