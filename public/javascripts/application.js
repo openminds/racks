@@ -13,10 +13,10 @@ $(function(){
 	if (getParameterByName('datacenter') != '') {
 		$('.tabs').tabs("select", "#datacenter" + getParameterByName('datacenter'));
 	};
-	
+
 	//Create buttons
 	$(".button").button();
-	
+
 	//Autocomplete search...
 	$('#s').catcomplete({
 		source: "/search/ajax_search",
@@ -28,6 +28,7 @@ $(function(){
 	});
 	//create the add interface links
 	$('#add_interface').click(function() {enableInterfaceLinks()});
+	
 	//Create the links to load forms using ajax
 	$("a.remote").live('click', function(){
 		// alert($(this).attr("href"));
@@ -40,14 +41,17 @@ $(function(){
 					$("#modal_form").dialog("destroy");
 					$("#modal_form").html("  ");
 					$("#modal_wrapper").html( " " );
-				 },
+				},
 				width:900
-				});
+			});
 			$('#modal_form > form > div.tabs ').tabs();
 			$('#add_interface').click(function() {enableInterfaceLinks()});
+			$("select[id$=_interface_type]").change(function(){updateSelectableInterfaces($(this))});
 		});
 		return false;
 	});
+	//Update the forms when an interface_type is selected
+	$("select[id$=_interface_type]").change(function(){updateSelectableInterfaces($(this))});
 });
 //A custom search autocomplete (using categories)
 $.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -63,8 +67,8 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
 		});
 	}
 });
+//Creation of "add_interface" links to add a new interface row to the table
 function enableInterfaceLinks(){
-	//var interface_row = $('.interface_row').fi.html();
 	var $interface_table = $('#interface_form:nth-child(2)');
 	var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
 	//alert($interface_row.html());
@@ -92,21 +96,29 @@ function enableInterfaceLinks(){
 			};
 		};
 		$(this).attr("name", new_name)
-
-		//clear the current values
-		$(this).attr("value", "reset");	
 	});
+	//append the new row
 	$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
+	//append the action for the cbo's
+	$("select[id$=_interface_type]").change(function(){updateSelectableInterfaces($(this))});
 }
+function updateSelectableInterfaces(interface){
+	var id = interface.attr("id").split("_")[3]
+	var selected = interface.children(":selected").val();
+	$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
+	$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
+	$("#device_interfaces_attributes_" + id + "_connected_to > option[value='']").attr("disabled", "");
+}
+//get parameters from the querystring
 function getParameterByName( name )
 {
-  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-  var regexS = "[\\?&]"+name+"=([^&#]*)";
-  var regex = new RegExp( regexS );
-  var results = regex.exec( window.location.href );
-  if( results == null )
-    return "";
-  else
-    return decodeURIComponent(results[1].replace(/\+/g, " "));
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( window.location.href );
+	if( results == null )
+	return "";
+	else
+	return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 

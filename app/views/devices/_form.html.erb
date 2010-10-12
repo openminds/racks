@@ -30,9 +30,6 @@
 		</div>
 	</fieldset>
 </div>
-<script type='text/javascript'>
-
-</script>
 <div id="interfaces">
 	<fieldset style="float:left">
 		<legend>Interfaces</legend>
@@ -40,7 +37,7 @@
 			<%= form.fields_for :interfaces do |interface_form| %>
 			<tr class='interface_row'>
 				<td class="field">
-					<%= interface_form.select :interface_type, Interface::InterfaceType.to_select %>
+					<%= interface_form.select :interface_type, Interface::InterfaceType.to_select,{:prompt => 'Interface Type?'} %>
 				</td>
 				<td class="field">
 					<%= interface_form.text_field :name %>
@@ -53,7 +50,7 @@
 					<% end %>
 				</td class="field">
 				<td>
-					<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id] },{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection)} %>
+					<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, :type => i.interface_type]  } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => (interface_form.object.cable_connection.other_interface(interface_form.object).id if interface_form.object.cable_connection) } %>
 				</td class="field">
 				<td class="field">
 					<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection)  %>
