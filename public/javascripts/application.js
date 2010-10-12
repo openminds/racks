@@ -29,7 +29,7 @@ $(function(){
 	
 	$("a.remote").live('click', function(){
 		// alert($(this).attr("href"));
-		$("#modal_wrapper").load($(this).attr("href"), "#modal_form", function(){
+		$("#modal_wrapper").load($(this).attr("href"), "#modal_form", function(response, status, xhr){
 			$("#modal_form").dialog({
 				modal: true,
 				close: function(event, ui) { 

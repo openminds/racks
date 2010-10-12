@@ -2,7 +2,7 @@
 	<p>Location: <%= datacenter.location %></p>
 	<p>Comment: <%= datacenter.comment %></p>
 	<p>
-		<%= link_to "Edit", [:edit, datacenter], :remote => true %>
+		<%= link_to "Edit", [:edit, datacenter], :class => 'remote' %>
 		<%= link_to "Destroy", datacenter, :method => :delete, :confirm => 'Are you sure?' %>
 	</p>
 	<p>
