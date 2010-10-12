@@ -12,7 +12,7 @@ class DatacentersController < ApplicationController
 	end
 	def show
 		@datacenter = Datacenter.find(params[:id])
-		redirect_to datacenters_path(:datacenter => "datacenter#{params[:id]}")
+		redirect_to datacenters_path(:datacenter => "datacenter#{params[:id]}"), :notice => flash[:notice]
 	end
 
 	def create
@@ -44,7 +44,7 @@ class DatacentersController < ApplicationController
 		@datacenter.destroy
 
 		respond_to do |format|
-			format.html { redirect_to(datacenters_url, :notice => 'Datacenter was destroyed.') }
+			format.html { redirect_to(request.referrer, :notice => 'Datacenter was destroyed.') }
 		end
 	end
 end

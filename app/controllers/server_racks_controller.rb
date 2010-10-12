@@ -29,7 +29,7 @@ class ServerRacksController < ApplicationController
 
 		respond_to do |format|
 			if @server_rack.update_attributes(params[:server_rack])
-				format.html { redirect_to(@server_rack, :notice => 'Server rack was successfully updated.') }
+				format.html { redirect_to([@server_rack.datacenter, @server_rack], :notice => 'Server rack was successfully updated.') }
 			else
 				format.html { render :action => "edit" }
 			end
