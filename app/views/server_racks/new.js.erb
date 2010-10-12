@@ -1,11 +1,12 @@
-$("#modal-form").load("<%= new_datacenter_server_rack_path %>", function(){
-	$("#modal_form_for_new_rack").dialog({
-		modal: true,
-		close: function(event, ui) { 
-			$("#modal_form_for_new_rack").dialog("destroy");
-			$("#modal-form").empty(); 
-		},
-		width:400
-		});
-	// $("#modal_form_for_new_rack").dialog("open");
-});
+$("#modal_form").html("<%= escape_javascript(render :partial => 'new', :locals => {:server_rack => @server_rack}) %>");
+$("#modal_form_for_new_rack").dialog({
+	modal: true,
+	close: function(event, ui) { 
+		$("#new_server_rack > div.tabs ").tabs("destroy");
+		$("#new_server_rack > div.tabs ").html(" ");
+		$("#modal_form_for_new_rack").dialog("destroy");
+		$("#modal_form").html("  ");
+	 },
+	width:400
+	});
+$('#new_server_rack > div.tabs ').tabs();
