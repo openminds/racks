@@ -1,12 +1,13 @@
-$("#modal-form").load("<%= new_datacenter_server_rack_device_path %>", function(){
-	$("#modal_form_for_new_device").dialog({
-		modal: true,
-		close: function(event, ui) { 
-			$("#modal_form_for_new_device").dialog("destroy");
-			$("#modal-form").empty()  
-		},
-		width:900
-		});
-	$('.tabs').tabs();
-	$("#modal_form_for_new_device").dialog("open");
-});
+// alert("<%= escape_javascript(render :partial => 'new', :locals => {:device => @device, :interfaces => @interfaces}) %>");
+$("#modal_form").html("<%= escape_javascript(render :partial => 'new', :locals => {:device => @device, :interfaces => @interfaces}) %>");
+$("#modal_form_for_new_device").dialog({
+	modal: true,
+	close: function(event, ui) { 
+		$("#new_device > div.tabs ").tabs("destroy");
+		$("#new_device > div.tabs ").html(" ");
+		$("#modal_form_for_new_device").dialog("destroy");
+		$("#modal_form").html("  ");
+	 },
+	width:900
+	});
+$('#new_device > div.tabs ').tabs();
