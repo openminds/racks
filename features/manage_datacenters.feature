@@ -5,7 +5,7 @@ Feature: Manage datacenters
 
 Scenario: Add a datacenter
 	Given I am on the datacenters page
-	# When I follow "New Datacenter" Now a tab on the index page
+	When I follow "New Datacenter"
 	And I fill in "datacenter_name" with "Just a datacenter"
 	And I fill in "datacenter_location" with "Brussels"
 	And I fill in "datacenter_comment" with "Some comment"
