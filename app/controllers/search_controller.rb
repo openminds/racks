@@ -36,6 +36,7 @@ class SearchController < ApplicationController
 		@found_companies = Company.where("name LIKE :term OR comment LIKE :term", :term => "%#{@searchword}%").order("name ASC")
 		@found_devices = Device.where('name LIKE :term OR comment like :term', :term => "%#{@searchword}%" ).order('name ASC')
 		@found_racks = ServerRack.where('name LIKE :term OR comment LIKE :term', :term => "%#{@searchword}%").order('name ASC')
+		@found_datacenters = Datacenter.all(:conditions => ['name LIKE :term or comment LIKE :term', :term =>"%#{@searchword}%"], :order => 'name ASC')
 	end
 
 end

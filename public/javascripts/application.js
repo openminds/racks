@@ -112,6 +112,7 @@ function addInterface(){
 	$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
 	//append the action for the cbo's
 	$("select[id$=_interface_type]").change(function(){updateSelectableInterfaces($(this))});
+	return false;
 }
 function updateSelectableInterfaces(interface){
 	var id = interface.attr("id").split("_")[3]
@@ -119,6 +120,7 @@ function updateSelectableInterfaces(interface){
 	$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[value='']").attr("disabled", "");
+	return false;
 }
 //get parameters from the querystring
 function getParameterByName( name )

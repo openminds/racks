@@ -19,6 +19,13 @@ html{
 	margin:0px;
 	float:right;
 	width:33%;
+	height:auto;
+	margin-left:5px;
+	margin-right:5px;
+}
+#notice p{
+	margin:0px;
+	padding: 0.4em 1em 0.4em 20px;
 }
 #content {
 	margin:0px;
@@ -30,6 +37,8 @@ html{
 	width:auto;
 }
 #menu a{
+	float:left;
+	margin:5px;
 	padding: 0.4em 1em 0.4em 20px;
 	text-decoration: none;
 }
@@ -45,6 +54,9 @@ html{
 }
 #search form {
 	float:right;
+}
+#search #s{
+	width:250px;
 }
 .pagination{
 	float:left;
