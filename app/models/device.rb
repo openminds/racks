@@ -11,32 +11,17 @@ class Device < ActiveRecord::Base
 
 	enumerate :device_type, :with => DeviceType
 
-	def unit_ids(ids=[])
-		ids.each do |id|
-			unit = Unit.find(id)
-			units << unit
-		end
-	end
-	def unit_ids
-		ids = []
-		units.each do |unit|
-			ids << unit.id
-		end
-		ids
-	end
-
 	def cable_connections
 		interfaces.map(&:cable_connection).flatten.compact.uniq
 	end
 
 	def connected_to_interfaces
-		connected_to = []
-		interfaces.each do |interface|
+		interfaces.inject([]) do |connected_to, interface|
 			if interface.cable_connection
 				connected_to << interface.cable_connection.other_interface(interface)
 			end
+			connected_to
 		end
-		connected_to
 	end
 
 	def server_rack
