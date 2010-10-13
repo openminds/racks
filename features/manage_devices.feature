@@ -27,7 +27,7 @@ Scenario: Delete a device
 	When I follow "Destroy" within "fieldset/div/div"
 	Then I should see "Device was successfully deleted."
 	And I should see "Available units: 42/42"
-	
+
 Scenario: Update a device
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
@@ -79,5 +79,69 @@ Scenario: Create a device with an interface and a connection
 	And I should see "1 - 1: Server: Connected server"
 	And I should see "eth0 ~ eth0 on Testdevice"
 	And I should see "eth0 ~ eth0 on Connected server"
+
+Scenario: Disconnect an interface
+	Given a datacenter exist
+	And a server_rack exist with datacenter: the datacenter
+	And a device exists with name: "Left device"
+	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And a device exists with name: "right device"
+	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
+	And I am on the datacenters page
+	Then I should see "left ethernet ~ right ethernet on right device"
+	And I should see "ight ethernet ~ left ethernet on Left device"
+	When I follow "Edit" within "fieldset/div/div"
+	And I select "disconnect" from "device_interfaces_attributes_0_connected_to" 
+	And I press "Update Device"
+	Then I should see "Device was successfully updated."
+	And I should not see "left ethernet ~ right ethernet on right device"
+	And I should not see "right ethernet ~ left ethernet on Left device"
+
+Scenario: Delete an interface with a connection
+	Given a datacenter exist
+	And a server_rack exist with datacenter: the datacenter
+	And a device exists with name: "Left device"
+	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And a device exists with name: "right device"
+	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
+	And I am on the datacenters page
+	Then I should see "left ethernet ~ right ethernet on right device"
+	And I should see "ight ethernet ~ left ethernet on Left device"
+	When I follow "Edit" within "fieldset/div/div"
+	And I check "device_interfaces_attributes_0__destroy" 
+	And I press "Update Device"
+	Then I should see "Device was successfully updated."
+	And I should not see "~"
+	And I should not see "right ethernet ~ left ethernet on Left device"
+	When I follow "Datacenter management"
+	Then I should see "right ethernet"
+
+Scenario: reconnect an interface
+	Given a datacenter exist
+	And a server_rack exist with datacenter: the datacenter
+	And a device exists with name: "Left device"
+	And an interface exists with device: the device, interface_type: 1, name: "left ethernet"
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And a device exists with name: "right device"
+	And an interface exists with device: the device, interface_type: 1, name: "right ethernet"
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And a device exists with name: "Third device"
+	And an interface exists with device: the device, interface_type: 1, name: "new connection"
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
+	And I am on the datacenters page
+	Then I should see "left ethernet ~ right ethernet on right device"
+	And I should see "right ethernet ~ left ethernet on Left device"
+	When I follow "Edit" within "fieldset/div/div"
+	And I select "new connection on Third device" from "device_interfaces_attributes_0_connected_to" 
+	And I press "Update Device"
+	Then I should see "left ethernet ~ new connection on Third device"
+	And I should not see "right ethernet ~ left ethernet on Left device"
 	
-	
+
