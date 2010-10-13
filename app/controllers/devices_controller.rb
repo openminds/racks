@@ -34,7 +34,7 @@ class DevicesController < ApplicationController
 
 	def update
 		@device = Device.find(params[:id])
-		
+
 		respond_to do |format|
 			if @device.update_attributes(params[:device])
 				format.html { redirect_to([@device.server_rack.datacenter, @device.server_rack, @device], :notice => 'Device was successfully updated.') }

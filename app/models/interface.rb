@@ -1,12 +1,12 @@
 class Interface < ActiveRecord::Base
 	belongs_to :device
 	before_destroy :destroy_cable_connections
-	
+
 	validates_presence_of :name, :message => "can't be blank"
-	
+
 	attr_accessor :connected_to
 	attr_accessor :cable_connection_color
-	
+
 	enumerate :interface_type do
 		value :id => 1, :name => 'Ethernet'
 		value :id => 2, :name => 'Power'
@@ -28,22 +28,22 @@ class Interface < ActiveRecord::Base
 			nil
 		end
 	end
-	
+
 	def available?
 		cable_connection.nil?
 	end
-	
+
 	def to_s
 		"#{self.name} on #{self.device.name}"
 	end
-	
+
 	def destroy_cable_connections
 		unless cable_connection.nil? 
 			to_destroy = cable_connection
 			to_destroy.destroy
 		end
 	end
-	
+
 	def update_cable_connection
 		if self.cable_connection.nil?
 			if self.connected_to != '' && !self.connected_to.nil?

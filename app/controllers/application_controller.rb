@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-	
+	protect_from_forgery
+
 	protected
 	def current_datacenter
 		@current_datacenter ||= Datacenter.find(params[:datacenter_id])

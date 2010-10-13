@@ -8,18 +8,18 @@ class ServerRack < ActiveRecord::Base
 	def interfaces
 		devices.map(&:interfaces).flatten
 	end
-	
+
 	def available_interfaces
 		devices.collect { |device|
 			device.interfaces.available
-		}.flatten
-	end
-	
-	def cable_connections
-		connections = Array.new
-		interfaces.each do |interface|
-			connections << CableConnection.first(:conditions => "left_interface_id = #{interface.id} OR right_interface_id = #{interface.id}")
+			}.flatten
 		end
-		connections.uniq.compact
+
+		def cable_connections
+			connections = Array.new
+			interfaces.each do |interface|
+				connections << CableConnection.first(:conditions => "left_interface_id = #{interface.id} OR right_interface_id = #{interface.id}")
+			end
+			connections.uniq.compact
+		end
 	end
-end
