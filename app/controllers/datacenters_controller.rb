@@ -1,6 +1,7 @@
 class DatacentersController < ApplicationController
 	def index
 		@datacenters = Datacenter.all
+		@datacenter = Datacenter.new
 	end
 
 	def new

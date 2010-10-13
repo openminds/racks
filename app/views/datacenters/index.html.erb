@@ -1,7 +1,7 @@
 <script type="text/javascript" language="javascript">
-$(function(){
-	$("#new_datacenter_tab").load('<%= new_datacenter_path %> #new_datacenter');
-});
+// $(function(){
+// 	$("#new_datacenter_tab").load('<%= new_datacenter_path %> #new_datacenter');
+// });
 </script>
 <div id="datacenters" class='tabs'>
 	<ul>
@@ -12,7 +12,7 @@ $(function(){
 	</ul>
 	<%= render :partial => 'datacenter_tab', :collection => @datacenters, :as => :datacenter%>
 	<div  id="new_datacenter_tab" style='height:600px;'>
-		
+		<%= render :partial => "new", :locals => {:datacenter => @datacenter} %>
 	</div>
 	
 </div>
