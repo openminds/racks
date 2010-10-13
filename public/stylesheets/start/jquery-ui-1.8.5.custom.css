@@ -349,6 +349,9 @@
  * http://docs.jquery.com/UI/Autocomplete#theming
  */
 .ui-autocomplete { position: absolute; cursor: default; }	
+.ui-autocomplete-category{
+	background: #2191c0 url(images/ui-bg_gloss-wave_75_2191c0_500x100.png) 50% 50% repeat-x; color: #eaf5f7;
+}
 
 /* workarounds */
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
