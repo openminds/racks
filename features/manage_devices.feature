@@ -77,7 +77,7 @@ Scenario: Create a device with an interface and a connection
 	And I press "Create Device"
 	Then I should see "Device was successfully created."
 	And I should see "1 - 1: Server: Connected server"
-	And I should see "eth0 <-> eth0 on Testdevice"
-	And I should see "eth0 <-> eth0 on Connected server"
+	And I should see "eth0 ~ eth0 on Testdevice"
+	And I should see "eth0 ~ eth0 on Connected server"
 	
 	
