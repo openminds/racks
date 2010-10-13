@@ -7,7 +7,7 @@ Scenario: Create a device without any interfaces
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack
-	And I am on the datacenters page
+	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
 	And I fill in "device_comment" with "Some comment for the restserver"
@@ -22,7 +22,7 @@ Scenario: Delete a device
 	And a server_rack exist with datacenter: the datacenter
 	And 12 devices exist
 	And 42 units exist with server_rack: the server_rack, device: a device
-	And I am on the datacenters page
+	And I am on the home page
 	Then I should see "Available units: 0/42"
 	When I follow "Destroy" within "fieldset/div/div"
 	Then I should see "Device was successfully deleted."
@@ -33,7 +33,7 @@ Scenario: Update a device
 	And a server_rack exist with datacenter: the datacenter
 	And 12 devices exist
 	And 42 units exist with server_rack: the server_rack, device: a device
-	And I am on the datacenters page
+	And I am on the home page
 	Then I should see "Available units: 0/42"
 	When I follow "Edit" within "fieldset/div/div"
 	When I fill in "device_name" with "Updated device name"
@@ -48,7 +48,7 @@ Scenario: Create a device with an interface
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack
-	And I am on the datacenters page
+	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
 	And I fill in "device_comment" with "Some comment for the restserver"
@@ -66,7 +66,7 @@ Scenario: Create a device with an interface and a connection
 	And an interface exists with device: the device, interface_type: 1, name: "eth0"
 	And 40 units exist with server_rack: the server_rack
 	And 2 units exist with server_rack: the server_rack, device: the device
-	And I am on the datacenters page
+	And I am on the home page
 	And I follow "Add device"
 	When I fill in "device_name" with "Connected server"
 	And I fill in "device_comment" with "This device is connected to the testserver"
@@ -90,7 +90,7 @@ Scenario: Disconnect an interface
 	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
-	And I am on the datacenters page
+	And I am on the home page
 	Then I should see "left ethernet ~ right ethernet on right device"
 	And I should see "ight ethernet ~ left ethernet on Left device"
 	When I follow "Edit" within "fieldset/div/div"
@@ -110,7 +110,7 @@ Scenario: Delete an interface with a connection
 	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
-	And I am on the datacenters page
+	And I am on the home page
 	Then I should see "left ethernet ~ right ethernet on right device"
 	And I should see "ight ethernet ~ left ethernet on Left device"
 	When I follow "Edit" within "fieldset/div/div"
@@ -135,7 +135,7 @@ Scenario: reconnect an interface
 	And an interface exists with device: the device, interface_type: 1, name: "new connection"
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
-	And I am on the datacenters page
+	And I am on the home page
 	Then I should see "left ethernet ~ right ethernet on right device"
 	And I should see "right ethernet ~ left ethernet on Left device"
 	When I follow "Edit" within "fieldset/div/div"

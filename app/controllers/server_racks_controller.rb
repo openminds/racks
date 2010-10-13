@@ -49,7 +49,7 @@ class ServerRacksController < ApplicationController
 		@server_rack.destroy
 
 		respond_to do |format|
-			format.html { redirect_to(@server_rack.datacenter, :notice => 'Server rack was successfully deleted.') }
+			format.html { redirect_to([current_datacenter, :server_racks], :notice => 'Server rack was successfully deleted.') }
 		end
 	end
 end

@@ -25,7 +25,7 @@ class DatacentersController < ApplicationController
 
 		respond_to do |format|
 			if @datacenter.update_attributes(params[:datacenter])
-				format.html { redirect_to(@datacenter, :notice => 'Datacenter was successfully updated.') }
+				format.html { redirect_to([@datacenter, :server_racks], :notice => 'Datacenter was successfully updated.') }
 			else
 				format.html { render :action => "edit" }
 			end

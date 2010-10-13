@@ -20,6 +20,15 @@ class Interface < ActiveRecord::Base
 			end
 		end
 	end
+	
+	def other
+	 	if cable_connection
+			other = cable_connection.other_interface(self)
+		else
+			other = nil
+		end
+		other
+	end
 
 	def cable_connection
 		if self.id

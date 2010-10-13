@@ -18,7 +18,7 @@ class Device < ActiveRecord::Base
 	def connected_to_interfaces
 		interfaces.inject([]) do |connected_to, interface|
 			if interface.cable_connection
-				connected_to << interface.cable_connection.other_interface(interface)
+				connected_to << interface.other
 			end
 			connected_to
 		end

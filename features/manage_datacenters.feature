@@ -4,7 +4,7 @@ Feature: Manage datacenters
   I want to manage the datacenters
 
 Scenario: Add a datacenter
-	Given I am on the datacenters page
+	Given I am on the home page
 	When I follow "New Datacenter"
 	And I fill in "datacenter_name" with "Just a datacenter"
 	And I fill in "datacenter_location" with "Brussels"
@@ -14,13 +14,13 @@ Scenario: Add a datacenter
 
 Scenario: Delete a datacenter
 	Given 10 datacenters exist
-	Given I am on the datacenters page
+	Given I am on the home page
 	When I follow "Destroy"
 	Then I should see "Datacenter was destroyed."
 
 Scenario: Edit a datacenter
 	Given 10 datacenters exist
-	Given I am on the datacenters page
+	Given I am on the home page
 	When I follow "Edit"
 	And I fill in "datacenter_name" with "Just a datacenter"
 	And I fill in "datacenter_location" with "Brussels"
