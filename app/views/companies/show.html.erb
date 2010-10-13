@@ -1,45 +1,60 @@
+<div class='ui-dialog ui-widget ui-widget-content ui-corner-all' style='width:95%; '>
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+		<span class='ui-dialog-title'>Company: <%= @company.name %></span>
+	</div>
+	<p>
+	  <b>Name:</b>
+	  <%= @company.name %>
+	</p>
+
+	<p>
+	  <b>Address:</b>
+	  <%= @company.address %>
+	</p>
+
+	<p>
+	  <b>Postal code:</b>
+	  <%= @company.postal_code %>
+	</p>
+
+	<p>
+	  <b>City:</b>
+	  <%= @company.city %>
+	</p>
+
+	<p>
+	  <b>Telephone:</b>
+	  <%= @company.telephone %>
+	</p>
+
+	<p>
+	  <b>Url:</b>
+	  <%= @company.url %>
+	</p>
+
+	<p>
+	  <b>Btw nr:</b>
+	  <%= @company.btw_nr %>
+	</p>
+
+	<p>
+	  <b>Comment:</b>
+	  <%= @company.comment %>
+	</p>
+	<div >
+		<b>Devices:</b>
+		<ul>
+			<% @company.devices.each do |device| %>
+			<li>
+				<%= link_to device.name, [device.server_rack.datacenter, device.server_rack, device] %> (<%= link_to device.server_rack.name, [device.server_rack.datacenter, device.server_rack]%> in <%= link_to device.server_rack.datacenter.name, device.server_rack.datacenter%>)
+			</li>
+			<% end %>
+		</ul>
+	</div>
 
 
-<p>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
+	<%= link_to 'Edit', edit_company_path(@company) %> |
+	<%= link_to 'Back', companies_path %>
 
-<p>
-  <b>Address:</b>
-  <%= @company.address %>
-</p>
-
-<p>
-  <b>Postal code:</b>
-  <%= @company.postal_code %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @company.city %>
-</p>
-
-<p>
-  <b>Telephone:</b>
-  <%= @company.telephone %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @company.url %>
-</p>
-
-<p>
-  <b>Btw nr:</b>
-  <%= @company.btw_nr %>
-</p>
-
-<p>
-  <b>Comment:</b>
-  <%= @company.comment %>
-</p>
-
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+	<div style="clear: both;">&nbsp;</div>
+</div>

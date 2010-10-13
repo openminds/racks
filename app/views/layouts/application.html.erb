@@ -11,7 +11,7 @@
 	<div id="wrapper">
 		<div id="header">
 			<div id="menu">
-				<%= link_to "Datacenter management", datacenters_path, {:class => "ui-state-default ui-corner-all"} %>
+				<%= link_to "Datacenter management", root_path, {:class => "ui-state-default ui-corner-all"} %>
 				<%= link_to "Companies", companies_path, {:class => "ui-state-default ui-corner-all"} %>
 			</div>
 			<div id="search">
@@ -27,7 +27,16 @@
 			</div>
 		</div>
 		<div id="content">
-			<%= yield %>
+			<div class=' ui-tabs ui-widget ui-widget-content ui-corner-all'>
+				<ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
+					<% @datacenters.each do |datacenter| %>
+							<li class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if datacenter == @current_datacenter %>'><%= link_to datacenter.name, datacenter_server_racks_path(datacenter) %></li>
+					<% end %>
+					<li class="right ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if request.request_uri == new_datacenter_path %>"><%= link_to "New datacenter", new_datacenter_path %></li>
+				</ul>
+				
+				<%= yield %>
+			</div>
 			<div id="modal_wrapper">
 
 			</div>

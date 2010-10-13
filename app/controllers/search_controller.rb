@@ -13,7 +13,7 @@ class SearchController < ApplicationController
 			@search << {:label => "#{server_rack.name} in #{server_rack.datacenter.name}", :category => 'Racks', :value => server_rack.id, :url => datacenter_server_rack_path(server_rack.datacenter, server_rack) }
 		end
 		@datacenters.each do |datacenter|
-			@search << {:label => datacenter.name, :category => 'Datacenters', :value => datacenter.id, :url => datacenter_path(datacenter) }
+			@search << {:label => datacenter.name, :category => 'Datacenters', :value => datacenter.id, :url => datacenter_server_racks_path(datacenter) }
 		end
 		@companies .each do |company|
 			@search << {:label => company.name, :category => 'Companies', :value => company.id, :url => company_path(company) }
@@ -24,8 +24,8 @@ class SearchController < ApplicationController
 	end
 
 	def find_colors
-		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").collect {|c| c.color}
-		@colors.uniq
+		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").map(&:color)
+		@colors.uniq!
 		respond_to do |format|
 			format.json {render :json => @colors }
 		end

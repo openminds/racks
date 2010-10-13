@@ -1,8 +1,4 @@
 class DatacentersController < ApplicationController
-	def index
-		@datacenters = Datacenter.all
-		@datacenter = Datacenter.new
-	end
 
 	def new
 		@datacenter = Datacenter.new
@@ -11,17 +7,13 @@ class DatacentersController < ApplicationController
 	def edit
 		@datacenter = Datacenter.find(params[:id])
 	end
-	def show
-		@datacenter = Datacenter.find(params[:id])
-		redirect_to datacenters_path(:datacenter => "#{params[:id]}"), :notice => flash[:notice]
-	end
 
 	def create
 		@datacenter = Datacenter.new(params[:datacenter])
 
 		respond_to do |format|
 			if @datacenter.save
-				format.html { redirect_to(@datacenter, :notice => 'Datacenter was successfully created.') }
+				format.html { redirect_to([@datacenter, :server_racks], :notice => 'Datacenter was successfully created.') }
 			else
 				format.html { render :action => "new" }
 			end
@@ -45,7 +37,7 @@ class DatacentersController < ApplicationController
 		@datacenter.destroy
 
 		respond_to do |format|
-			format.html { redirect_to(request.referrer, :notice => 'Datacenter was destroyed.') }
+			format.html { redirect_to([current_datacenter, :server_racks], :notice => 'Datacenter was destroyed.') }
 		end
 	end
 end

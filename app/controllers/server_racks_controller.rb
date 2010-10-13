@@ -1,4 +1,12 @@
 class ServerRacksController < ApplicationController
+	def index
+		if !Datacenter.all.any?
+			logger.debug "NONE FOUND!"
+			redirect_to new_datacenter_path
+		end
+		@datacenters = Datacenter.all
+		@current_datacenter = current_datacenter
+	end
 	def show
 		@server_rack = ServerRack.find(params[:id])
 	end
@@ -17,7 +25,7 @@ class ServerRacksController < ApplicationController
 
 		respond_to do |format|
 			if @server_rack.save
-				format.html { redirect_to(@server_rack.datacenter, :notice => 'Server rack was successfully created.') }
+				format.html { redirect_to([@server_rack.datacenter, @server_rack], :notice => 'Server rack was successfully created.') }
 			else
 				format.html { render :action => "new" }
 			end

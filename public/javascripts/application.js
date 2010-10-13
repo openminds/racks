@@ -2,16 +2,12 @@
 // This file is automatically included by javascript_include_tag :defaults
 $(function(){
 	//init tabs
-	// $("#datacenters").tabs();
 	// $("#server_rack_info").tabs();
 	$('.tabs').tabs();
 	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
 	if (getParameterByName('device') != '') {
 		$('.tabs').tabs({selected: 1});
 		$('.devices_accordion').accordion("activate", "#show_device_" + getParameterByName("device"));
-	};
-	if (getParameterByName('datacenter') != '') {
-		$('.tabs').tabs("select", "#datacenter" + getParameterByName('datacenter'));
 	};
 
 	//Create buttons
