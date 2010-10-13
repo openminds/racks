@@ -1,6 +1,7 @@
 Racks::Application.routes.draw do
-  get "search/search"
+	get "search/search"
 	get "search/ajax_search"
+	get "search/find_colors"
   	#resources :cable_connections
 
   	#resources :interfaces

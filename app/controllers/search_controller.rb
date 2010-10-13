@@ -19,6 +19,14 @@ class SearchController < ApplicationController
 		end
 	end
 	
+	def find_colors
+		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").collect {|c| c.color}
+		@colors.uniq
+		respond_to do |format|
+			format.json {render :json => @colors }
+		end
+	end
+	
 	def search
 		@searchword = params[:s]
 		@found_companies = Company.where("name LIKE :term OR comment LIKE :term", :term => "%#{@searchword}%").order("name ASC")

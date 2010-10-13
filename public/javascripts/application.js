@@ -27,26 +27,37 @@ $(function(){
 		}
 	});
 	//create the add interface links
-	$('#add_interface').click(function() {enableInterfaceLinks()});
+	$('#add_interface').click(function() {addInterface()});
 	
 	//Create the links to load forms using ajax
 	$("a.remote").live('click', function(){
 		// alert($(this).attr("href"));
-		$("#modal_wrapper").load($(this).attr("href"), "#modal_form", function(response, status, xhr){
+		$("#modal_wrapper").load($(this).attr("href") +  " #modal_form", function(response, status, xhr){
 			$("#modal_form").dialog({
 				modal: true,
 				close: function(event, ui) { 
 					$("#modal_form > form > div.tabs").tabs("destroy");
-					$("#modal_form > form > div.tabs").html(" ");
+					$("#modal_form > form > div.tabs").empty().remove();
 					$("#modal_form").dialog("destroy");
-					$("#modal_form").html("  ");
-					$("#modal_wrapper").html( " " );
+					$("#modal_form > form ")().empty().remove();
+					$("#modal_wrapper").children("*").empty().remove();
 				},
 				width:900
 			});
 			$('#modal_form > form > div.tabs ').tabs();
-			$('#add_interface').click(function() {enableInterfaceLinks()});
+			$('#add_interface').click(function() {addInterface()});
 			$("select[id$=_interface_type]").change(function(){updateSelectableInterfaces($(this))});
+			$(".connection_color").autocomplete({
+				source: function(request, response){
+					$.ajax({
+						url: "/search/find_colors",
+						data: {term: request.term},
+						success: function(data){
+							response(data);
+						}
+					})
+				}
+			});
 		});
 		return false;
 	});
@@ -68,7 +79,7 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
 	}
 });
 //Creation of "add_interface" links to add a new interface row to the table
-function enableInterfaceLinks(){
+function addInterface(){
 	var $interface_table = $('#interface_form:nth-child(2)');
 	var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
 	//alert($interface_row.html());
