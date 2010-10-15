@@ -1,15 +1,5 @@
 <%= form_for(datacenter) do |f| %>
-  <% if datacenter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(datacenter.errors.count, "error") %> prohibited this datacenter from being saved:</h2>
-
-      <ul>
-      <% datacenter.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <% show_errors_for datacenter %>
 
   <div class="field">
     <%= f.label :name %><br />

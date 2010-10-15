@@ -1,14 +1,4 @@
-<% if @server_rack.errors.any? %>
-<div id="error_explanation">
-	<h2><%= pluralize(@server_rack.errors.count, "error") %> prohibited this server_rack from being saved:</h2>
-
-	<ul>
-		<% @server_rack.errors.full_messages.each do |msg| %>
-		<li><%= msg %></li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
+<% show_errors_for server_rack %>
 <div class="field">
 	<%= form.label :name %><br />
 	<%= form.text_field :name %>

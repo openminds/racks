@@ -1,14 +1,4 @@
-<% if device.errors.any? %>
-<div id="error_explanation">
-	<h2><%= pluralize(device.errors.count, "error") %> prohibited this device from being saved:</h2>
-	<ul>
-		<% device.errors.full_messages.each do |msg| %>
-		<li><%= msg %></li>
-		<% end %>
-	</ul>
-</div>
-<% end %>
-
+<% show_errors_for device %>
 <div id="device_info">
 	<fieldset style="float:left">
 		<legend>The device</legend>
