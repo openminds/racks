@@ -1,4 +1,4 @@
-<div>
+<div class='clearfix'>
 	<p>Location: <%= datacenter.location %></p>
 	<p>Comment: <%= datacenter.comment %></p>
 	<p>
@@ -11,6 +11,4 @@
 	<%= will_paginate server_racks %>
 	<%= render :partial => 'server_racks/server_rack', :collection => server_racks, :as => :server_rack %>
 	
-	
-	<div style="clear: both;">&nbsp;</div>
 </div>

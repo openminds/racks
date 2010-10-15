@@ -25,7 +25,7 @@
 			</div>
 
 		</div>
-		<div id='connections'>
+		<div id='connections' class='clearfix'>
 			<script type="text/javascript">
 			var interfaceIds = [];
 			var interfaceLocations = [];
@@ -108,7 +108,7 @@
 
 
 			function ev_canvas(evt){
-				var clickY = evt.pageY - drawingCanvas.offsetTop - 80;
+				var clickY = evt.pageY - drawingCanvas.offsetTop;
 				var clickX = evt.pageX - drawingCanvas.offsetLeft;
 				context.clearRect(0,0, drawingCanvas.width, drawingCanvas.height);
 				drawDevices();

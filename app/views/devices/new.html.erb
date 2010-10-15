@@ -1,6 +1,6 @@
 <div id='modal_form' title="New device">
 	<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
-	<div class='tabs'>
+	<div class='tabs clearfix'>
 		<ul>
 			<li><a href='#device_info'>Device Info</a></li>
 			<li><a href='#units'>Units</a></li>
@@ -14,7 +14,6 @@
 				<%= form.collection_select :unit_ids, @device.server_rack.units.available, :id, :number, {},{:size => 10, :multiple => 'multiple', :value => :number} %>
 			</fieldset>
 		</div>
-		<div style="clear: both;">&nbsp;</div>
 	</div>
 	<%= form.submit %>
 	<% end %>
