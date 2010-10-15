@@ -8,8 +8,8 @@
 	<p>
 		<%= link_to 'Add rack', new_datacenter_server_rack_path(datacenter),  :class => "remote button" %>
 	</p>
-	<%= will_paginate datacenter.paginated_server_racks(params["datacenter_#{datacenter.id}_page"]), :param_name => "datacenter_#{datacenter.id}_page", :params => {:datacenter => datacenter.id} %>
-	<%= render :partial => 'server_racks/server_rack', :collection => datacenter.paginated_server_racks(params["datacenter_#{datacenter.id}_page"]), :as => :server_rack %>
+	<%= will_paginate server_racks %>
+	<%= render :partial => 'server_racks/server_rack', :collection => server_racks, :as => :server_rack %>
 	
 	
 	<div style="clear: both;">&nbsp;</div>

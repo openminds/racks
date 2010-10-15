@@ -1,11 +1,10 @@
 class ServerRacksController < ApplicationController
 	def index
 		if !Datacenter.all.any?
-			logger.debug "NONE FOUND!"
 			redirect_to new_datacenter_path
 		end
-		@datacenters = Datacenter.all
 		@current_datacenter = current_datacenter
+		@server_racks = current_datacenter.server_racks.paginate :page => params[:page], :per_page => 5
 	end
 	def show
 		@server_rack = ServerRack.find(params[:id])
