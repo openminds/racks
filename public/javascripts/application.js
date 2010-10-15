@@ -15,7 +15,7 @@ $(function(){
 
 	//Autocomplete search...
 	$('#s').catcomplete({
-		source: "/search/ajax_search",
+		source: "/search/search.json",
 		select: function(event, ui){
 			var url = ui.item.url
 			window.location = url;
