@@ -1,10 +1,15 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+	self.responder = ApplicationResponder
+	respond_to :html
+
 	protect_from_forgery
-	
+
 	before_filter :get_all_datacenters, :current_datacenter
-	
-	
-	
+
+
+
 	protected
 	def current_datacenter
 		if params[:datacenter_id]
@@ -14,7 +19,7 @@ class ApplicationController < ActionController::Base
 		else
 			@current_datacenter = Datacenter.new
 		end
-		 @current_datacenter
+		@current_datacenter
 	end
 	def current_server_rack
 		@current_server_rack ||= current_datacenter.server_racks.find(params[:server_rack_id])

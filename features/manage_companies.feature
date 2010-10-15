@@ -53,4 +53,4 @@ Feature: Manage datacenters
 		And I am on the companies page
 		When I follow "Delete"
 		Then I should not see "Except" 
-			And I should see "Company deleted"
+			And I should see "Company was successfully destroyed."

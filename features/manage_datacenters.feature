@@ -16,7 +16,7 @@ Scenario: Delete a datacenter
 	Given 10 datacenters exist
 	Given I am on the home page
 	When I follow "Destroy"
-	Then I should see "Datacenter was destroyed."
+	Then I should see "Datacenter was successfully destroyed."
 
 Scenario: Edit a datacenter
 	Given 10 datacenters exist

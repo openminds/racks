@@ -25,7 +25,7 @@ Scenario: Delete a device
 	And I am on the home page
 	Then I should see "Available units: 0/42"
 	When I follow "Destroy" within "fieldset/div/div"
-	Then I should see "Device was successfully deleted."
+	Then I should see "Device was successfully destroyed."
 	And I should see "Available units: 42/42"
 
 Scenario: Update a device

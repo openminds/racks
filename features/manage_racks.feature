@@ -20,8 +20,8 @@ Scenario: Delete a rack
 	And 1 server_racks exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack
 	And I am on the home page
-	When I follow "Destroy" within "fieldset"
-	Then I should see "Server rack was successfully deleted."
+	When I follow "Destroy" within "fieldset" 
+	Then I should see "Server rack was successfully destroyed."
 	And I should not see "Rack1"
 
 Scenario: Edit a rack

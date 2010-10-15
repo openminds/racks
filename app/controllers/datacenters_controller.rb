@@ -10,34 +10,23 @@ class DatacentersController < ApplicationController
 
 	def create
 		@datacenter = Datacenter.new(params[:datacenter])
-
-		respond_to do |format|
-			if @datacenter.save
-				format.html { redirect_to([@datacenter, :server_racks], :notice => 'Datacenter was successfully created.') }
-			else
-				format.html { render :action => "new" }
-			end
-		end
+		@datacenter.save
+		respond_with @datacenter, :location => [@datacenter, :server_racks]
 	end
 
 	def update
 		@datacenter = Datacenter.find(params[:id])
 
-		respond_to do |format|
-			if @datacenter.update_attributes(params[:datacenter])
-				format.html { redirect_to([@datacenter, :server_racks], :notice => 'Datacenter was successfully updated.') }
-			else
-				format.html { render :action => "edit" }
-			end
-		end
+		@datacenter.update_attributes(params[:datacenter])
+		
+		respond_with @datacenter, :location => [@datacenter, :server_racks]
+		
 	end
 
 	def destroy
 		@datacenter = Datacenter.find(params[:id])
 		@datacenter.destroy
 
-		respond_to do |format|
-			format.html { redirect_to([current_datacenter, :server_racks], :notice => 'Datacenter was destroyed.') }
-		end
+		respond_with @datacenter, :location => [current_datacenter, :server_racks]
 	end
 end
