@@ -108,7 +108,7 @@
 
 
 			function ev_canvas(evt){
-				var clickY = evt.pageY - drawingCanvas.offsetTop;
+				var clickY = evt.pageY - drawingCanvas.offsetTop - 140;
 				var clickX = evt.pageX - drawingCanvas.offsetLeft;
 				context.clearRect(0,0, drawingCanvas.width, drawingCanvas.height);
 				drawDevices();
@@ -136,15 +136,11 @@
 				}else{
 					drawAllConnections();
 				}
-
 			};
-
 			</script>
-
 			<canvas id="myDrawing" width='1000' height='<%= @server_rack.devices.count * 50 + @server_rack.interfaces.count * 15 %>' style='float:left;'>
 				<p>Your browser doesn't support canvas.</p>
 			</canvas>
-			<div style="clear: both;">&nbsp;</div>
 		</div>
 	</div>
 </div>
