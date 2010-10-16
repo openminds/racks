@@ -1,14 +1,14 @@
 <div id="datacenters" class='tabs'>
 	<ul>
-		<li><a href='#found_datacenters'>Datacenters (<%= @datacenters.size %>)</a></li>
-		<li><a href='#found_racks'>Racks (<%= @server_racks.size %>)</a></li>
-		<li><a href='#found_devices'>Devices (<%= @devices.size %>)</a></li>
-		<li><a href='#found_companies'>Companies (<%= @companies.size %>)</a></li>
+		<li><a href='#found_datacenters'>Datacenters (<%= @found_datacenters.size %>)</a></li>
+		<li><a href='#found_racks'>Racks (<%= @found_server_racks.size %>)</a></li>
+		<li><a href='#found_devices'>Devices (<%= @found_devices.size %>)</a></li>
+		<li><a href='#found_companies'>Companies (<%= @found_companies.size %>)</a></li>
 	</ul>
 
 	<div  id="found_datacenters" style='height:600px;'>
 		<ul>
-			<% @datacenters.each do |datacenter| %>
+			<% @found_datacenters.each do |datacenter| %>
 			<li>
 				<%= link_to datacenter.name, datacenter %>
 			</li>
@@ -17,7 +17,7 @@
 	</div>
 	<div  id="found_racks" style='height:600px;'>
 		<ul>
-			<% @server_racks.each do |server_rack| %>
+			<% @found_server_racks.each do |server_rack| %>
 			<li>
 				<%= link_to server_rack.name, [server_rack.datacenter, server_rack] %> in <%= link_to server_rack.datacenter.name, server_rack.datacenter %>
 			</li>
@@ -26,7 +26,7 @@
 	</div>
 	<div  id="found_devices" style='height:600px;'>
 		<ul>
-			<% @devices.each do |device| %>
+			<% @found_devices.each do |device| %>
 			<li>
 				<%= link_to device.name, [device.server_rack.datacenter, device.server_rack, device] %> (<%= link_to device.server_rack.name, [device.server_rack.datacenter, device.server_rack]%> in <%= link_to device.server_rack.datacenter.name, device.server_rack.datacenter%>)
 			</li>
@@ -35,7 +35,7 @@
 	</div>
 	<div  id="found_companies" style='height:600px;'>
 		<ul>
-			<% @companies.each do |company| %>
+			<% @found_companies.each do |company| %>
 			<li>
 				<%= link_to company.name, company %>
 			</li>

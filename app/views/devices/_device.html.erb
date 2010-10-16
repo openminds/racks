@@ -7,12 +7,7 @@
 			<%= device.comment %>
 		</p>
 		<p>
-			Used by: 
-			<% if device.company.nil? %>
-			Openminds
-			<% else %>
-				<%= link_to device.company.name, device.company %>
-			<% end %>
+			Used by: <%= device.company_name %>
 		</p>
 		<table>
 			<% device.interfaces.each do |interface| %>
