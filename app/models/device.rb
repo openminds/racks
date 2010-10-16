@@ -6,6 +6,10 @@ class Device < ActiveRecord::Base
 
 	validates_presence_of :name, :message => "can't be blank"
 
+	define_index do
+		indexes :name, :sortable => true
+		indexes :comment
+	end
 
 	after_save :update_cable_connection
 
@@ -32,5 +36,21 @@ class Device < ActiveRecord::Base
 		self.interfaces.each do |i|
 			i.update_cable_connection
 		end
+	end
+	
+	def my_path
+		[self.server_rack.datacenter, self.server_rack, self]
+	end
+	
+	def company_name
+		if company
+			company.name
+		else
+			"Openminds"
+		end
+	end
+	
+	def search_label
+		"#{self.name} (#{company_name})"
 	end
 end
