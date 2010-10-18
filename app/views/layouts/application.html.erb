@@ -32,7 +32,9 @@
 					<% @datacenters.each do |datacenter| %>
 							<li class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if datacenter == @current_datacenter %>'><%= link_to datacenter.name, datacenter_server_racks_path(datacenter) %></li>
 					<% end %>
-					<li class="right ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if request.fullpath == new_datacenter_path %>"><%= link_to "New Datacenter", new_datacenter_path %></li>
+					<li class="right ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if request.fullpath == new_datacenter_path %>">
+						<%= link_to "New Datacenter", new_datacenter_path %>
+					</li>
 				</ul>
 				
 				<%= yield %>

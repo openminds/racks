@@ -1,7 +1,10 @@
-<div class='ui-dialog ui-widget ui-widget-content ui-corner-all, clearfix' style='width:95%; '>
-	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-		<span class='ui-dialog-title'>Company: <%= @company.name %></span>
-	</div>
+<div class='tabs clearfix' style='width:95%; '>
+	<ul>
+		<li><a href='#contact_information'>Contact information</a></li>
+		<li><a href='#other'>Other</a></li>
+		<li><a href='#devices'>Devices</a></li>
+	</ul>
+	<div id="contact_information">
 	<p>
 	  <b>Name:</b>
 	  <%= @company.name %>
@@ -26,7 +29,8 @@
 	  <b>Telephone:</b>
 	  <%= @company.telephone %>
 	</p>
-
+	</div>
+	<div id="other">
 	<p>
 	  <b>Url:</b>
 	  <%= @company.url %>
@@ -41,7 +45,8 @@
 	  <b>Comment:</b>
 	  <%= @company.comment %>
 	</p>
-	<div >
+	</div>
+	<div id="devices" >
 		<b>Devices:</b>
 		<ul>
 			<% @company.devices.each do |device| %>
@@ -53,7 +58,7 @@
 	</div>
 
 
-	<%= link_to 'Edit', edit_company_path(@company) %> |
+	<%= link_to 'Edit', edit_company_path(@company), {:class => "remote"} %> |
 	<%= link_to 'Back', companies_path %>
 
 </div>

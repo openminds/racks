@@ -29,7 +29,7 @@
 	    <td><%= company.btw_nr %></td>
 	    <td><%= company.comment %></td>
 	    <td><%= link_to 'Show', company %></td>
-	    <td><%= link_to 'Edit', edit_company_path(company) %></td>
+	    <td><%= link_to 'Edit', edit_company_path(company), {:class => "remote"} %></td>
 	    <td><%= link_to 'Delete', company, :confirm => 'Are you sure?', :method => :delete %></td>
 	  </tr>
 	<% end %>
@@ -37,6 +37,6 @@
 
 	<br />
 
-	<%= link_to 'Add Company', new_company_path %>
+	<%= link_to 'Add Company', new_company_path, {:class => "remote"} %>
 </div>
 

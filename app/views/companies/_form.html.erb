@@ -1,39 +1,47 @@
 <% show_errors_for @company %>
-<p>
-	<%= form.label :name %><br />
-	<%= form.text_field :name %>
-</p>
-<h2>Contact information</h2>
-<p>
-	<%= form.label :address %><br />
-	<%= form.text_field :address %>
-</p>
-<p>
-	<%= form.label :postal_code %><br />
-	<%= form.text_field :postal_code %>
-	<%= form.label :city %>
-	<%= form.text_field :city %>
-	
-</p>
-<p>
-	<%= form.label :telephone %><br />
-	<%= form.text_field :telephone %>
-</p>
-<p>
-	<%= form.label :email %><br />
-	<%= form.text_field :email %>
-</p>
-<h2>Other</h2>
-<p>
-	<%= form.label :url %><br />
-	<%= form.text_field :url %>
-</p>
-<p>
-	<%= form.label :btw_nr %><br />
-	<%= form.text_field :btw_nr %>
-</p>
-<p>
-	<%= form.label :comment %><br />
-	<%= form.text_area :comment, {:size => '90x4'} %>
-</p>
+<div class="tabs clearfix">
+	<ul>
+		<li><a href='#contact_information'>Contact information</a></li>
+		<li><a href='#other'>Other</a></li>
+	</ul>
+	<div id="contact_information">
+		<p>
+			<%= form.label :name %><br />
+			<%= form.text_field :name %>
+		</p>
+		<p>
+			
+			<%= form.label :address %><br />
+			<%= form.text_field :address %>
+		</p>
+		<p>
+			<%= form.label :postal_code %><br />
+			<%= form.text_field :postal_code %>
+			<%= form.label :city %>
+			<%= form.text_field :city %>
 
+		</p>
+		<p>
+			<%= form.label :telephone %><br />
+			<%= form.text_field :telephone %>
+		</p>
+		<p>
+			<%= form.label :email %><br />
+			<%= form.text_field :email %>
+		</p>
+	</div>
+	<div id="other">
+		<p>
+			<%= form.label :url %><br />
+			<%= form.text_field :url %>
+		</p>
+		<p>
+			<%= form.label :btw_nr %><br />
+			<%= form.text_field :btw_nr %>
+		</p>
+		<p>
+			<%= form.label :comment %><br />
+			<%= form.text_area :comment, {:size => '80x4'} %>
+		</p>
+	</div>
+</div>
