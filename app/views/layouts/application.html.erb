@@ -11,8 +11,10 @@
 	<div id="wrapper">
 		<div id="header">
 			<div id="logo">
+				<%= link_to root_path do %>
 				<h1>Openminds</h1>
 				<h2>Racks</h2>
+				<%end%>
 			</div>
 			<div id="buttonbar">
 				<div id="menu">
@@ -34,7 +36,7 @@
 		</div>
 		<div id="content">
 			<div class=' ui-tabs ui-widget ui-widget-content ui-corner-all'>
-				<% if !request.fullpath.include? "companies" %>
+				<% if !request.fullpath.include? "search" || (!request.fullpath.include? "compan")  %>
 				<ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
 					<% @datacenters.each do |datacenter| %>
 					<li class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if (datacenter == @current_datacenter && !request.fullpath.include?('new')) %>'>
