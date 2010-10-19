@@ -16,32 +16,35 @@
 	<div id="wrapper">
 		<div id="header">
 			<div id="logo">
-				<%= link_to root_path do %>
-				<h1>Openminds</h1>
-				<h2>Racks</h2>
-				<%end%>
+				
 			</div>
-			<div id="buttonbar">
-				<div id="menu">
-					<%= link_to "Datacenter management", root_path, {:class => "ui-state-default ui-corner-all"} %>
-					<%= link_to "Companies", companies_path, {:class => "ui-state-default ui-corner-all"} %>
-				</div>
-				<div id="search">
-					<%= form_tag(search_path, :method => 'get') do %>
-					<%= text_field_tag :s, nil, :autocomplete => false %>
-					<%= submit_tag "Find!", :name => nil, :id => 'search-submit', :class => 'button'%>
-					<% end %>
-				</div>
-				<div id='notice'>
-					<% if flash[:notice] %>
-					<%= render :partial => 'shared/notice' %>
-					<% end %>
-				</div>
+			<div id="title">
+				Racks
 			</div>
+			<div id="menu">
+				<%= link_to "Datacenter management", root_path, {:class => 'menu'} %>
+				<%= link_to "Companies", companies_path, {:class => 'menu'} %>
+				
+			</div>
+			<div id="search">
+				<%= form_tag(search_path, :method => 'get') do %>
+				<%= text_field_tag :s, nil, :autocomplete => false %>
+				<%= submit_tag "Find!", :name => nil, :id => 'search-submit', :class => 'button'%>
+				<% end %>
+			</div>
+			<div id='notice'>
+				<% if flash[:notice] %>
+				<%= render :partial => 'shared/notice' %>
+				<% end %>
+			</div>
+			<div id="header bottom">
+				
+			</div>
+
 		</div>
 		<div id="content">
 			<div class=' ui-tabs ui-widget ui-widget-content ui-corner-all'>
-				<% if !request.fullpath.include? "search" || (!request.fullpath.include? "compan")  %>
+				<% if !(request.fullpath.include? "search") && !(request.fullpath.include? "compan")  %>
 				<ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
 					<% @datacenters.each do |datacenter| %>
 					<li class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if (datacenter == @current_datacenter && !request.fullpath.include?('new')) %>'>
@@ -60,7 +63,7 @@
 
 			</div>
 		</div>
-
+		<div id="bottom"></div>
 	</div>
 </body>
 </html>
