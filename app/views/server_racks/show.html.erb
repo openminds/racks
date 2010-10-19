@@ -36,7 +36,7 @@
 			
 			var connections;
 			window.onload = function(){
-				paper = Raphael("connections", 1000,1000);
+				paper = Raphael("connections", 10000, 0);
 				connectionSet = paper.set();
 				drawAlldevices();
 				drawAllConnections();
@@ -73,7 +73,7 @@
 						leftDeviceHeight = 100 + <%= device.interfaces.size %> * 17;
 						drawHeight = leftDeviceHeight;
 					}else{
-						xPos = 510
+						xPos = window.innerWidth - 500;
 						rightY += 5 + rightDeviceHeight;
 						yPos = rightY;
 						rightDeviceHeight = 100 + <%= device.interfaces.size %> * 17;
@@ -84,6 +84,8 @@
 					paper.print(xPos + 10,yPos + 10, '<%= "#{device.units.first.number} - #{device.units.last.number}:" %>', paper.getFont("Verdana"), 12);
 					paper.print(xPos + 10,yPos + 24, '<%= "#{device.device_type(:name)}: #{device.name}" %>', paper.getFont("Verdana"), 12);
 					paper.print(xPos + 10,yPos + 38, '<%= "(#{device.company_name})" %>', paper.getFont("Verdana"), 12);
+					//set the dom element to the right size
+					paper.setSize(window.width, paper.height + drawHeight);
 					//draw the interfaces for the device
 					var interfaceCounter = 1;
 					<% device.interfaces.each do |interface| %>
@@ -114,6 +116,7 @@
 					<% device.cable_connections.each do |cable_connection| %>
 						deviceConnections.push([<%= device.id %>, [<%= cable_connection.left_interface_id %>, <%= cable_connection.right_interface_id %>, "<%= cable_connection.color %>"]])
 					<% end %>
+					
 					counter++;
 					deviceRect.node.onmouseover = function(){
 						connectionSet.attr({opacity: 0})
