@@ -70,7 +70,8 @@ $(function(){
 					$("#modal_form > form ").empty().remove();
 					$("#modal_wrapper").children("*").empty().remove();
 				},
-				width:900
+				width:900,
+				minHeight:300
 			});
 			$('#modal_form > form > div.tabs ').tabs();
 			$("select[id$=_interface_type]").change(function(){updateSelectableInterfaces($(this))});
