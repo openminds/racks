@@ -22,6 +22,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    aaronh-chronic (0.3.9)
     abstract (1.0.0)
     actionmailer (3.0.0)
       actionpack (= 3.0.0)
@@ -136,6 +137,9 @@ GEM
       polyglot (>= 0.3.1)
     trollop (1.16.2)
     tzinfo (0.3.23)
+    whenever (0.5.3)
+      aaronh-chronic (>= 0.3.9)
+      activesupport (>= 2.3.4)
     will_paginate (3.0.pre2)
     yard (0.6.1)
 
@@ -158,4 +162,5 @@ DEPENDENCIES
   sqlite3-ruby
   test-unit
   thinking-sphinx!
+  whenever
   will_paginate (~> 3.0.beta)

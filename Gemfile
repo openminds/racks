@@ -7,6 +7,7 @@ gem 'acts_as_url', :git => 'git://github.com/Reprazent/acts_as_url.git'
 gem 'will_paginate', '~> 3.0.beta'
 gem 'responders'
 gem 'thinking-sphinx', :git => 'http://github.com/freelancing-god/thinking-sphinx.git', :branch => 'rails3', :require => 'thinking_sphinx'
+gem 'whenever'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
