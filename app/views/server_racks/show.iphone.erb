@@ -1,0 +1,25 @@
+<div data-role="header" data-position="fixed" >
+	<%= link_to "Back", [@server_rack.datacenter, :server_racks], {"data-icon" => "arrow-l"}%>
+	<h1><%= @server_rack.datacenter.name%>::<%= @server_rack.name %></h1>
+	<%= link_to "Delete", [@server_rack.datacenter, @server_rack], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right" %>
+</div><!-- /header -->
+
+<div data-role="content" >
+	<div data-inline='true'>
+		<p><%= @server_rack.comment %></p>
+		<p>Available units: <%= "#{@server_rack.units.available.size}/#{@server_rack.units.size}" %></p>
+	</div>
+
+	<%= link_to "Edit", [:edit, @server_rack.datacenter, @server_rack], {"data-role" => "button"} %>
+	<br>
+	<ul data-role='listview'>
+		<%@server_rack.devices.each do |device|%>
+		<li><%= link_to device.name, [@server_rack.datacenter, @server_rack, device]%></li>
+		<%end%>
+	</ul>
+</div><!-- /content -->
+<div data-role="footer" data-position="fixed" class="ui-bar">
+	<%= link_to "Add", [:new, @server_rack.datacenter, @server_rack, :device], { "data-icon" => "plus"} %>
+</div><!-- /header -->
+
+

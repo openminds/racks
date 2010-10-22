@@ -1,6 +1,6 @@
 <div data-role="header" data-position="fixed" >
+	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l"}%>
 	<h1><%= @current_datacenter.name%></h1>
-
 	<%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right" %>
 </div><!-- /header -->
 

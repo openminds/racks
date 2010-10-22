@@ -23,19 +23,40 @@ class ServerRacksController < ApplicationController
 		1.upto(params[:number_of_units].to_i) {|i| logger.debug  @server_rack.units << Unit.new(:number => i)}
 
 		@server_rack.save
-		respond_with @server_rack.datacenter, @server_rack
+		respond_with @server_rack.datacenter, @server_rack do |format|
+			format.html
+			format.iphone do
+				if @server_rack.errors.any?
+					redirect_to [@server_rack.datacenter, @server_rack, :new]
+				else
+					redirect_to [@server_rack.datacenter, @server_rack]
+				end
+			end
+		end
 	end
 
 	def update
 		@server_rack = ServerRack.find(params[:id])
 		@server_rack.update_attributes(params[:server_rack])
-		respond_with @server_rack.datacenter, @server_rack
+		respond_with @server_rack.datacenter, @server_rack do |format|
+			format.html
+			format.iphone do
+				if @server_rack.errors.any?
+					redirect_to [@server_rack.datacenter, @server_rack, :edit]
+				else
+					redirect_to [@server_rack.datacenter, @server_rack]
+				end
+			end
+		end
 	end
 
 	def destroy
 		@server_rack = ServerRack.find(params[:id])
 		@server_rack.destroy
 
-		respond_with current_datacenter, :server_racks, :notice => "Server rack was successfully destroyed."
+		respond_with current_datacenter, :server_racks, :notice => "Server rack was successfully destroyed." do |format|
+			format.html
+			format.iphone {redirect_to [current_datacenter, :server_racks]}
+		end
 	end
 end

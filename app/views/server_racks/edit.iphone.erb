@@ -1,0 +1,13 @@
+<%= form_for([@server_rack.datacenter, @server_rack]) do |form| %>
+<div data-role="header" data-position="fixed" >
+	
+	<h1>Edit rack</h1>
+	
+</div><!-- /header -->
+
+<div data-role="content">	
+	<%= render :partial => "form", :locals => {:server_rack => @server_rack, :form => form}%>
+	<%= form.submit "Save" %>
+</div><!-- /content -->
+
+<%end%>
