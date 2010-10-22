@@ -5,7 +5,7 @@
 	
 </div><!-- /header -->
 
-<div data-role="content">	
+<div id="content" data-role="content">	
 	<%= render :partial => "form", :locals => {:server_rack => @server_rack, :form => form}%>
 	<div class="fieldcontain">
 		<%= label 'number_of_units', :number_of_units %><br />

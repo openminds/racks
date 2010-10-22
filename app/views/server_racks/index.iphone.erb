@@ -4,7 +4,7 @@
 	<%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right" %>
 </div><!-- /header -->
 
-<div data-role="content" >
+<div id="content" data-role="content" >
 	<div data-inline='true'>
 		<p>Location: <%= @current_datacenter.location %></p>
 		<p>Comment: <%= @current_datacenter.comment %></p>

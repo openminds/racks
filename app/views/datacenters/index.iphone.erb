@@ -3,7 +3,7 @@
 	
 </div><!-- /header -->
 
-<div data-role="content" >	
+<div id="content" data-role="content" >	
 	<ul data-role='listview'>
 	<%@datacenters.each do |datacenter|%>
 		<li><%= link_to datacenter.name, [datacenter, :server_racks]%></li>

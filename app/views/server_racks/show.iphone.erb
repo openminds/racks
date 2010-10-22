@@ -4,7 +4,7 @@
 	<%= link_to "Delete", [@server_rack.datacenter, @server_rack], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right" %>
 </div><!-- /header -->
 
-<div data-role="content" >
+<div id="content" data-role="content" >
 	<div data-inline='true'>
 		<p><%= @server_rack.comment %></p>
 		<p>Available units: <%= "#{@server_rack.units.available.size}/#{@server_rack.units.size}" %></p>
@@ -14,7 +14,7 @@
 	<br>
 	<ul data-role='listview'>
 		<%@server_rack.devices.each do |device|%>
-		<li><%= link_to device.name, [@server_rack.datacenter, @server_rack, device]%></li>
+		<li><%= device.units.first.number %><%= "-#{device.units.last.number}" if device.units.first != device.units.last %>: <%= link_to device.name, [@server_rack.datacenter, @server_rack, device]%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
