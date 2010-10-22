@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
 
 	protect_from_forgery
 
-	before_filter :get_all_datacenters, :current_datacenter
+	before_filter :get_all_datacenters, :current_datacenter, :set_iphone_format
+
 
 
 
@@ -27,5 +28,14 @@ class ApplicationController < ActionController::Base
 	def get_all_datacenters
 		@datacenters = Datacenter.all
 	end
+	def is_iphone_request?
+		request.user_agent =~ /(Mobile\/.+Safari)/
+	end
+	def set_iphone_format
+		if is_iphone_request?
+			request.format = :iphone
+		end
+	end
+
 
 end

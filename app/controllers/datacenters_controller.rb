@@ -1,4 +1,12 @@
 class DatacentersController < ApplicationController
+	
+	def index
+		
+		respond_to do |format|
+			format.html {redirect_to [current_datacenter, :server_racks]}
+			format.iphone {@datacenters = Datacenter.all}
+		end
+	end
 
 	def new
 		@datacenter = Datacenter.new
