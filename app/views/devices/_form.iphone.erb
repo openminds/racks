@@ -1,0 +1,16 @@
+<div class="fieldcontain">
+	<%= form.label :name %><br />
+	<%= form.text_field :name %>
+</div>
+<div class="fieldcontain">
+	<%= form.label :company_id %><br />
+	<%= form.select :company_id, Company.all.map {|c| [c.name, c.id]}, {:prompt => 'Choose a company'} %>
+</div>
+<div class="fieldcontain">
+	<%= form.label :device_type %><br />
+	<%= form.select :device_type, DeviceType.to_select %>
+</div>
+<div class="fieldcontain">
+	<%= form.label :comment %><br />
+	<%= form.text_area :comment, {:size => '90x4'} %>
+</div>

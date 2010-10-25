@@ -1,0 +1,24 @@
+<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
+<div data-role="header" data-position="fixed" >
+	
+	<h1>New device</h1>
+	
+</div><!-- /header -->
+
+<div id="content" data-role="content">	
+	<%= render :partial => "form", :locals => {:device => @device, :form => form}%>
+	<div class="fieldcontain" data-role="collapsible" data-state="collapsed">
+		<h3>Units</h3>
+		<fieldset data-role="controlgroup">
+		<%= form.fields_for :unit_ids do |unit_id|%>
+			<% @device.server_rack.units.available.each do |unit|%>
+				<%= unit_id.check_box "", {:id => "unit_#{unit.id}"}, unit.id, nil %> 
+				<label for='<%="unit_#{unit.id}"%>'><%=unit.number%></label>
+			<% end %>
+		<% end %>
+		</fieldset>
+	</div>
+	<%= form.submit "Save" %>
+</div><!-- /content -->
+
+<%end%>
