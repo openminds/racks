@@ -4,8 +4,7 @@ Feature: Manage datacenters
   I want to manage the datacenters
 
 Scenario: Add a datacenter
-	Given I am on the home page
-	When I follow "New Datacenter"
+	Given I am on the new datacenter page
 	And I fill in "datacenter_name" with "Just a datacenter"
 	And I fill in "datacenter_location" with "Brussels"
 	And I fill in "datacenter_comment" with "Some comment"

@@ -56,7 +56,7 @@ class DevicesController < ApplicationController
 		@device = Device.find(params[:id])
 		@device.destroy
 
-		respond_with @device, :location => [current_datacenter, :server_racks] do
+		respond_with @device, :location => [current_datacenter, current_server_rack] do |format|
 			format.html
 			format.iphone {redirect_to [current_datacenter, current_server_rack]}
 		end

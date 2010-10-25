@@ -22,7 +22,7 @@ Scenario: Delete a device
 	And a server_rack exist with datacenter: the datacenter
 	And 12 devices exist
 	And 42 units exist with server_rack: the server_rack, device: a device
-	And I am on the home page
+	And I am on the datacenters page
 	Then I should see "Available units: 0/42"
 	When I follow "Destroy" within "fieldset/div/div"
 	Then I should see "Device was successfully destroyed."
