@@ -1,1 +1,26 @@
-SHOW THE DEVICE
+<div data-role="header" data-position="fixed"  >
+	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel=>"external"}%>
+	<h1><%= @device.server_rack.datacenter.name%>::<%= @device.server_rack.name %>::<%=@device.name%></h1>
+	<%= link_to "Delete", [@device.server_rack.datacenter, @device.server_rack, @device], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
+</div><!-- /header -->
+
+<div id="content" data-role="content" >
+	<div data-inline='true'>
+		<p><%= @device.comment %></p>
+		
+	</div>
+
+	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button"} %>
+	<br>
+	<ul data-role='listview'>
+		<%@device.interfaces.each do |interface|%>
+		<li><%= interface.name %><%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device]) if interface.cable_connection %>
+		</li>
+		<%end%>
+	</ul>
+</div><!-- /content -->
+<div data-role="footer"  data-position="fixed">
+	<%#= link_to "Add", [:new, @server_rack.datacenter, @server_rack, :device], { "data-icon" => "plus", :rel=>"external"} %>
+</div><!-- /header -->
+
+
