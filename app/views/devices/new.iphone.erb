@@ -1,6 +1,6 @@
 <%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
 <div data-role="header" data-position="fixed" >
-	
+	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel=>"external"}%>
 	<h1>New device</h1>
 	
 </div><!-- /header -->

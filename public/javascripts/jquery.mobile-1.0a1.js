@@ -1285,6 +1285,7 @@ $.fn.customCheckboxRadio = function(options){
 	return $(this).each(function(){	
 		if($(this).is('[type=checkbox],[type=radio]')){
 			var input = $(this);
+			
 			var o = $.extend({
 				theme: $(this).data('theme'),
 				icon: $(this).data('icon') || !input.parents('[data-type="horizontal"]').length,

@@ -1,7 +1,10 @@
 class DevicesController < ApplicationController
 	def show
 		@device = Device.find(params[:id])
-		redirect_to(datacenter_server_rack_path(@device.server_rack.datacenter, @device.server_rack, :device => "#{@device.id}"), :notice => flash[:notice])
+		respond_to do |format|
+			format.html {redirect_to(datacenter_server_rack_path(@device.server_rack.datacenter, @device.server_rack, :device => "#{@device.id}"), :notice => flash[:notice])}
+			format.iphone
+		end
 	end
 
 	def new
