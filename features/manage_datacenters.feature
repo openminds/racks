@@ -14,7 +14,7 @@ Scenario: Add a datacenter
 
 Scenario: Delete a datacenter
 	Given 10 datacenters exist
-	Given I am on the home page
+	Given I am on the datacenters page
 	When I follow "Destroy"
 	Then I should see "Datacenter was successfully destroyed."
 

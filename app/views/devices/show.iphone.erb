@@ -1,0 +1,36 @@
+<div data-role="header" data-position="fixed" >
+	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l"}%>
+	<h1><%= @device.server_rack.datacenter.name%>::<%= @device.server_rack.name %>::<%= @device.name%></h1>
+	<%= link_to "Delete", [@device.server_rack.datacenter, @device.server_rack, @device], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right" %>
+</div><!-- /header -->
+
+<div id="content" data-role="content" >
+	<div data-inline='true'>
+		<p>
+			<%= @device.device_type(:name) %>
+		</p>
+		<p>
+			<%= @device.comment %>
+		</p>
+		<p>
+			Used by: <%= @device.company_name %>
+		</p>
+	</div>
+
+	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button"} %>
+	<br>
+	<ul data-role='listview'>
+		<%@device.interfaces.each do |interface|%>
+		<li><%= interface.name %>
+			<%if interface.cable_connection%>
+			~ <%= interface.other.name %> on <%= interface.other.device.name%>
+			<%end%>
+		</li>
+		<%end%>
+	</ul>
+</div><!-- /content -->
+<div data-role="footer" data-position="fixed" class="ui-bar">
+	
+</div><!-- /header -->
+
+

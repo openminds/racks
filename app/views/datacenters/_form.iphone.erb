@@ -1,14 +1,15 @@
 <%# show_errors_for datacenter %>
-
-<div data-role="fieldcontain">
+<ul class="edit rounded">
+<li>
 	<%= f.label :name %><br />
 	<%= f.text_field :name %>
-</div>
-<div data-role="fieldcontain">
+</li>
+<li>
 	<%= f.label :location %><br />
 	<%= f.text_field :location %>
-</div>
-<div data-role="fieldcontain">
+</li>
+<li>
 	<%= f.label :comment %><br />
-	<%= f.text_area :comment, {:size => '90x4'} %>
-</div>
+	<%= f.text_area :comment %>
+</li>
+</ul>

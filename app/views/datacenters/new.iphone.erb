@@ -1,13 +1,15 @@
 <%= form_for(@datacenter) do |form| %>
-<div data-role="header" data-position="fixed" >
-	
+<div class='toolbar' >
+	<%= link_to "Back", [:datacenters], {:class => 'back'}%>
 	<h1>New datacenter</h1>
 	
 </div><!-- /header -->
 
-<div id="content" data-role="content">	
+<div>	
 	<%= render :partial => "form", :locals => {:datacenter => @datacenter, :f => form}%>
-	<%= form.submit "Save" %>
+	<ul class='individual'>
+		<li><%= form.submit "Save", :class => "submit" %></li>
+	</ul>
 </div><!-- /content -->
 
 <%end%>

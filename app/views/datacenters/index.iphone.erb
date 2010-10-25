@@ -1,16 +1,16 @@
-<div data-role="header" data-position="fixed" data-nobackbtn="true">
+<div class="toolbar">
 	<h1>Datacenters</h1>
 	
 </div><!-- /header -->
 
 <div id="content" data-role="content" >	
-	<ul data-role='listview'>
+	<ul class='rounded'>
 	<%@datacenters.each do |datacenter|%>
-		<li><%= link_to datacenter.name, [datacenter, :server_racks]%></li>
+		<li class='arrow'><%= link_to datacenter.name, [datacenter, :server_racks] %></li>
 	<%end%>
 	</ul>
 </div><!-- /content -->
-<div data-role="footer" data-position="fixed">
-	<%= link_to "New", [:new, :datacenter], {"data-icon" => "plus", :class => "ui-btn-right"} %>
+<div class='toolbar'>
+	<%= link_to "New", [:new, :datacenter], {:class => "button"} %>
 </div><!-- /header -->
 

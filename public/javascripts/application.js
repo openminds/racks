@@ -25,6 +25,7 @@ $(function(){
 	//create the add interface links
 	// $('#add_interface').click(function() {addInterface()});
 	$("#add_interface").live("click", function(){
+		alert("KLIK")
 		var $interface_table = $('#interface_form:nth-child(2)');
 		var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
 		//alert($interface_row.html());

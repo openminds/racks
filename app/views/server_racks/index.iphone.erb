@@ -1,26 +1,27 @@
-<div data-role="header" data-position="fixed" >
-	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l"}%>
+<div class='toolbar' >
+	<%= link_to "Back", [:datacenters], {:class => "back"}%>
 	<h1><%= @current_datacenter.name%></h1>
-	<%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right" %>
+	<%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', :class => "button" %>
 </div><!-- /header -->
 
-<div id="content" data-role="content" >
-	<div data-inline='true'>
+<div>
+	<div>
 		<p>Location: <%= @current_datacenter.location %></p>
 		<p>Comment: <%= @current_datacenter.comment %></p>
 
 	</div>
-
-	<%= link_to "Edit", [:edit, @current_datacenter], {"data-role" => "button"} %>
+	<ul class="independant">
+		<li><%= link_to "Edit", [:edit, @current_datacenter], {"data-role" => "button"} %></li>
+	</ul>
 	<br>
-	<ul data-role='listview'>
+	<ul class="rounded">
 		<%@current_datacenter.server_racks.each do |server_rack|%>
 		<li><%= link_to server_rack.name, [@current_datacenter, server_rack]%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
-<div data-role="footer" data-position="fixed" class="ui-bar">
-	<%= link_to "Add", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus"} %>
+<div toolbaar>
+	<%= link_to "Add", [:new, @current_datacenter, :server_rack], { :class => "button"} %>
 </div><!-- /header -->
 
 
