@@ -6,7 +6,10 @@ class InterfacesController < ApplicationController
 
 	def edit
 		@interface = Interface.find(params[:id])
-		@interfaces = current_server_rack.available_interfaces - @interface.device.interfaces << @interface.other
+		@interfaces = current_server_rack.available_interfaces - @interface.device.interfaces
+		if @interface.other
+			@interfaces << @interface.other
+		end
 	end
 
 	def create
