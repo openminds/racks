@@ -1,6 +1,6 @@
 <%= form_for([@interface.device.server_rack.datacenter, @interface.device.server_rack, @interface.device, @interface]) do |form| %>
 <div data-role="header" data-position="fixed" >
-	<%= link_to "Back", [@interface.device.server_rack.datacenter, @interface.device.server_rack, @interface.device], {"data-icon" => "arrow-l", :rel=>""}%>
+	<%= link_to "Back", [@interface.device.server_rack.datacenter, @interface.device.server_rack, @interface.device], {"data-icon" => "arrow-l", :rel=>"", "data-transition"=>"flip"}%>
 	<h1>Edit Interface</h1>
 	
 </div><!-- /header -->

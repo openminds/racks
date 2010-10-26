@@ -1,6 +1,6 @@
 <%= form_for([@server_rack.datacenter, @server_rack]) do |form| %>
 <div data-role="header" data-position="fixed" >
-	<%= link_to "Back", [@server_rack.datacenter, @server_rack], {"data-icon" => "arrow-l", :rel=>""}%>
+	<%= link_to "Back", [@server_rack.datacenter, @server_rack], {"data-icon" => "arrow-l", :rel=>"", "data-transition"=>"flip"}%>
 	<h1>Edit rack</h1>
 	
 </div><!-- /header -->

@@ -1,5 +1,5 @@
 <div data-role="header" data-position="fixed">
-	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l"}%>
+	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l", "data-transition"=>"pop"}%>
 	<h1><%= @current_datacenter.name%></h1>
 	<%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
@@ -20,5 +20,5 @@
 	</ul>
 </div><!-- /content -->
 <div data-role="footer" data-position="fixed">
-	<%= link_to "Add rack", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>""} %>
+	<%= link_to "Add rack", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>"", "data-transition"=>"flip"} %>
 </div><!-- /footer -->
