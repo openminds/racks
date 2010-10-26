@@ -1,5 +1,5 @@
 <div data-role="header" data-position="fixed"  >
-	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel=>"external"}%>
+	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel=>""}%>
 	<h1><%= @device.server_rack.datacenter.name%>::<%= @device.server_rack.name %>::<%=@device.name%></h1>
 	<%= link_to "Delete", [@device.server_rack.datacenter, @device.server_rack, @device], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
@@ -29,7 +29,7 @@
 	</div>
 </div><!-- /content -->
 <div data-role="footer"  data-position="fixed">
-	<%= link_to "Add interface", [:new, @device.server_rack.datacenter, @device.server_rack, @device, :interface], { "data-icon" => "plus", :rel=>"external"} %>
+	<%= link_to "Add interface", [:new, @device.server_rack.datacenter, @device.server_rack, @device, :interface], { "data-icon" => "plus", :rel=>""} %>
 </div><!-- /header -->
 
 

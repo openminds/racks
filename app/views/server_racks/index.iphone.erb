@@ -1,5 +1,5 @@
 <div data-role="header" data-position="fixed">
-	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l", :rel=>"external"}%>
+	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l"}%>
 	<h1><%= @current_datacenter.name%></h1>
 	<%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
@@ -11,14 +11,14 @@
 
 	</div>
 
-	<%= link_to "Edit", [:edit, @current_datacenter], {"data-role" => "button", :rel=>"external"} %>
+	<%= link_to "Edit", [:edit, @current_datacenter], {"data-role" => "button", :rel=>""} %>
 	<br/>
 	<ul data-role='listview' data-filter="true">
 		<%@current_datacenter.server_racks.each do |server_rack|%>
-		<li><%= link_to server_rack.name, [@current_datacenter, server_rack], {:rel=>"external"}%></li>
+		<li><%= link_to server_rack.name, [@current_datacenter, server_rack], {:rel=>""}%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
 <div data-role="footer" data-position="fixed">
-	<%= link_to "Add rack", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>"external"} %>
+	<%= link_to "Add rack", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>""} %>
 </div><!-- /footer -->

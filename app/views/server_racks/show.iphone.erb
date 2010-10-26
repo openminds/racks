@@ -1,5 +1,5 @@
 <div data-role="header" data-position="fixed"  >
-	<%= link_to "Back", [@server_rack.datacenter, :server_racks], {"data-icon" => "arrow-l", :rel=>"external"}%>
+	<%= link_to "Back", [@server_rack.datacenter, :server_racks], {"data-icon" => "arrow-l", :rel=>""}%>
 	<h1><%= @server_rack.datacenter.name%>::<%= @server_rack.name %></h1>
 	<%= link_to "Delete", [@server_rack.datacenter, @server_rack], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
@@ -14,12 +14,12 @@
 	<br>
 	<ul data-role='listview' data-filter="true">
 		<%@server_rack.devices.each do |device|%>
-		<li><%= device.units.first.number %><%= "-#{device.units.last.number}" if device.units.first != device.units.last %>: <%= link_to device.name, [@server_rack.datacenter, @server_rack, device], {:rel=>"external"}%></li>
+		<li><%= device.units.first.number %><%= "-#{device.units.last.number}" if device.units.first != device.units.last %>: <%= link_to device.name, [@server_rack.datacenter, @server_rack, device], {:rel=>""}%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
 <div data-role="footer"  data-position="fixed">
-	<%= link_to "Add device", [:new, @server_rack.datacenter, @server_rack, :device], { "data-icon" => "plus", :rel=>"external"} %>
+	<%= link_to "Add device", [:new, @server_rack.datacenter, @server_rack, :device], { "data-icon" => "plus", :rel=>""} %>
 </div><!-- /header -->
 
 

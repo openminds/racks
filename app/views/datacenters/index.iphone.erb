@@ -6,11 +6,11 @@
 <div id="content" data-role="content">	
 	<ul data-role='listview' data-filter="true">
 		<%@datacenters.each do |datacenter|%>
-		<li><%= link_to datacenter.name, [datacenter, :server_racks], {:rel=>"external"}%></li>
+		<li><%= link_to datacenter.name, [datacenter, :server_racks]%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
 <div data-role="footer" data-position="fixed">
-	<%= link_to "New datacenter", [:new, :datacenter], {"data-icon" => "plus", :class => "ui-btn-right", :rel=>"external"} %>
+	<%= link_to "New datacenter", [:new, :datacenter], {"data-icon" => "plus", :class => "ui-btn-right", :rel=>""} %>
 </div><!-- /header -->
 
