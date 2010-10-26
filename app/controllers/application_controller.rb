@@ -35,7 +35,6 @@ class ApplicationController < ActionController::Base
 		if is_iphone_request?
 			request.format = :iphone
 		end
-		logger.debug "The format is set to #{request.format}"
 	end
 
 
