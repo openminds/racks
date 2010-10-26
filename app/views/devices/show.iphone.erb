@@ -19,17 +19,17 @@
 		</div>
 		<div class="ui-block-b">
 			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device]) if interface.cable_connection %>
-			<%= "not connected" if interface.cable_connection == nil%>
+			<%= "not connected" if interface.cable_connection == nil  %>
 		</div>
 		<div class="ui-block-c">
-			<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :class=> "ui-btn-right" %>
+			<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :class=> "ui-btn-right" %><br>
 			<%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 		</div>
 		<%end%>
 	</div>
 </div><!-- /content -->
 <div data-role="footer"  data-position="fixed">
-	<%= link_to "Add", [:new, @device.server_rack.datacenter, @device.server_rack, @device, :interface], { "data-icon" => "plus", :rel=>"external"} %>
+	<%= link_to "Add interface", [:new, @device.server_rack.datacenter, @device.server_rack, @device, :interface], { "data-icon" => "plus", :rel=>"external"} %>
 </div><!-- /header -->
 
 

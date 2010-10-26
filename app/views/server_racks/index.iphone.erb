@@ -13,12 +13,12 @@
 
 	<%= link_to "Edit", [:edit, @current_datacenter], {"data-role" => "button", :rel=>"external"} %>
 	<br/>
-	<ul data-role='listview'>
+	<ul data-role='listview' data-filter="true">
 		<%@current_datacenter.server_racks.each do |server_rack|%>
 		<li><%= link_to server_rack.name, [@current_datacenter, server_rack], {:rel=>"external"}%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
 <div data-role="footer" data-position="fixed">
-	<%= link_to "Add", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>"external"} %>
+	<%= link_to "Add rack", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>"external"} %>
 </div><!-- /footer -->
