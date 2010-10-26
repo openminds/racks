@@ -12,15 +12,24 @@
 
 	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button"} %>
 	<br>
-	<ul data-role='listview'>
+	<div class="ui-grid-b">
 		<%@device.interfaces.each do |interface|%>
-		<li><%= interface.name %><%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device]) if interface.cable_connection %>
-		</li>
+		<div class="ui-block-a">
+			<%= interface.name %>
+		</div>
+		<div class="ui-block-b">
+			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device]) if interface.cable_connection %>
+			<%= "not connected" if interface.cable_connection == nil%>
+		</div>
+		<div class="ui-block-c">
+			<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :class=> "ui-btn-right" %>
+			<%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
+		</div>
 		<%end%>
-	</ul>
+	</div>
 </div><!-- /content -->
 <div data-role="footer"  data-position="fixed">
-	<%#= link_to "Add", [:new, @server_rack.datacenter, @server_rack, :device], { "data-icon" => "plus", :rel=>"external"} %>
+	<%= link_to "Add", [:new, @device.server_rack.datacenter, @device.server_rack, @device, :interface], { "data-icon" => "plus", :rel=>"external"} %>
 </div><!-- /header -->
 
 

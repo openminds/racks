@@ -27,7 +27,7 @@ class ServerRacksController < ApplicationController
 			format.html
 			format.iphone do
 				if @server_rack.errors.any?
-					redirect_to [@server_rack.datacenter, :server_racks, :new]
+					redirect_to [:new, @server_rack.datacenter, :server_racks]
 				else
 					redirect_to [@server_rack.datacenter, @server_rack]
 				end

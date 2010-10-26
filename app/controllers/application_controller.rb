@@ -8,9 +8,6 @@ class ApplicationController < ActionController::Base
 
 	before_filter :get_all_datacenters, :current_datacenter, :set_iphone_format
 
-
-
-
 	protected
 	def current_datacenter
 		if params[:datacenter_id]
@@ -25,6 +22,9 @@ class ApplicationController < ActionController::Base
 	def current_server_rack
 		@current_server_rack ||= current_datacenter.server_racks.find(params[:server_rack_id])
 	end
+	def current_device
+		@current_device ||= current_server_rack.devices.find(params[:device_id])
+	end
 	def get_all_datacenters
 		@datacenters = Datacenter.all
 	end
@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
 		if is_iphone_request?
 			request.format = :iphone
 		end
+		logger.debug "The format is set to #{request.format}"
 	end
 
 
