@@ -1,4 +1,6 @@
 class DevicesController < ApplicationController
+	respond_to :iphone, :html
+	cache_sweeper :device_sweeper, :only => [:create, :update, :destroy]
 	def show
 		@device = Device.find(params[:id])
 		respond_to do |format|
@@ -41,8 +43,20 @@ class DevicesController < ApplicationController
 
 	def update
 		@device = Device.find(params[:id])
-
-		@device.update_attributes(params[:device])
+		# Very dirty hack to get around the TypeMismatchError see : https://rails.lighthouseapp.com/projects/8994/tickets/189-activerecord-associationtypemismatch-with-same-class-name-added-helpful-exception-message
+		@device.interfaces_attributes = params[:device][:interfaces_attributes]  
+		params[:device][:unit_ids].each do |id|            
+			unit = Unit.find(id)                            
+			@device.units << unit                           
+		end                                                
+		@device.name = params[:device][:name]              
+		@device.comment = params[:device][:comment]        
+		@device.device_type = params[:device][:device_type]
+		if @device.valid?
+			@device.save 	# does not catch errors
+		end                                          
+		## Would have been:
+		#@device.update_attributes(params[:device])
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
 			format.iphone do
