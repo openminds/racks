@@ -2,17 +2,17 @@ class Device < ActiveRecord::Base
 	has_many :units, :dependent => :nullify
 	belongs_to :company
 	has_many :interfaces, :dependent => :destroy
-	accepts_nested_attributes_for :interfaces, :allow_destroy => true, :reject_if => proc { |attrs| attrs['name'].blank? }
+	accepts_nested_attributes_for :interfaces, :allow_destroy => true, :reject_if => :all_blank
 
 	validates_presence_of :name, :message => "can't be blank"
-	
+
 
 	define_index do
 		indexes :name, :sortable => true
 		indexes :comment
 	end
 
-	after_save :update_cable_connection
+	#after_save :update_cable_connection
 
 	enumerate :device_type, :with => DeviceType
 
@@ -32,7 +32,7 @@ class Device < ActiveRecord::Base
 	def server_rack
 		units.first.server_rack
 	end
-	
+
 
 	def update_cable_connection
 		self.interfaces.each do |i|
@@ -40,10 +40,11 @@ class Device < ActiveRecord::Base
 		end
 	end
 	
+
 	def my_path
 		[self.server_rack.datacenter, self.server_rack, self]
 	end
-	
+
 	def company_name
 		if company
 			company.name
@@ -51,7 +52,7 @@ class Device < ActiveRecord::Base
 			"Openminds"
 		end
 	end
-	
+
 	def search_label
 		"#{self.name} (#{company_name})"
 	end

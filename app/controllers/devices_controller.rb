@@ -24,12 +24,14 @@ class DevicesController < ApplicationController
 		unless @device.interfaces.any?
 			@device.interfaces.build
 		end
-		logger.debug @device.unit_ids
 	end
 
 	def create
 		@device = Device.new(params[:device])
 		@device.save
+		if request.format == :html
+			@device.update_cable_connection
+		end
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
 			format.iphone do
@@ -43,7 +45,6 @@ class DevicesController < ApplicationController
 	end
 
 	def update
-		logger.debug params[:device][:unit_ids]
 		@device = Device.find(params[:id])
 		# Very dirty hack to get around the TypeMismatchError see : https://rails.lighthouseapp.com/projects/8994/tickets/189-activerecord-associationtypemismatch-with-same-class-name-added-helpful-exception-message
 		# @device.interfaces_attributes = params[:device][:interfaces_attributes]  
@@ -59,6 +60,9 @@ class DevicesController < ApplicationController
 		# end                                          
 		## Would have been:
 		@device.update_attributes(params[:device])
+		if request.format == :html
+			@device.update_cable_connection
+		end
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
 			format.iphone do
