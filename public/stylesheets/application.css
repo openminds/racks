@@ -66,6 +66,17 @@ html[xmlns] .clearfix {
 	top:35px;
 	left:520px;
 }
+#menu a {
+	color:#cfd1d0;
+   float:left;
+   font-size:12px;
+   display:block;
+   font-weight:normal;
+   line-height:18px;
+   padding:4px 10px 4px 0;
+   text-decoration:none;
+   text-transform:uppercase;
+}
 
 #notice {
 	margin:0px;
@@ -84,7 +95,7 @@ html[xmlns] .clearfix {
 #search{
 	display:block;
 	position:absolute;
-	top:55px;
+	top:40px;
 	left:60%;
 }
 #search form {
