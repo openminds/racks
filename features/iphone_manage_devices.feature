@@ -37,8 +37,8 @@ Scenario: Update a device
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
-	And 12 devices exist
-	And 42 units exist with server_rack: the server_rack, device: a device
+	And a device exists
+	And 42 units exist with server_rack: the server_rack, device: the device
 	And I am on the home page
 	When I follow "Datacenter"
 	And I follow "Rack"

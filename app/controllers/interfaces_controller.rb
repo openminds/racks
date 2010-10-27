@@ -1,5 +1,6 @@
 class InterfacesController < ApplicationController
 	respond_to :iphone
+
 	def new
 		@interface = current_device.interfaces.build
 		@interfaces = current_server_rack.available_interfaces - @interface.device.interfaces
