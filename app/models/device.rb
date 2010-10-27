@@ -5,6 +5,7 @@ class Device < ActiveRecord::Base
 	accepts_nested_attributes_for :interfaces, :allow_destroy => true, :reject_if => proc { |attrs| attrs['name'].blank? }
 
 	validates_presence_of :name, :message => "can't be blank"
+	
 
 	define_index do
 		indexes :name, :sortable => true
@@ -31,6 +32,7 @@ class Device < ActiveRecord::Base
 	def server_rack
 		units.first.server_rack
 	end
+	
 
 	def update_cable_connection
 		self.interfaces.each do |i|

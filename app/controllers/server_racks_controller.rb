@@ -1,4 +1,6 @@
 class ServerRacksController < ApplicationController
+	cache_sweeper :server_rack_sweeper, :only => [:create, :update, :destroy]
+	
 	def index
 		if !Datacenter.all.any?
 			redirect_to new_datacenter_path

@@ -11,7 +11,7 @@ Racks::Application.routes.draw do
   	resources :datacenters, :except => [:show] do
 		resources :server_racks do
 			resources :devices, :except => [:index] do
-				resources :interfaces, :except => [:index, :show], :defaults => {:format => 'iphone'}
+				resources :interfaces, :except => [:index, :show]
 			end
 		end
 	end

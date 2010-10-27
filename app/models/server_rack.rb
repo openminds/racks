@@ -5,6 +5,8 @@ class ServerRack < ActiveRecord::Base
 	# has_many :interfaces, :through => :devices // Not working
 	validates_presence_of :name, :message => "can't be blank"
 	
+	
+	
 	define_index do
 		indexes :name, :sortable => true
 		indexes :comment
