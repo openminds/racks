@@ -1,7 +1,15 @@
 class DatacentersController < ApplicationController
+	respond_to :iphone, :html
 	def index
 		respond_to do |format|
-			format.html { redirect_to [current_datacenter, :server_racks] }
+			format.html { 
+				if Datacenter.all.size == 0
+					redirect_to new_datacenter_path
+					
+				else
+					redirect_to [current_datacenter, :server_racks] 
+				end
+			}
 			format.iphone
 		end
 	end
