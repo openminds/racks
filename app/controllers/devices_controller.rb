@@ -24,6 +24,7 @@ class DevicesController < ApplicationController
 		unless @device.interfaces.any?
 			@device.interfaces.build
 		end
+		logger.debug @device.unit_ids
 	end
 
 	def create
@@ -42,21 +43,22 @@ class DevicesController < ApplicationController
 	end
 
 	def update
+		logger.debug params[:device][:unit_ids]
 		@device = Device.find(params[:id])
 		# Very dirty hack to get around the TypeMismatchError see : https://rails.lighthouseapp.com/projects/8994/tickets/189-activerecord-associationtypemismatch-with-same-class-name-added-helpful-exception-message
-		@device.interfaces_attributes = params[:device][:interfaces_attributes]  
-		params[:device][:unit_ids].each do |id|            
-			unit = Unit.find(id)                            
-			@device.units << unit                           
-		end                                                
-		@device.name = params[:device][:name]              
-		@device.comment = params[:device][:comment]        
-		@device.device_type = params[:device][:device_type]
-		if @device.valid?
-			@device.save 	# does not catch errors
-		end                                          
+		# @device.interfaces_attributes = params[:device][:interfaces_attributes]  
+		# params[:device][:unit_ids].each do |id|            
+		# 	unit = Unit.find(id)                            
+		# 	@device.units << unit                           
+		# end                                                
+		# @device.name = params[:device][:name]              
+		# @device.comment = params[:device][:comment]        
+		# @device.device_type = params[:device][:device_type]
+		# if @device.valid?
+		# 	@device.save 	# does not catch errors
+		# end                                          
 		## Would have been:
-		#@device.update_attributes(params[:device])
+		@device.update_attributes(params[:device])
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
 			format.iphone do
