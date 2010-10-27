@@ -12,7 +12,7 @@
 			<p><%= @server_rack.comment %></p>
 			<p>Available units: <%= "#{@server_rack.units.available.count}/#{@server_rack.units.count}" %></p>
 			
-			<%= link_to 'Edit', edit_datacenter_server_rack_path(@server_rack.datacenter, @server_rack), :remote => true %> |
+			<%= link_to 'Edit', [:edit, @server_rack.datacenter, @server_rack], :class => 'remote' %> |
 			<%= link_to 'Back', [@server_rack.datacenter, :server_racks] %>
 		</div>
 
