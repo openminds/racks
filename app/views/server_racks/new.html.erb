@@ -3,7 +3,7 @@
 	<%= render :partial => 'form', :locals => {:server_rack => @server_rack, :form => form} %>
 	<div class="field">
 		<%= label 'number_of_units', :number_of_units %><br />
-		<%= text_field_tag :number_of_units %>
+		<%= text_field_tag :number_of_units, 42 %>
 	</div>
 
 	<div class="actions">
