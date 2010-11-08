@@ -19,8 +19,5 @@
 
 # Learn more: http://github.com/javan/whenever
 every 5.minutes do
-	rake "ts:in", :environment => :development
-end
-every 1.minute do
-	command "curl -i -X HEAD http://racks.bob.om/", :environment => :development
+	rake "ts:in"
 end
