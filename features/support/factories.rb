@@ -32,3 +32,7 @@ Factory.define :user_with_acces, :class => 'user' do |u|
 	u.password '123456'
 	u.rights 'acces_granted'
 end
+Factory.define(:user) do |u|
+	u.sequence(:email){|n| "Contact#{n}@company.be"}
+	u.sequence(:password){|n| "#{n*99}#{n*99}#{n*99}#{n*99}#{n*99}#{n*99}"}
+end
