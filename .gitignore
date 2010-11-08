@@ -5,5 +5,7 @@ tmp/**/*
 capfile
 Capfile
 config/database.yml
+db/sphinx/**/*
 db/sphinx/*
-log/*
+log/**
+log/**/*
