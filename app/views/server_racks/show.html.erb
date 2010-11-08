@@ -17,9 +17,11 @@
 		</div>
 
 		<div id='devices_list'>
+			<% if @server_rack.units.available.any? %>
 			<p>
 				<%= link_to 'Add device', [:new, @server_rack.datacenter, @server_rack, :device], :class => 'remote button' %>
 			</p>
+			<%end%>
 			<div class='devices_accordion'>
 				<%= render :partial => 'devices/device', :collection => @server_rack.devices, :as => :device %>
 			</div>

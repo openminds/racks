@@ -36,6 +36,5 @@ class ServerRack < ActiveRecord::Base
 	
 	def search_label
 		"#{self.name} in #{self.datacenter.name}"
-		
 	end
 end

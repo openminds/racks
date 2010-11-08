@@ -8,9 +8,11 @@
     	<%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack], :class => "remote" %>
     	<%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %>
 	</p>
+	<% if server_rack.units.available.any? %>
 	<p>
 		<%= link_to 'Add device', [:new, server_rack.datacenter, server_rack, :device], :class => 'button remote' %>
 	</p>
+	<% end %>
 	
 	<div class='devices_accordion'>
 		<%= render :partial => 'devices/device', :collection => server_rack.devices, :as => :device %>
