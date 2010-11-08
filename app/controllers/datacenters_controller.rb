@@ -1,5 +1,6 @@
 class DatacentersController < ApplicationController
 	respond_to :iphone, :html
+	before_filter :authorize
 	def index
 		respond_to do |format|
 			format.html { 

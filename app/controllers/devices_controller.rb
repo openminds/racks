@@ -1,5 +1,6 @@
 class DevicesController < ApplicationController
 	respond_to :iphone, :html
+	before_filter :authorize
 	cache_sweeper :device_sweeper, :only => [:create, :update, :destroy]
 	def show
 		@device = Device.find(params[:id])

@@ -9,6 +9,7 @@ gem 'responders'
 gem 'thinking-sphinx', :git => 'http://github.com/freelancing-god/thinking-sphinx.git', :branch => 'rails3', :require => 'thinking_sphinx'
 gem 'whenever'
 gem 'devise'
+gem 'state_machine'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

@@ -9,17 +9,17 @@
 	<link type="text/css" href="/stylesheets/custom-theme/jquery-ui-1.8.5.custom.css" rel="stylesheet" />
 	<script src="/javascripts/raphael-min.js" type="text/javascript"></script>
 	<script src="/javascripts/cufon-yui.js" type="text/javascript"></script>
-	
+
 	<script src="/javascripts/Verdana_400-Verdana_700-Verdana_italic_400-Verdana_italic_700.font.js" type="text/javascript"></script>
-	
-	
+
+
 	<%= csrf_meta_tag %>
 </head>
 <body>
 	<div id="wrapper">
 		<div id="header">
 			<div id="logo">
-				
+
 			</div>
 			<div id="title">
 				Racks
@@ -27,7 +27,21 @@
 			<div id="menu">
 				<%= link_to "Datacenter management", root_path, {:class => 'menu'} %>
 				<%= link_to "Companies", companies_path, {:class => 'menu'} %>
-				
+				<% if user_signed_in? %>
+
+					<%= link_to('Logout', destroy_user_session_path, {:class => 'menu'}) %>        
+
+					<% if current_user.admin? %>
+
+						<%= link_to('Admin', admin_index_path, {:class => 'menu'}) %>        
+
+					<% end %>
+				<% else %>
+
+					<%= link_to('Login', new_user_session_path, {:class => 'menu'})  %>  
+
+				<% end %>
+
 			</div>
 			<div id="search">
 				<%= form_tag(search_path, :method => 'get') do %>
@@ -41,13 +55,13 @@
 				<% end %>
 			</div>
 			<div id="header bottom">
-				
+
 			</div>
 
 		</div>
 		<div id="content">
 			<div class=' ui-tabs ui-widget ui-widget-content ui-corner-all'>
-				<% if !(request.fullpath.include? "search") && !(request.fullpath.include? "compan")  %>
+				<% if request.fullpath.include? "datacenters"  %>
 				<ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
 					<% @datacenters.each do |datacenter| %>
 					<li class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if (datacenter == @current_datacenter && !request.fullpath.include?('new')) %>'>

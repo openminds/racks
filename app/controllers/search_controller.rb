@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+
+	before_filter :authorize
 	def search
 		@searchword = params[:s] || params[:term]
 		respond_to do |format|
