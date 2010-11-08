@@ -4,6 +4,7 @@ Feature: Manage devices
   I want to manage the devices
 
 Scenario: Create a device
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1
@@ -20,6 +21,7 @@ Scenario: Create a device
 
 	
 Scenario: Delete a device
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
@@ -34,6 +36,7 @@ Scenario: Delete a device
 	And I should see "Available units: 42/42"
 
 Scenario: Update a device
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
@@ -53,6 +56,7 @@ Scenario: Update a device
 	
 
 Scenario: Create a device using 2 units
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1

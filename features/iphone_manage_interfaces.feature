@@ -4,6 +4,7 @@ Feature: Manage interfaces
   I want to manage the interfaces and their connections
 
 Scenario: Connect two interfaces
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
@@ -34,6 +35,7 @@ Scenario: Connect two interfaces
 	And I should see "eth0 ~ eth0 on Connected server"
 
 Scenario: Disconnect an interface
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
@@ -56,6 +58,7 @@ Scenario: Disconnect an interface
 
 
 Scenario: Delete an interface with a connection
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
@@ -75,6 +78,7 @@ Scenario: Delete an interface with a connection
 	Then I should not see "left ethernet"
 
 Scenario: reconnect an interface
+	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter

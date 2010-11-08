@@ -22,3 +22,13 @@ end
 Factory.define(:company) do |c|
 	c.sequence(:name){|n| "Company#{n}"}
 end
+Factory.define :admin, :class => 'user' do |u|
+	u.email 'admin@openminds.be'
+	u.password '123456'
+	u.rights 'admin'
+end
+Factory.define :user_with_acces, :class => 'user' do |u|
+	u.email 'info@openminds.be'
+	u.password '123456'
+	u.rights 'acces_granted'
+end

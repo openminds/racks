@@ -4,6 +4,7 @@ Feature: Manage Companies
   I want to manage the companies
 
 	Scenario: Create a new company
+		Given I am a user_with_acces
 		Given I am on the companies page
 		When I follow "Add Company"
 		#Given I am on the add company page
@@ -16,12 +17,14 @@ Feature: Manage Companies
 			And I should see "new company name"
 	
 	Scenario: Trying to create an invalid company
+		Given I am a user_with_acces
 		Given I am on the companies page
 		When I follow "Add Company"
 		When I press "Add company"
 		Then I should see "Name can't be blank"
 				
 	Scenario: Edit an existing company
+		Given I am a user_with_acces
 		Given 10 companies exist
 		And I am on the companies page
 		When I follow "Edit"
@@ -32,6 +35,7 @@ Feature: Manage Companies
 			And I should see "Administrative Software"
 	
 	Scenario: trying to make an existing company invalid
+		Given I am a user_with_acces
 		Given 10 companies exist
 		And I am on the companies page
 		When I follow "Edit"
@@ -41,6 +45,7 @@ Feature: Manage Companies
 		Then I should see "Name can't be blank"
 	
 	Scenario: Delete an existing company
+		Given I am a user_with_acces
 		Given the following companies exist:
 			| name 		| comment 		|
 			| Scarlet	| ISPP			|

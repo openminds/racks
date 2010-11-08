@@ -4,6 +4,7 @@ Feature: Manage devices
   I want to manage the devices
 
 Scenario: Create a device without any interfaces
+	Given I am a user_with_acces
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack
@@ -18,6 +19,7 @@ Scenario: Create a device without any interfaces
 
 	
 Scenario: Delete a device
+	Given I am a user_with_acces
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And 12 devices exist
@@ -29,6 +31,7 @@ Scenario: Delete a device
 	And I should see "Available units: 42/42"
 
 Scenario: Update a device
+	Given I am a user_with_acces
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And 12 devices exist
@@ -45,6 +48,7 @@ Scenario: Update a device
 	
 
 Scenario: Create a device with an interface
+	Given I am a user_with_acces
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack
@@ -60,6 +64,7 @@ Scenario: Create a device with an interface
 	And I should see "eth0"
 
 Scenario: Create a device with an interface and a connection
+	Given I am a user_with_acces
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And a device exists with name: "Testdevice"
@@ -81,6 +86,7 @@ Scenario: Create a device with an interface and a connection
 	And I should see "eth0 ~ eth0 on Connected server"
 
 Scenario: Disconnect an interface
+	Given I am a user_with_acces
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And a device exists with name: "Left device"
@@ -101,6 +107,7 @@ Scenario: Disconnect an interface
 	And I should not see "right ethernet ~ left ethernet on Left device"
 
 Scenario: Delete an interface with a connection
+	Given I am a user_with_acces
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And a device exists with name: "Left device"
@@ -123,6 +130,7 @@ Scenario: Delete an interface with a connection
 	Then I should see "right ethernet"
 
 Scenario: reconnect an interface
+	Given I am a user_with_acces
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And a device exists with name: "Left device"
