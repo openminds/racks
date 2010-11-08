@@ -20,8 +20,13 @@ $(function(){
 			var url = ui.item.url
 			window.location = url;
 			return false;
-		}
+		},
+	}).keydown(function(event){
+		if (event.keyCode == 13) {
+			$(this).closest('form').trigger('submit');
+		};
 	});
+	
 	//create the add interface links
 	// $('#add_interface').click(function() {addInterface()});
 	$("#add_interface").live("click", function(){
