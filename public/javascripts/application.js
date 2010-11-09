@@ -5,6 +5,9 @@ $(function(){
 	// $("#server_rack_info").tabs();
 	$('.tabs').tabs();
 	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
+	//Select the devices tab by default
+	$("#server_rack_info").tabs("option", "selected", 1)
+	//Show the device
 	if (getParameterByName('device') != '') {
 		$('.tabs').tabs({selected: 1});
 		$('.devices_accordion').accordion("activate", "#show_device_" + getParameterByName("device"));
