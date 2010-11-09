@@ -139,22 +139,26 @@
 			function drawConnectionsForDevice(id){
 				for (var i = deviceConnections.length - 1; i >= 0; i--){
 					if (deviceConnections[i][0] == id) {
-						var leftX = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][0])][0];
-						var leftY = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][0])][1];
-						var rightX = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][1])][0];
-						var rightY = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][1])][1];
-						drawConnection(leftX,leftY, rightX,rightY,deviceConnections[i][1][2])
+						if (interfaceIds.indexOf(deviceConnections[i][1][0]) > -1 && interfaceIds.indexOf(deviceConnections[i][1][1]) > -1 ){
+							var leftX = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][0])][0];
+							var leftY = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][0])][1];
+							var rightX = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][1])][0];
+							var rightY = interfaceLocations[interfaceIds.indexOf(deviceConnections[i][1][1])][1];
+							drawConnection(leftX,leftY, rightX,rightY,deviceConnections[i][1][2])
+						};
 					};
 					
 				};
 			}
 			function drawAllConnections(){
 				<% @server_rack.cable_connections.each do |cable_connection| %>
-					var leftX = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)][0];
-					var leftY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)][1];
-					var rightX = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)][0];
-					var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)][1];
-					drawConnection(leftX,leftY, rightX,rightY,"<%= cable_connection.color %>")
+					if (interfaceIds.indexOf(<%= cable_connection.left_interface_id %>) > -1 && interfaceIds.indexOf(<%= cable_connection.right_interface_id %>) > -1 ) {
+						var leftX = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)][0];
+						var leftY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.left_interface_id %>)][1];
+						var rightX = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)][0];
+						var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)][1];
+						drawConnection(leftX,leftY, rightX,rightY,"<%= cable_connection.color %>")
+					};	
 				<% end %>
 			}
 		</script>
