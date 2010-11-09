@@ -68,6 +68,7 @@ jQuery(function ($) {
      *  confirmation handler
      */
     var jqueryVersion = $().jquery;
+
     if ( (jqueryVersion === '1.4') || (jqueryVersion === '1.4.1') || (jqueryVersion === '1.4.2')){
       $('a[data-confirm], button[data-confirm], input[data-confirm]').live('click', function () {
           var el = $(this);
