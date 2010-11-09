@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-	has_many :devices
+	has_and_belongs_to_many :devices
 	validates_presence_of :name, :message => "can't be blank"
 
 	acts_as_url :url

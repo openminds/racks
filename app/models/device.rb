@@ -1,6 +1,6 @@
 class Device < ActiveRecord::Base
 	has_many :units, :dependent => :nullify
-	belongs_to :company
+	has_and_belongs_to_many :companies
 	has_many :interfaces, :dependent => :destroy
 	accepts_nested_attributes_for :interfaces, :allow_destroy => true, :reject_if => :all_blank
 
@@ -45,15 +45,19 @@ class Device < ActiveRecord::Base
 		[self.server_rack.datacenter, self.server_rack, self]
 	end
 
-	def company_name
-		if company
-			company.name
+	def company_names
+		if companies.any?
+			names
+			companies.each do |company|
+				names += ", #{company.name}" 
+			end
+			names
 		else
 			"Openminds"
 		end
 	end
 
 	def search_label
-		"#{self.name} (#{company_name})"
+		"#{self.name} (#{company_names})"
 	end
 end

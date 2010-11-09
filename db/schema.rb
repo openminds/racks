@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101108092416) do
+ActiveRecord::Schema.define(:version => 20101109155535) do
 
   create_table "cable_connections", :force => true do |t|
     t.integer  "left_interface_id",  :null => false
@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(:version => 20101108092416) do
     t.string   "email"
   end
 
+  create_table "companies_devices", :id => false, :force => true do |t|
+    t.integer "device_id"
+    t.integer "company_id"
+  end
+
   create_table "datacenters", :force => true do |t|
     t.string   "name"
     t.string   "location"
@@ -43,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20101108092416) do
   end
 
   create_table "devices", :force => true do |t|
-    t.integer  "company_id"
     t.integer  "device_type"
     t.string   "name"
     t.string   "comment"
