@@ -46,9 +46,16 @@
 			
 			function drawConnection(leftX, leftY, rightX, rightY, color){
 				var centerX = (300 + 500)/2;
+				var strokeDash = ""
+				// alert(color.toLowerCase)
+				if (color.toLowerCase() === "white") {
+					// alert("WHITE???")
+					strokeDash = "-."
+					color = "gray"
+				};
 				connectionSet.push(
 					paper.path("M" + leftX + " " + leftY + 
-						"C" +  centerX + " " + leftY + " " + centerX + " " + rightY + " " + rightX + " " + rightY).attr("stroke", color).attr("stroke-width", 3)
+						"C" +  centerX + " " + leftY + " " + centerX + " " + rightY + " " + rightX + " " + rightY).attr("stroke", color).attr("stroke-width", 3).attr("stroke-dasharray", strokeDash)
 				);
 			}
 			function drawAlldevices(){
