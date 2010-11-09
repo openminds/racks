@@ -3,10 +3,13 @@ Feature: Manage racks
   as a system admin
   I want to manage the racks
 
-Scenario: Create a rack
+Background:
 	Given I am a user_with_acces
-	Given 10 datacenters exist
-	And I am on the home page
+	And I am using a regular browser
+	And 10 datacenters exist
+
+Scenario: Create a rack
+	Given I am on the home page
 	When I follow "Add rack"
 	When I fill in "server_rack_name" with "New test rack"
 	And I fill in "server_rack_comment" with "Some comment on the new rack"
@@ -17,9 +20,7 @@ Scenario: Create a rack
 	And I should see "New test rack"
 
 Scenario: Delete a rack
-	Given I am a user_with_acces
-	Given 10 datacenters exist
-	And 1 server_racks exist with datacenter_id: 1
+	Given 1 server_racks exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Destroy" within "fieldset" 
@@ -27,9 +28,7 @@ Scenario: Delete a rack
 	And I should not see "Rack1"
 
 Scenario: Edit a rack
-	Given I am a user_with_acces
-	Given 10 datacenters exist
-	And 9 server_racks exist with datacenter_id: 1
+	Given 9 server_racks exist with datacenter_id: 1
 	And I am on the home page
 	When I follow "Edit" within "fieldset"
 	And I fill in "server_rack_name" with "Edited rack"

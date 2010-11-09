@@ -3,11 +3,13 @@ Feature: Manage interfaces
   as a mobile system admin
   I want to manage the interfaces and their connections
 
-Scenario: Connect two interfaces
+Background: 
 	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
+
+Scenario: Connect two interfaces
 	And a device exists with name: "Testdevice"
 	And an interface exists with device: the device, interface_type: 1, name: "eth0"
 	And 38 units exist with server_rack: the server_rack
@@ -35,10 +37,6 @@ Scenario: Connect two interfaces
 	And I should see "eth0 ~ eth0 on Connected server"
 
 Scenario: Disconnect an interface
-	Given I am a user_with_acces
-	Given I am using an iPhone
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
 	And a device exists with name: "Left device"
 	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
@@ -51,17 +49,13 @@ Scenario: Disconnect an interface
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Edit" within "div/div/div"
+	When I follow "Edit" within "[@class='ui-block-c']"
 	And I select "disconnect" from "interface_connected_to" 
 	And I press "Save"
 	Then I should see "left ethernet"
 
 
 Scenario: Delete an interface with a connection
-	Given I am a user_with_acces
-	Given I am using an iPhone
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
 	And a device exists with name: "Left device"
 	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
@@ -74,14 +68,10 @@ Scenario: Delete an interface with a connection
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Delete" within "div/div/div"
+	When I follow "Delete" within "[@class='ui-block-c']"
 	Then I should not see "left ethernet"
 
 Scenario: reconnect an interface
-	Given I am a user_with_acces
-	Given I am using an iPhone
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
 	And a device exists with name: "Left device"
 	And an interface exists with device: the device, interface_type: 1, name: "left ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
@@ -97,7 +87,7 @@ Scenario: reconnect an interface
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Edit" within "div/div/div"
+	When I follow "Edit" within "[@class='ui-block-c']"
 	And I select "new connection on Third device" from "interface_connected_to" 
 	And I press "Save"
 	Then I should see "left ethernet ~ new connection on Third device"

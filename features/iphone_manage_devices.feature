@@ -3,9 +3,11 @@ Feature: Manage devices
   as a mobile system admin
   I want to manage the devices
 
-Scenario: Create a device
+Background:
 	Given I am a user_with_acces
 	Given I am using an iPhone
+
+Scenario: Create a device
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack
@@ -21,8 +23,6 @@ Scenario: Create a device
 
 	
 Scenario: Delete a device
-	Given I am a user_with_acces
-	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And 12 devices exist
@@ -36,8 +36,6 @@ Scenario: Delete a device
 	And I should see "Available units: 42/42"
 
 Scenario: Update a device
-	Given I am a user_with_acces
-	Given I am using an iPhone
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
 	And a device exists
@@ -56,8 +54,6 @@ Scenario: Update a device
 	
 
 Scenario: Create a device using 2 units
-	Given I am a user_with_acces
-	Given I am using an iPhone
 	Given 10 datacenters exist
 	And a server_rack exist with datacenter_id: 1
 	And 42 units exist with server_rack: the server_rack

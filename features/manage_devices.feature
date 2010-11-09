@@ -3,11 +3,14 @@ Feature: Manage devices
   as a system admin
   I want to manage the devices
 
-Scenario: Create a device without any interfaces
+Background:
 	Given I am a user_with_acces
-	Given 10 datacenters exist
-	And a server_rack exist with datacenter_id: 1
-	And 42 units exist with server_rack: the server_rack
+	And I am using a regular browser
+	And a datacenter exist
+	And a server_rack exist with datacenter: the datacenter
+
+Scenario: Create a device without any interfaces
+	Given 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
@@ -19,10 +22,7 @@ Scenario: Create a device without any interfaces
 
 	
 Scenario: Delete a device
-	Given I am a user_with_acces
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
-	And 12 devices exist
+	Given 12 devices exist
 	And 42 units exist with server_rack: the server_rack, device: a device
 	And I am on the datacenters page
 	Then I should see "Available units: 0/42"
@@ -31,10 +31,7 @@ Scenario: Delete a device
 	And I should see "Available units: 42/42"
 
 Scenario: Update a device
-	Given I am a user_with_acces
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
-	And 12 devices exist
+	Given 12 devices exist
 	And 42 units exist with server_rack: the server_rack, device: a device
 	And I am on the home page
 	Then I should see "Available units: 0/42"
@@ -48,10 +45,7 @@ Scenario: Update a device
 	
 
 Scenario: Create a device with an interface
-	Given I am a user_with_acces
-	Given 10 datacenters exist
-	And a server_rack exist with datacenter_id: 1
-	And 42 units exist with server_rack: the server_rack
+	Given 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
@@ -64,10 +58,7 @@ Scenario: Create a device with an interface
 	And I should see "eth0"
 
 Scenario: Create a device with an interface and a connection
-	Given I am a user_with_acces
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
-	And a device exists with name: "Testdevice"
+	Given a device exists with name: "Testdevice"
 	And an interface exists with device: the device, interface_type: 1, name: "eth0"
 	And 40 units exist with server_rack: the server_rack
 	And 2 units exist with server_rack: the server_rack, device: the device
@@ -86,10 +77,7 @@ Scenario: Create a device with an interface and a connection
 	And I should see "eth0 ~ eth0 on Connected server"
 
 Scenario: Disconnect an interface
-	Given I am a user_with_acces
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
-	And a device exists with name: "Left device"
+	Given a device exists with name: "Left device"
 	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And a device exists with name: "right device"
@@ -107,10 +95,7 @@ Scenario: Disconnect an interface
 	And I should not see "right ethernet ~ left ethernet on Left device"
 
 Scenario: Delete an interface with a connection
-	Given I am a user_with_acces
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
-	And a device exists with name: "Left device"
+	Given a device exists with name: "Left device"
 	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And a device exists with name: "right device"
@@ -130,10 +115,7 @@ Scenario: Delete an interface with a connection
 	Then I should see "right ethernet"
 
 Scenario: reconnect an interface
-	Given I am a user_with_acces
-	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
-	And a device exists with name: "Left device"
+	Given a device exists with name: "Left device"
 	And an interface exists with device: the device, interface_type: 1, name: "left ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And a device exists with name: "right device"

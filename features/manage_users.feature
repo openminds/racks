@@ -2,6 +2,9 @@ Feature: managing users
 	In order to allow people to use the application
 	As an admin
 	I want to manage user rights
+
+	Background:
+		Given I am using a regular browser
 	
 	Scenario: Signing up as a new user
 		Given a user exists
@@ -35,7 +38,7 @@ Feature: managing users
 		Then I should see "acces_denied"
 		When I follow "Grant admin rights"
 		Then I should see "User is now admin"
-	
+
 	Scenario: Giving a user admin rights
 		Given I am an admin
 			And a user exists
