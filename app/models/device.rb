@@ -47,14 +47,22 @@ class Device < ActiveRecord::Base
 
 	def company_names
 		if companies.any?
-			names
+			names = ""
 			companies.each do |company|
-				names += ", #{company.name}" 
+				names += "#{company.name}, " 
 			end
 			names
 		else
 			"Openminds"
 		end
+	end
+	def company_names=(names)
+		companies_to_add = []
+		names.split(", ").each do |name|
+			company = Company.find_or_create_by_name(name)
+			companies_to_add << company
+		end
+		self.companies = companies_to_add
 	end
 
 	def search_label

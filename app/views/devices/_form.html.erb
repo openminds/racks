@@ -3,8 +3,8 @@
 	<fieldset style="float:left">
 		<legend>The device</legend>
 		<div class="ui-widget">
-			<%= form.label :company_ids %><br />
-			<%#= form.select :company_ids, Company.all.map {|c| [c.name, c.id]}, {:prompt => 'Choose a company'} %>
+			<%= form.label :company_names %><br />
+			<%= form.text_field :company_names %>
 		</div>
 		<div class="field">
 			<%= form.label :device_type %><br />
