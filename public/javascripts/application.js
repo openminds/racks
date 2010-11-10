@@ -31,11 +31,9 @@ $(function(){
 	});
 
 	//create the add interface links
-	// $('#add_interface').click(function() {addInterface()});
 	$("#add_interface").live("click", function(){
 		var $interface_table = $('#interface_form:nth-child(2)');
 		var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
-		//alert($interface_row.html());
 		$interface_row.find('*[id*=device_interfaces_attributes_]').each(function(index){
 			//set the correct ID
 			var current_id = $(this).attr('id').split('_');
@@ -94,34 +92,33 @@ $(function(){
 					})
 				}
 			});
-			// load the company names
-			$.get("/search/company_names.json", function(data){
-				//Create the autocomplete list for company names
-				$("#device_company_names").autocomplete({
-					minLength: 0,
-					source: function(request, response){
-						response($.ui.autocomplete.filter(data, extractLast(request.term)));
-					},
-					focus: function() {
-						// prevent value inserted on focus
-						return false;
-					},
-					select: function( event, ui ) {
-						var terms = split( this.value );
-						// remove the current input
-						terms.pop();
-						// add the selected item
-						terms.push( ui.item.value );
-						// add placeholder to get the comma-and-space at the end
-						terms.push( "" );
-						this.value = terms.join( ", " );
-						return false;
-					}
+			// load the company names autocomplete fields, but only if the element exists
+			if ($("#device_company_names").length > 0) {
+				$.get("/search/company_names.json", function(data){
+					//Create the autocomplete list for company names
+					$("#device_company_names").autocomplete({
+						minLength: 0,
+						source: function(request, response){
+							response($.ui.autocomplete.filter(data, extractLast(request.term)));
+						},
+						focus: function() {
+							// prevent value inserted on focus
+							return false;
+						},
+						select: function( event, ui ) {
+							var terms = split( this.value );
+							// remove the current input
+							terms.pop();
+							// add the selected item
+							terms.push( ui.item.value );
+							// add placeholder to get the comma-and-space at the end
+							terms.push( "" );
+							this.value = terms.join( ", " );
+							return false;
+						}
+					});
 				});
-			
-			});
-			
-			
+			};	
 		});
 		return false;
 	});
