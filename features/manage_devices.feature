@@ -133,5 +133,21 @@ Scenario: reconnect an interface
 	And I press "Update Device"
 	Then I should see "left ethernet ~ new connection on Third device"
 	And I should not see "right ethernet ~ left ethernet on Left device"
-	
 
+Scenario: Trying to create an invalid device
+	Given 42 units exist with server_rack: the server_rack
+	And I am on the home page
+	When I follow "Add device"
+	And I press "Create Device"
+	Then I should see "Name can't be blank"
+
+Scenario: Trying to make an existing device invalid
+	Given 12 devices exist
+	And 42 units exist with server_rack: the server_rack, device: a device
+	And I am on the home page
+	Then I should see "Available units: 0/42"
+	When I follow "Edit" within "fieldset/div/div"
+	When I fill in "device_name" with ""
+	And I fill in "device_comment" with "Updated device comment"
+	And I press "Update Device"
+	Then I should see "Name can't be blank"

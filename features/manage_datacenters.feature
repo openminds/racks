@@ -30,3 +30,16 @@ Scenario: Edit a datacenter
 	And I press "Update Datacenter"
 	Then I should see "Datacenter was successfully updated."
 	And I should see "Just a datacenter"	
+
+Scenario: Trying to create an invalid datacenter
+	Given I am on the new datacenter page
+	And I press "Create Datacenter"
+	Then I should see "Name can't be blank"
+
+Scenario: Trying to make an existing datacenter invalid
+	Given 10 datacenters exist
+	Given I am on the home page
+	When I follow "Edit"
+	And I fill in "datacenter_name" with ""
+	And I press "Update Datacenter"
+	Then I should see "Name can't be blank"

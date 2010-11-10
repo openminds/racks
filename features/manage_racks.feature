@@ -34,4 +34,20 @@ Scenario: Edit a rack
 	And I fill in "server_rack_name" with "Edited rack"
 	And I press "Update Server rack"
 	Then I should see "Server rack was successfully updated."
-	And I should see "Edited rack"	
+	And I should see "Edited rack"
+	
+Scenario: Trying to create an invalid rack
+	Given I am on the home page
+	And I follow "Add rack"
+	And I press "Create Server rack"
+	Then I should see "Name can't be blank"
+
+Scenario: trying to make an existing rack invalid
+	Given 9 server_racks exist with datacenter_id: 1
+	And I am on the home page
+	When I follow "Edit" within "fieldset"
+	And I fill in "server_rack_name" with ""
+	And I press "Update Server rack"
+	Then I should see "Name can't be blank"
+
+
