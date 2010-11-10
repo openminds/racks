@@ -13,6 +13,7 @@ class DeviceSweeper < ActionController::Caching::Sweeper
 
     def expire_cache(device)
 		expire_fragment dom_id(current_server_rack)
+		expire_fragment "drawing_#{dom_id(current_server_rack)}"
       expire_fragment dom_id(device)
     end
 
