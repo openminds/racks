@@ -6,24 +6,26 @@
 
 <div id="content" data-role="content" >
 	<div data-inline='true'>
+		<p>Used by: <%= @device.company_names %></p>
 		<p><%= @device.comment %></p>
 		
 	</div>
 
 	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button"} %>
 	<br>
-	<div class="ui-grid-b">
+	<div class="ui-grid-a">
 		<%@device.interfaces.each do |interface|%>
 		<div class="ui-block-a">
-			<%= interface.name %>
+		
+			<div data-role="controlgroup" data-type="vertical" style="float:left;margin-right:5px;">
+			<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], "data-icon" => "gear", "data-role" => "button", "data-iconpos"=>"notext" %>
+			<%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", "data-role" => "button", "data-iconpos"=>"notext" , :rel=>"external" %>
+			</div>
+			<p style="float:left;"><%= interface.name %></p>
 		</div>
 		<div class="ui-block-b">
-			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device]) if interface.cable_connection %>
+			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device], :style => "text-decoration:none;background-color:#{interface.cable_connection.color};") if interface.cable_connection %>
 			<%= "not connected" if interface.cable_connection == nil  %>
-		</div>
-		<div class="ui-block-c">
-			<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :class=> "ui-btn-right" %><br>
-			<%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 		</div>
 		<%end%>
 	</div>

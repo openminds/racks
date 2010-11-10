@@ -49,7 +49,7 @@ Scenario: Disconnect an interface
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Edit" within "[@class='ui-block-c']"
+	When I follow "Edit" within "[@class='ui-block-a']"
 	And I select "disconnect" from "interface_connected_to" 
 	And I press "Save"
 	Then I should see "left ethernet"
@@ -68,7 +68,7 @@ Scenario: Delete an interface with a connection
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Delete" within "[@class='ui-block-c']"
+	When I follow "Delete" within "[@class='ui-block-a']"
 	Then I should not see "left ethernet"
 
 Scenario: reconnect an interface
@@ -87,7 +87,7 @@ Scenario: reconnect an interface
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Edit" within "[@class='ui-block-c']"
+	When I follow "Edit" within "[@class='ui-block-a']"
 	And I select "new connection on Third device" from "interface_connected_to" 
 	And I press "Save"
 	Then I should see "left ethernet ~ new connection on Third device"

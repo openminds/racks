@@ -22,6 +22,7 @@ Racks::Application.configure do
 
 	# Only use best-standards-support built into browsers
 	config.action_dispatch.best_standards_support = :builtin
+	
 	# Basically, it clears out all the cached default scope on each request for all models. 
 	# Dirty fix, but waiting for the rails people to take a look at it
 	config.to_prepare do
