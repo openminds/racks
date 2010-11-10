@@ -29,4 +29,11 @@ class SearchController < ApplicationController
 			format.json {render :json => @colors }
 		end
 	end
+	def company_names
+		@device_names = Company.where("name LIKE :term", :term => "%#{params[:term]}%").map(&:name)
+		@device_names.uniq!
+		respond_to do |format|
+			format.json {render :json => @device_names }
+		end
+	end
 end

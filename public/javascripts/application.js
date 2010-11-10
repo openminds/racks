@@ -29,7 +29,7 @@ $(function(){
 			$(this).closest('form').trigger('submit');
 		};
 	});
-	
+
 	//create the add interface links
 	// $('#add_interface').click(function() {addInterface()});
 	$("#add_interface").live("click", function(){
@@ -94,6 +94,34 @@ $(function(){
 					})
 				}
 			});
+			// load the company names
+			$.get("/search/company_names.json", function(data){
+				//Create the autocomplete list for company names
+				$("#device_company_names").autocomplete({
+					minLength: 0,
+					source: function(request, response){
+						response($.ui.autocomplete.filter(data, extractLast(request.term)));
+					},
+					focus: function() {
+						// prevent value inserted on focus
+						return false;
+					},
+					select: function( event, ui ) {
+						var terms = split( this.value );
+						// remove the current input
+						terms.pop();
+						// add the selected item
+						terms.push( ui.item.value );
+						// add placeholder to get the comma-and-space at the end
+						terms.push( "" );
+						this.value = terms.join( ", " );
+						return false;
+					}
+				});
+			
+			});
+			
+			
 		});
 		return false;
 	});
@@ -106,6 +134,7 @@ $(function(){
 		$("#device_interfaces_attributes_" + id + "_connected_to > option[value='']").attr("disabled", "");
 		return false;
 	});
+
 });
 //A custom search autocomplete (using categories)
 $.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -132,5 +161,11 @@ function getParameterByName( name )
 	return "";
 	else
 	return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+function split( val ) {
+	return val.split( /,\s*/ );
+}
+function extractLast( term ) {
+	return split( term ).pop();
 }
 
