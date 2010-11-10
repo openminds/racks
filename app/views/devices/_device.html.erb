@@ -8,7 +8,10 @@
 		<%= device.comment %>
 	</p>
 	<p>
-		Used by: <%= device.company_names %>
+		Used by: 
+		<% device.companies.each do |company| %>
+		<%= link_to company.name, company%>, 
+		<%end%>
 	</p>
 	<table>
 		<% device.interfaces.each do |interface| %>

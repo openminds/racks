@@ -66,6 +66,7 @@ class Device < ActiveRecord::Base
 		end
 		self.companies = companies_to_add
 	end
+	
 
 	def search_label
 		"#{self.name} (#{company_names})"
