@@ -66,7 +66,7 @@
 			paper.print(xPos + 10,yPos + 24, '<%= "#{device.device_type(:name)}: #{device.name}" %>', paper.getFont("Verdana"), 12);
 			paper.print(xPos + 10,yPos + 38, '<%= "(#{device.company_names})" %>', paper.getFont("Verdana"), 12);
 			//set the dom element to the right size
-			paper.setSize(window.width, paper.height + drawHeight);
+			paper.setSize(window.width, yPos + drawHeight);
 			//draw the interfaces for the device
 			var interfaceCounter = 1;
 			<% device.interfaces.each do |interface| %>
