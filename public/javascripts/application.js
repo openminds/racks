@@ -91,7 +91,6 @@ $(function(){
 				minHeight:300
 			});
 			$('#modal_form > form > div.tabs ').tabs();
-			$("select[id$=_interface_type]").change(function(){updateSelectableInterfaces($(this))});
 			$(".connection_color").autocomplete({
 				source: function(request, response){
 					$.ajax({
