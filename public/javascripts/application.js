@@ -17,15 +17,26 @@ $(function(){
 	$(".button").button();
 
 	//Autocomplete search...
+	var itemSelected = false;
 	$('#s').catcomplete({
 		source: "/search/search.json",
 		select: function(event, ui){
+			if (ui.item !== undefined) {
 			var url = ui.item.url
 			window.location = url;
+			};
 			return false;
 		},
+		focus: function (event, ui){
+			if (ui.item !== undefined) {
+				$("#s").val(ui.item.value)
+				itemSelected = true;
+			}else{
+					itemSelected = false
+			};
+		}
 	}).keydown(function(event){
-		if (event.keyCode == 13) {
+		if (event.keyCode == 13 && !itemSelected) {
 			$(this).closest('form').trigger('submit');
 		};
 	});

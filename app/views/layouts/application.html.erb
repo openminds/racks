@@ -45,7 +45,7 @@
 			</div>
 			<div id="search">
 				<%= form_tag(search_path, :method => 'get') do %>
-				<%= text_field_tag :s, nil, :autocomplete => false %>
+				<%= text_field_tag :s, nil %>
 				<%= submit_tag "Find!", :name => nil, :id => 'search-submit', :class => 'button'%>
 				<% end %>
 			</div>

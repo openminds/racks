@@ -8,7 +8,7 @@ class SearchController < ApplicationController
 				@search = []
 				@results.each do |result|
 					# logger.debug url_for(result.my_path)
-					@search << {:label => result.search_label, :category => result.class.name, :value => result.id, :url => url_for(result.my_path) }
+					@search << {:value => result.search_label, :category => result.class.name, :url => url_for(result.my_path) }
 				end
 				@search.sort_by! {|result| result[:category]}
 				render :json => @search 

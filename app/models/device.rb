@@ -59,8 +59,10 @@ class Device < ActiveRecord::Base
 	def company_names=(names)
 		companies_to_add = []
 		names.split(", ").each do |name|
-			company = Company.find_or_create_by_name(name)
-			companies_to_add << company
+			unless name == "Openminds"
+				company = Company.find_or_create_by_name(name)
+				companies_to_add << company
+			end
 		end
 		self.companies = companies_to_add
 	end
