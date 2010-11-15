@@ -19,7 +19,7 @@ Scenario: Create a device
 	And I fill in "device_comment" with "Some comment for the restserver"
 	And I check "unit_1"
 	And I press "Save"
-	And I should see "1 - 1: Server: Testserver"
+	And I should see "1: Server: Testserver"
 
 	
 Scenario: Delete a device
@@ -66,5 +66,5 @@ Scenario: Create a device using 2 units
 	And I fill in "device_comment" with "Some comment for the restserver"
 	And I check "unit_1"
 	And I press "Save"
-	And I should see "1 - 1: Server: Testserver"
+	And I should see "1: Server: Testserver"
 

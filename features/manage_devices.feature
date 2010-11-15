@@ -18,7 +18,7 @@ Scenario: Create a device without any interfaces
 	And I select "1" from "device_unit_ids"
 	And I press "Create Device"
 	Then I should see "Device was successfully created."
-	And I should see "1 - 1: Server: Testserver"
+	And I should see "1: Server: Testserver"
 
 	
 Scenario: Delete a device
@@ -54,7 +54,7 @@ Scenario: Create a device with an interface
 	And I fill in "device_interfaces_attributes_0_name" with "eth0"
 	And I press "Create Device"
 	Then I should see "Device was successfully created."
-	And I should see "1 - 1: Server: Testserver"
+	And I should see "1: Server: Testserver"
 	And I should see "eth0"
 
 Scenario: Create a device with an interface and a connection
@@ -72,7 +72,7 @@ Scenario: Create a device with an interface and a connection
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "yellow"
 	And I press "Create Device"
 	Then I should see "Device was successfully created."
-	And I should see "1 - 1: Server: Connected server"
+	And I should see "1: Server: Connected server"
 	And I should see "eth0 ~ eth0 on Testdevice"
 	And I should see "eth0 ~ eth0 on Connected server"
 

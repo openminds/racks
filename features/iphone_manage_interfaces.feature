@@ -22,7 +22,7 @@ Scenario: Connect two interfaces
 	And I fill in "device_comment" with "This device is connected to the testserver"
 	And I check "unit_1"
 	And I press "Save"
-	And I should see "1 - 1: Server: Connected server"
+	And I should see "1: Server: Connected server"
 	Given I am using an iPhone
 	And I am on the home page
 	When I follow "Datacenter"

@@ -14,7 +14,7 @@
 	<br>
 	<ul data-role='listview' data-filter="true">
 		<%@server_rack.devices.each do |device|%>
-		<li><%= device.units.first.number %><%= "-#{device.units.last.number}" if device.units.first != device.units.last %>: <%= link_to device.name, [@server_rack.datacenter, @server_rack, device], {:rel=>""}%></li>
+		<li><%= device.units.first.number %><%= "-#{device.units.last.number}" if device.units.size > 1 %>: <%= link_to device.name, [@server_rack.datacenter, @server_rack, device], {:rel=>""}%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
