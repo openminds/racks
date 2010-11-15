@@ -87,7 +87,7 @@ $(function(){
 					$("#modal_form > form ").empty().remove();
 					$("#modal_wrapper").children("*").empty().remove();
 				},
-				width:900,
+				width:1000,
 				minHeight:300
 			});
 			$('#modal_form > form > div.tabs ').tabs();
@@ -102,6 +102,7 @@ $(function(){
 					})
 				}
 			});
+			
 			// load the company names autocomplete fields, but only if the element exists
 			if ($("#device_company_names").length > 0) {
 				$.get("/search/company_names.json", function(data){
@@ -134,9 +135,10 @@ $(function(){
 	});
 	//Update the forms when an interface_type is selected
 	$("select[id$=_interface_type]").live("change", function(){
-		disableInterfaces();
+		
 		var id = $(this).attr("id").split("_")[3];
 		var selected = $(this).val();
+		disableInterfaces(id);
 		if ($("#device_interfaces_attributes_"+ id + "_name").val() == "" ) {
 			if (selected == 1){
 				$("#device_interfaces_attributes_"+ id + "_name").val("eth" + id);
@@ -157,11 +159,9 @@ $(function(){
 			data: {rack_id: selected},
 			success: function(data){
 				for (var i = data.length - 1; i >= 0; i--){
-					var id = $("select[id$=_interface_type]").attr("id").split("_")[3]
-					var selected = $(this).children(":selected").val();
 					$("#device_interfaces_attributes_"+id+"_connected_to").append("<option value='"+ data[i].value + "' type='"+data[i].type+"'>"+data[i].label+"</option>");
 				};
-				disableInterfaces();
+				disableInterfaces(id);
 			}
 		});
 		
@@ -182,9 +182,9 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
 	}
 });
 //Disable select items
-function disableInterfaces(){
-	var id = $("select[id$=_interface_type]").attr("id").split("_")[3]
-	var selected = $("select[id$=_interface_type]").children(":selected").val();
+function disableInterfaces(id){
+	// var id = $("select[id$=_interface_type]").attr("id").split("_")[3]
+	var selected = $("select[id$="+id+"_interface_type]").children(":selected").val();
 	//Disable interfaces with another type
 	$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
