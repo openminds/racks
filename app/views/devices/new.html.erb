@@ -6,7 +6,7 @@
 			<li><a href='#units'>Units</a></li>
 			<li><a href='#interfaces'>Interfaces</a></li>
 		</ul>
-		<%= render :partial => 'form', :locals => {:device => @device, :interfaces => @interfaces, :form => form} %>
+		<%= render :partial => 'form', :locals => {:device => @device, :interfaces => possible_interfaces, :form => form} %>
 		<div id="units">
 			<fieldset  style="float:left;">
 				<legend>Rack</legend>
