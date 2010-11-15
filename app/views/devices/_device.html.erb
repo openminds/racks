@@ -24,7 +24,7 @@
 			</td>
 			<td>
 				<% if interface.cable_connection %>
-				<%= interface.other.to_s %>
+				<%= link_to interface.other.to_s, [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device] %>
 				<%end%>
 			</td>
 		</tr>
