@@ -17,9 +17,9 @@
 		<%@device.interfaces.each do |interface|%>
 		<div class="ui-block-a">
 		
-			<div data-role="controlgroup" data-type="vertical" style="float:left;margin-right:5px;">
-			<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], "data-icon" => "gear", "data-role" => "button", "data-iconpos"=>"notext" %>
+			<div data-role="controlgroup" data-type="horizontal" style="float:left;margin-right:5px;">
 			<%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", "data-role" => "button", "data-iconpos"=>"notext" , :rel=>"external" %>
+			<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], "data-icon" => "gear", "data-role" => "button", "data-iconpos"=>"notext" %>
 			</div>
 			<p style="float:left;"><%= interface.name %></p>
 		</div>

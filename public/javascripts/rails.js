@@ -1,3 +1,12 @@
+/*
+ * jquery-ujs
+ *
+ * http://github.com/rails/jquery-ujs/blob/master/src/rails.js
+ *
+ * This rails.js file supports jQuery 1.4.3 and 1.4.4 .
+ *
+ */ 
+
 jQuery(function ($) {
     var csrf_token = $('meta[name=csrf-token]').attr('content'),
         csrf_param = $('meta[name=csrf-param]').attr('content');
@@ -35,7 +44,7 @@ jQuery(function ($) {
                 dataType  = el.attr('data-type')  || 'script';
 
             if (url === undefined) {
-              throw "No URL specified for remote call (action or href must be present).";
+                throw "No URL specified for remote call (action or href must be present).";
             } else {
                 if (el.triggerAndReturn('ajax:before')) {
                     var data = el.is('form') ? el.serializeArray() : [];
@@ -67,28 +76,16 @@ jQuery(function ($) {
     /**
      *  confirmation handler
      */
-    var jqueryVersion = $().jquery;
 
-    if ( (jqueryVersion === '1.4') || (jqueryVersion === '1.4.1') || (jqueryVersion === '1.4.2')){
-      $('a[data-confirm], button[data-confirm], input[data-confirm]').live('click', function () {
-          var el = $(this);
-          if (el.triggerAndReturn('confirm')) {
-              if (!confirm(el.attr('data-confirm'))) {
-                  return false;
-              }
-          }
-      });
-    } else {
-      $('body').delegate('a[data-confirm], button[data-confirm], input[data-confirm]', 'click', function () {
-          var el = $(this);
-          if (el.triggerAndReturn('confirm')) {
-              if (!confirm(el.attr('data-confirm'))) {
-                  return false;
-              }
-          }
-      });
-    }
-    
+    $('body').delegate('a[data-confirm], button[data-confirm], input[data-confirm]', 'click', function () {
+        var el = $(this);
+        if (el.triggerAndReturn('confirm')) {
+            if (!confirm(el.attr('data-confirm'))) {
+                return false;
+            }
+        }
+    });
+  
 
 
     /**
@@ -111,8 +108,8 @@ jQuery(function ($) {
             form = $('<form method="post" action="'+href+'"></form>'),
             metadata_input = '<input name="_method" value="'+method+'" type="hidden" />';
 
-        if (csrf_param != null && csrf_token != null) {
-          metadata_input += '<input name="'+csrf_param+'" value="'+csrf_token+'" type="hidden" />';
+        if (csrf_param !== undefined && csrf_token !== undefined) {
+            metadata_input += '<input name="'+csrf_param+'" value="'+csrf_token+'" type="hidden" />';
         }
 
         form.hide()
@@ -149,5 +146,11 @@ jQuery(function ($) {
                  .val(input.data('enable-with'));
         });
     });
+
+    var jqueryVersion = $().jquery;
+
+    if ( (jqueryVersion === '1.4') || (jqueryVersion === '1.4.1') || (jqueryVersion === '1.4.2') ){
+        alert('This rails.js does not support the jQuery version you are using. Please read documentation.');
+    }
 
 });
