@@ -1,3 +1,4 @@
+desc 'Set colors for connections that werent filled in to Gray'
 namespace :db do
 	namespace :cleanup do
 		task :add_missing_colors => [:environment] do
@@ -11,7 +12,7 @@ namespace :db do
 		end
 	end
 end
-
+desc 'Try to set the devicetype from comments or name'
 namespace :db do
 	namespace :cleanup do
 		task :add_device_types => [:environment] do
