@@ -136,9 +136,19 @@ $(function(){
 	$("select[id$=_interface_type]").live("change", function(){
 		var id = $(this).attr("id").split("_")[3]
 		var selected = $(this).children(":selected").val();
+		//Disable interfaces with another type
 		$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
 		$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
 		$("#device_interfaces_attributes_" + id + "_connected_to > option[value='']").attr("disabled", "");
+		//Fill in a default name for the interface
+		if ($("#device_interfaces_attributes_"+ id + "_name").val() == "" ) {
+			if (selected == 1){
+				$("#device_interfaces_attributes_"+ id + "_name").val("eth" + id);
+			};
+			if (selected == 2){
+				$("#device_interfaces_attributes_"+ id + "_name").val("PW" + id);
+			};
+		};
 		return false;
 	});
 
