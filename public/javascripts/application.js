@@ -134,13 +134,9 @@ $(function(){
 	});
 	//Update the forms when an interface_type is selected
 	$("select[id$=_interface_type]").live("change", function(){
-		var id = $(this).attr("id").split("_")[3]
-		var selected = $(this).children(":selected").val();
-		//Disable interfaces with another type
-		$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
-		$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
-		$("#device_interfaces_attributes_" + id + "_connected_to > option[value='']").attr("disabled", "");
-		//Fill in a default name for the interface
+		disableInterfaces();
+		var id = $(this).attr("id").split("_")[3];
+		var selected = $(this).val();
 		if ($("#device_interfaces_attributes_"+ id + "_name").val() == "" ) {
 			if (selected == 1){
 				$("#device_interfaces_attributes_"+ id + "_name").val("eth" + id);
@@ -151,7 +147,25 @@ $(function(){
 		};
 		return false;
 	});
-
+	// Update the form when a rack is selected
+	$("select[id$=_selected_server_rack]").live("change", function(){
+		var id = $(this).attr("id").split("_")[3];
+		var selected = $(this).val();
+		$("#device_interfaces_attributes_" + id + "_connected_to").children().remove();
+		$.ajax({
+			url: "/devices/collect_interfaces",
+			data: {rack_id: selected},
+			success: function(data){
+				for (var i = data.length - 1; i >= 0; i--){
+					var id = $("select[id$=_interface_type]").attr("id").split("_")[3]
+					var selected = $(this).children(":selected").val();
+					$("#device_interfaces_attributes_"+id+"_connected_to").append("<option value='"+ data[i].value + "' type='"+data[i].type+"'>"+data[i].label+"</option>");
+				};
+				disableInterfaces();
+			}
+		});
+		
+	});
 });
 //A custom search autocomplete (using categories)
 $.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -167,6 +181,17 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
 		});
 	}
 });
+//Disable select items
+function disableInterfaces(){
+	var id = $("select[id$=_interface_type]").attr("id").split("_")[3]
+	var selected = $("select[id$=_interface_type]").children(":selected").val();
+	//Disable interfaces with another type
+	$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
+	$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
+	$("#device_interfaces_attributes_" + id + "_connected_to > option[value='']").attr("disabled", "");
+	//Fill in a default name for the interface
+
+}
 //get parameters from the querystring
 function getParameterByName( name )
 {

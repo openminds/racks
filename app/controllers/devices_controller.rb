@@ -85,4 +85,15 @@ class DevicesController < ApplicationController
 			format.iphone {redirect_to [current_datacenter, current_server_rack]}
 		end
 	end
+	def collect_interfaces
+		selected_server_rack = ServerRack.find(params[:rack_id])
+		@interfaces = selected_server_rack.available_interfaces
+		@collection = []
+		@interfaces.each do |interface|
+			@collection << {:value => interface.id, :type => interface.interface_type, :label => interface.to_s}
+		end
+		respond_to do |format|
+			format.json {render :json => @collection}
+		end
+	end
 end

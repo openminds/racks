@@ -39,6 +39,15 @@
 					<%= interface_form.label :_destroy, 'Remove' %>
 					<% end %>
 				</td class="field">
+				<td class="field">
+					<%= select_tag "device_interfaces_attributes_#{interface_form.object_name.gsub(/[^0-9]+/,'')}_selected_server_rack", options_from_collection_for_select(@current_datacenter.server_racks, :id, :name,
+					if interface_form.object.other 
+						interface_form.object.other.device.server_rack.id 
+					else 
+						form.object.server_rack.id
+					end
+					)%>
+				</td>
 				<td>
 					<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, :type => i.interface_type]  } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => interface_form.object.other.try(:id) } %>
 				</td class="field">
