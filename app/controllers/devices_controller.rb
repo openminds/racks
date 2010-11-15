@@ -26,6 +26,9 @@ class DevicesController < ApplicationController
 		@device.save
 		if request.format == :html
 			@device.update_cable_connection
+			if !@device.interfaces.any?
+				@device.interfaces.build
+			end
 		end
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
@@ -57,6 +60,9 @@ class DevicesController < ApplicationController
 		@device.update_attributes(params[:device])
 		if request.format == :html
 			@device.update_cable_connection
+			if !@device.interfaces.any?
+				@device.interfaces.build
+			end
 		end
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
