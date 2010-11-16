@@ -196,7 +196,9 @@ function disableInterfaces(id){
 	$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[value='null']").attr("disabled", "");
-	//Fill in a default name for the interface
+	if ($("#device_interfaces_attributes_" + id + "_connected_to > option[selected='selected']").length == 0) {
+		$("#device_interfaces_attributes_" + id + "_connected_to > option[value='null']").attr("selected", "selected");
+	};
 
 }
 //get parameters from the querystring
