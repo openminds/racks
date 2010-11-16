@@ -2,7 +2,7 @@
 <script type="text/javascript">
 	var paper;
 	var connectionSet;
-	
+	var devicesSet;
 	var interfaceLocations = []; //[x,y]
 	var interfaceIds = [];
 	var deviceConnections = []; //[device id,[leftid, rightid, color]]
@@ -35,7 +35,7 @@
 		interfaceLocations = [];
 		interfaceIds = [];
 		deviceConnections = [];
-		
+		devicesSet = paper.set();
 		var yPos = 0;
 		var xPos = 0;
 		var counter = 0;
@@ -62,6 +62,7 @@
 			};
 			//draw the device
 			var deviceRect<%= device.id %> = paper.rect(xPos, yPos, 300, drawHeight, 5).attr("fill","#AAD0F8");
+			devicesSet.push(deviceRect<%= device.id %>)
 			paper.print(xPos + 10,yPos + 10, '<%= "#{device.units.first.number} - #{device.units.last.number}:" %>', paper.getFont("Verdana"), 12);
 			paper.print(xPos + 10,yPos + 24, '<%= "#{device.device_type(:name)}: #{device.name}" %>', paper.getFont("Verdana"), 12);
 			paper.print(xPos + 10,yPos + 38, '<%= "(#{device.company_names})" %>', paper.getFont("Verdana"), 12);
@@ -104,6 +105,7 @@
 			deviceRect<%= device.id %>.node.onmousedown = function(){
 				if (deviceRect<%= device.id %>.attr("stroke") == "#000") {
 					connectionSet.attr({opacity: 0})
+					devicesSet.attr({stroke: "#000"})
 					deviceRect<%= device.id %>.attr("stroke", "#00FF00")
 					drawConnectionsForDevice(<%= device.id %>);
 				}else{
