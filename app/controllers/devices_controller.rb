@@ -96,11 +96,11 @@ class DevicesController < ApplicationController
 		end
 
 		@collection = []
-		@collection <<  {:value => nil, :type => nil, :label => "Disconnect"}
+		
 		@interfaces.each do |interface|
 			@collection << {:value => interface.id, :type => interface.interface_type, :label => interface.to_s, :selected => (('selected') if interface.other == current_interface )}
 		end
-		
+		@collection <<  {:value => nil, :type => nil, :label => "Disconnect"}
 		respond_to do |format|
 			format.json {render :json => @collection}
 		end
