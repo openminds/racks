@@ -78,6 +78,8 @@ $(function(){
 	//Create the links to load forms using ajax
 	$("a.remote").live('click', function(){
 		$("#modal_wrapper").load($(this).attr("href") +  " #modal_form", function(response, status, xhr){
+			//Everything whith the attribute disabled=false set by rails shuld be removed
+			$("option[disabled='false']").attr("disabled", "");
 			$("#modal_form").dialog({
 				modal: true,
 				close: function(event, ui) { 
