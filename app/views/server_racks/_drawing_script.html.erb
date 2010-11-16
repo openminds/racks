@@ -61,7 +61,7 @@
 				drawHeight = rightDeviceHeight;
 			};
 			//draw the device
-			var deviceRect = paper.rect(xPos, yPos, 300, drawHeight, 5).attr("fill","#AAD0F8");
+			var deviceRect<%= device.id %> = paper.rect(xPos, yPos, 300, drawHeight, 5).attr("fill","#AAD0F8");
 			paper.print(xPos + 10,yPos + 10, '<%= "#{device.units.first.number} - #{device.units.last.number}:" %>', paper.getFont("Verdana"), 12);
 			paper.print(xPos + 10,yPos + 24, '<%= "#{device.device_type(:name)}: #{device.name}" %>', paper.getFont("Verdana"), 12);
 			paper.print(xPos + 10,yPos + 38, '<%= "(#{device.company_names})" %>', paper.getFont("Verdana"), 12);
@@ -101,12 +101,15 @@
 			<% end %>
 			
 			counter++;
-			deviceRect.node.onmouseover = function(){
-				connectionSet.attr({opacity: 0})
-				drawConnectionsForDevice(<%= device.id %>);
-			}
-			deviceRect.node.onmouseout = function(){
-				connectionSet.attr({opacity: 1})
+			deviceRect<%= device.id %>.node.onmousedown = function(){
+				if (deviceRect<%= device.id %>.attr("stroke") == "#000") {
+					connectionSet.attr({opacity: 0})
+					deviceRect<%= device.id %>.attr("stroke", "#00FF00")
+					drawConnectionsForDevice(<%= device.id %>);
+				}else{
+					deviceRect<%= device.id %>.attr("stroke", "#000")
+					connectionSet.attr({opacity: 1})
+				};
 			}
 		<% end %>
 	}
