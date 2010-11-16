@@ -87,20 +87,20 @@ class DevicesController < ApplicationController
 	end
 	def collect_interfaces
 		selected_server_rack = ServerRack.find(params[:rack_id])
+		@interfaces = selected_server_rack.available_interfaces
 		if params[:interface_id]
 			current_interface = Interface.find(params[:interface_id])
+			if current_interface.other && current_interface.other.device.server_rack == selected_server_rack
+				@interfaces << current_interface.other
+			end
 		end
-		@interfaces = selected_server_rack.available_interfaces
 
-		if current_interface.other.device.server_rack == selected_server_rack
-			@interfaces << current_interface.other
-		end
 		@collection = []
-		
-		@interfaces.each do |interface|
-			@collection << {:value => interface.id, :type => interface.interface_type, :label => interface.to_s, :selected => (('selected') if current_interface.other == interface)}
-		end
 		@collection <<  {:value => nil, :type => nil, :label => "Disconnect"}
+		@interfaces.each do |interface|
+			@collection << {:value => interface.id, :type => interface.interface_type, :label => interface.to_s, :selected => (('selected') if interface.other == current_interface )}
+		end
+		
 		respond_to do |format|
 			format.json {render :json => @collection}
 		end
