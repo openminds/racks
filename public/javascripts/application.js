@@ -153,13 +153,20 @@ $(function(){
 	$("select[id$=_selected_server_rack]").live("change", function(){
 		var id = $(this).attr("id").split("_")[3];
 		var selected = $(this).val();
+		var interface_id
+		if ($(this).closest("form").attr("class") == "edit_device") {
+			interface_id = $("#device_interfaces_attributes_"+id+"_id").attr("value")
+		};
 		$("#device_interfaces_attributes_" + id + "_connected_to").children().remove();
 		$.ajax({
 			url: "/devices/collect_interfaces",
-			data: {rack_id: selected},
+			data: {rack_id: selected, interface_id: interface_id},
 			success: function(data){
 				for (var i = data.length - 1; i >= 0; i--){
 					$("#device_interfaces_attributes_"+id+"_connected_to").append("<option value='"+ data[i].value + "' type='"+data[i].type+"'>"+data[i].label+"</option>");
+					if (data[i].selected != null){
+						$("#device_interfaces_attributes_"+id+"_connected_to > option[value='"+ data[i].value + "']").attr("selected","selected");
+					}
 				};
 				disableInterfaces(id);
 			}
@@ -188,7 +195,7 @@ function disableInterfaces(id){
 	//Disable interfaces with another type
 	$("#device_interfaces_attributes_" + id + "_connected_to > option").attr("disabled", "disabled");
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
-	$("#device_interfaces_attributes_" + id + "_connected_to > option[value='']").attr("disabled", "");
+	$("#device_interfaces_attributes_" + id + "_connected_to > option[value='null']").attr("disabled", "");
 	//Fill in a default name for the interface
 
 }
