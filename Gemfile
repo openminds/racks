@@ -41,6 +41,9 @@ group :test do
 	gem "launchy"
 	gem "pickle"
 end
+group :production do
+	gem 'exception_notification', :git => 'http://github.com/rails/exception_notification.git', :require => 'exception_notifier'
+end
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
