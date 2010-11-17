@@ -10,8 +10,7 @@ class SearchController < ApplicationController
 					# logger.debug url_for(result.my_path)
 					@search << {:value => result.search_label, :category => result.class.name, :url => url_for(result.my_path) }
 				end
-				@search.sort_by! {|result| result[:category]}
-				render :json => @search 
+				render :json => @search.sort_by {|result| result[:category]} 
 			end
 			format.html do
 				@found_server_racks = ServerRack.search("*#{@searchword}*")
