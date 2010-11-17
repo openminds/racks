@@ -71,7 +71,7 @@
 					)%>
 				</td>
 				<td class="field">
-					<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, :type => i.interface_type, :disabled => ((i.interface_type != interface_form.object.interface_type) ? "disabled" : "false") ]  } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => interface_form.object.other.try(:id) } %>
+					<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, {:type => i.interface_type}, {:disabled => ((i.interface_type != interface_form.object.interface_type) ? "disabled" : "false") ]}  } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => interface_form.object.other.try(:id) } %>
 				</td >
 				<td class="field">
 					<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection), :class => "connection_color"  %>
