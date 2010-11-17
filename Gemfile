@@ -21,6 +21,7 @@ gem 'mysql'
 
 # Deploy with Capistrano
 gem 'capistrano'
+gem 'openminds_deploy'
 
 # To use debugger
 # gem 'ruby-debug'

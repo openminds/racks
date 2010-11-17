@@ -130,6 +130,7 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nokogiri (1.4.3.1)
+    openminds_deploy (0.0.5)
     pickle (0.4.3)
       cucumber (>= 0.8)
       rake
@@ -204,6 +205,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mysql
+  openminds_deploy
   pickle
   rails (= 3.0.0)
   responders
