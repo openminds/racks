@@ -44,19 +44,6 @@ class DevicesController < ApplicationController
 
 	def update
 		@device = Device.find(params[:id])
-		# Very dirty hack to get around the TypeMismatchError see : https://rails.lighthouseapp.com/projects/8994/tickets/189-activerecord-associationtypemismatch-with-same-class-name-added-helpful-exception-message
-		# @device.interfaces_attributes = params[:device][:interfaces_attributes]  
-		# params[:device][:unit_ids].each do |id|            
-		# 	unit = Unit.find(id)                            
-		# 	@device.units << unit                           
-		# end                                                
-		# @device.name = params[:device][:name]              
-		# @device.comment = params[:device][:comment]        
-		# @device.device_type = params[:device][:device_type]
-		# if @device.valid?
-		# 	@device.save 	# does not catch errors
-		# end                                          
-		## Would have been:
 		@device.update_attributes(params[:device])
 		if request.format == :html
 			@device.update_cable_connection

@@ -4,7 +4,7 @@ class DatacentersController < ApplicationController
 	def index
 		respond_to do |format|
 			format.html { 
-				if Datacenter.all.size == 0
+				if Datacenter.all.empty?
 					redirect_to new_datacenter_path
 					
 				else

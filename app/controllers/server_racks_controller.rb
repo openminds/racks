@@ -4,7 +4,7 @@ class ServerRacksController < ApplicationController
 
 	before_filter :authorize
 	def index
-		if !Datacenter.all.any?
+		if Datacenter.all.empty?
 			redirect_to new_datacenter_path
 		end
 		@current_datacenter = current_datacenter
