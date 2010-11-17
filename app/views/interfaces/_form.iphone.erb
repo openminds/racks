@@ -8,7 +8,7 @@
 </div>
 
 <div class="fieldcontain">
-	<%= form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, :type => i.interface_type]  } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => interface.other.try(:id) } %>
+	<%= form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, {:type => i.interface_type}]  } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => interface.other.try(:id) } %>
 </div>
 <div class="fieldcontain">
 	<%= form.label :cable_connection_color%>
