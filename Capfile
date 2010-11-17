@@ -10,13 +10,10 @@ begin
 	require 'openminds_deploy/git'
 	require 'openminds_deploy/passenger'
 	require 'openminds_deploy/rails3'
+	require 'whenever/capistrano'
 end
 desc "Start and index Sphinx"
 task :start_sphinx, :roles => :db do
 	run "cd #{current_release} && rake ts:in RAILS_ENV=production" rescue nil
 	run "cd #{current_release} && rake ts:start RAILS_ENV=production" rescue nil
-end
-desc "Update the crontab file"
-task :update_crontab, :roles => :db do
-	run "cd #{current_release} && whenever --update-crontab #{application}  --set 'environment=production'" rescue nil
 end
