@@ -1,4 +1,5 @@
 load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+require 'thinking_sphinx/deploy/capistrano'
 set :user, "racks2010"
 set :application, "racks"
 
@@ -14,9 +15,6 @@ begin
 	require 'openminds_deploy/passenger'
 	require 'openminds_deploy/rails3'
 	require 'whenever/capistrano'
+	
 end
-desc "Start and index Sphinx"
-task :start_sphinx, :roles => :db do
-	run "cd #{current_release} && rake ts:in RAILS_ENV=production" rescue nil
-	run "cd #{current_release} && rake ts:restart RAILS_ENV=production" rescue nil
-end
+
