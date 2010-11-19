@@ -221,3 +221,6 @@ DEPENDENCIES
   thinking-sphinx!
   whenever
   will_paginate (~> 3.0.beta)
+
+METADATA
+  version: 1.0.6

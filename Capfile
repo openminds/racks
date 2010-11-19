@@ -18,5 +18,5 @@ end
 desc "Start and index Sphinx"
 task :start_sphinx, :roles => :db do
 	run "cd #{current_release} && rake ts:in RAILS_ENV=production" rescue nil
-	run "cd #{current_release} && rake ts:start RAILS_ENV=production" rescue nil
+	run "cd #{current_release} && rake ts:restart RAILS_ENV=production" rescue nil
 end
