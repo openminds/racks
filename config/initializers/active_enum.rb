@@ -22,7 +22,9 @@ ActiveEnum.define do
 		value :id => 2, :name => 'Router'
 		value :id => 3, :name => 'Switch'
 		value :id => 4, :name => 'Powerbar'
-		value :id => 5, :name => 'Rented out'
+		value :id => 5, :name => 'Firewall'
+		value :id => 6, :name => 'STS'
+		value :id => 7, :name => 'Rented out'
   end
 
 end
