@@ -8,8 +8,8 @@ Background:
 	Given I am using an iPhone
 
 Scenario: Create a device
-	Given 10 datacenters exist
-	And a server_rack exist with datacenter_id: 1
+	Given a datacenter exist
+	And a server_rack exist with datacenter: the datacenter
 	And 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Datacenter"
@@ -54,8 +54,8 @@ Scenario: Update a device
 	
 
 Scenario: Create a device using 2 units
-	Given 10 datacenters exist
-	And a server_rack exist with datacenter_id: 1
+	Given a datacenter exist
+	And a server_rack exist with datacenter: the datacenter
 	And 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Datacenter"
