@@ -25,8 +25,8 @@ Racks::Application.configure do
 	
 	# Basically, it clears out all the cached default scope on each request for all models. 
 	# Dirty fix, but waiting for the rails people to take a look at it
-	config.to_prepare do
-		Thread.current.keys.each{ |k| Thread.current[k] = nil if k.to_s =~ /_scoped_methods$/ }
-	end
+	# config.to_prepare do
+	# 	Thread.current.keys.each{ |k| Thread.current[k] = nil if k.to_s =~ /_scoped_methods$/ }
+	# end
 end
 
