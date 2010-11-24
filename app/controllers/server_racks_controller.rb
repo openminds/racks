@@ -24,8 +24,7 @@ class ServerRacksController < ApplicationController
 
 	def create
 		@server_rack = current_datacenter.server_racks.build(params[:server_rack])
-		1.upto(params[:number_of_units].to_i) {|i| logger.debug  @server_rack.units << Unit.new(:number => i)}
-
+		1.upto(params[:number_of_units].to_i) {|i|  @server_rack.units << Unit.new(:number => i)}
 		@server_rack.save
 		respond_with @server_rack.datacenter, @server_rack do |format|
 			format.html
