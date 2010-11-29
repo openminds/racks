@@ -12,6 +12,8 @@ Racks::Application.routes.draw do
 	get "search/find_colors"
 	get "search/company_names"
 	get "devices/collect_interfaces"
+	
+	match "api/get_devices_for_customer/:customer_number" => "api#get_devices_for_customer", :defaults => { :format => 'xml' }
 	#resources :cable_connections
 
 	#resources :interfaces
