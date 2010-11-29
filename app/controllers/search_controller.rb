@@ -6,7 +6,7 @@ class SearchController < ApplicationController
 			format.json do
 				@results = ThinkingSphinx.search("*#{@searchword}*")
 				@search = []
-				@results.each do |result|
+				@results.compact.each do |result|
 					# logger.debug url_for(result.my_path)
 					@search << {:value => result.search_label, :category => result.class.name, :url => url_for(result.my_path) }
 				end
