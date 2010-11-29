@@ -2,6 +2,9 @@ class ApiController < ApplicationController
 	before_filter :authenticate_user!
 	def get_devices_for_customer
 		@customer = Company.find_by_customer_number(params[:customer_number])
+		if @customer.nil?
+			render :text => "No customer found with this number"
+		end
 	end
 	
 	private
