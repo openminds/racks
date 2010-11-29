@@ -1,6 +1,6 @@
 Racks::Application.routes.draw do
 	get "admin/index"
-	get "admin/no_rights"
+	match "admin/no_rights"
 	match 'admin/grant_user_rights/:user_id' => 'admin#grant_user_rights', :as => :grant_user_rights
 	match 'admin/grant_admin_rights/:user_id' => 'admin#grant_admin_rights', :as => :grant_admin_rights
 	match 'admin/delete_user/:user_id' => 'admin#delete_user', :as => :delete_user
