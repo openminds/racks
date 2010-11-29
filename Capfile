@@ -34,6 +34,7 @@ end
 
 after('deploy:update_code') do
   secretsconfig.link
+	thinking_sphinx.rebuild
 end
 
 after 'deploy:setup' do
