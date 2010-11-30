@@ -57,18 +57,22 @@ $(function(){
 				};
 			};
 			$(this).attr("id", new_id)
-
-			//set the correct name
-			var current_name = $(this).attr('name').split('][');
-			current_name[1] = parseInt(current_name[1])+1;
-			var new_name = ''
-			for (var i = current_name.length - 1; i >= 0; i--){
-				new_name =  current_name[i] + new_name
-				if (i > 0) {
-					new_name = '][' + new_name
+			//If it is the field for selecrting the rack, the name is equal to the id
+			if ($(this).attr("name").indexOf("_selected_server_rack") != -1) {
+				$(this).attr("name", new_id)
+			}else{
+				//set the correct name
+				var current_name = $(this).attr('name').split('][');
+				current_name[1] = parseInt(current_name[1])+1;
+				var new_name = ''
+				for (var i = current_name.length - 1; i >= 0; i--){
+					new_name =  current_name[i] + new_name
+					if (i > 0) {
+						new_name = '][' + new_name
+					};
 				};
+				$(this).attr("name", new_name)
 			};
-			$(this).attr("name", new_name)
 		});
 		//append the new row
 		$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
