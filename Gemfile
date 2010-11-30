@@ -37,6 +37,7 @@ group :test do
 	gem 'database_cleaner', :git => 'git://github.com/bmabey/database_cleaner.git'
 	gem 'cucumber-rails', :git => 'git://github.com/robholland/cucumber-rails.git'
 	gem "factory_girl" #, :git => "git://github.com/thoughtbot/factory_girl_rails.git"
+	gem "factory_girl_rails"
 	gem "test-unit"
 	gem "launchy"
 	gem "pickle"
