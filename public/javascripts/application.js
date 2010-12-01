@@ -43,41 +43,7 @@ $(function(){
 
 	//create the add interface links
 	$("#add_interface").live("click", function(){
-		var $interface_table = $('#interface_form:nth-child(2)');
-		var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
-		$interface_row.find('*[id*=device_interfaces_attributes_]').each(function(index){
-			//set the correct ID
-			var current_id = $(this).attr('id').split('_');
-			current_id[3] = parseInt(current_id[3])+1;
-			var new_id = ''
-			for (var i = current_id.length - 1; i >= 0; i--){
-				new_id =  current_id[i] + new_id 
-				if (i>0) {
-					new_id = '_' + new_id 
-				};
-			};
-			$(this).attr("id", new_id)
-			//If it is the field for selecrting the rack, the name is equal to the id
-			if ($(this).attr("name").indexOf("_selected_server_rack") != -1) {
-				$(this).attr("name", new_id)
-			}else{
-				//set the correct name
-				var current_name = $(this).attr('name').split('][');
-				current_name[1] = parseInt(current_name[1])+1;
-				var new_name = ''
-				for (var i = current_name.length - 1; i >= 0; i--){
-					new_name =  current_name[i] + new_name
-					if (i > 0) {
-						new_name = '][' + new_name
-					};
-				};
-				$(this).attr("name", new_name)
-			};
-		});
-		//append the new row
-		$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
-		//append the action for the cbo's
-		return false;
+		newInterfaceRow();
 	});
 	//Create the links to load forms using ajax
 	$("a.remote").live('click', function(){
@@ -203,6 +169,43 @@ function disableInterfaces(id){
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[type="+ selected + "]").attr("disabled", "");
 	$("#device_interfaces_attributes_" + id + "_connected_to > option[value='null']").attr("disabled", "");
 
+}
+function newInterfaceRow(){
+	var $interface_table = $('#interface_form:nth-child(2)');
+	var $interface_row = $interface_table.children(':last-child').children(':last-child').clone();
+	$interface_row.find('*[id*=device_interfaces_attributes_]').each(function(index){
+		//set the correct ID
+		var current_id = $(this).attr('id').split('_');
+		current_id[3] = parseInt(current_id[3])+1;
+		var new_id = ''
+		for (var i = current_id.length - 1; i >= 0; i--){
+			new_id =  current_id[i] + new_id 
+			if (i>0) {
+				new_id = '_' + new_id 
+			};
+		};
+		$(this).attr("id", new_id)
+		//If it is the field for selecrting the rack, the name is equal to the id
+		if ($(this).attr("name").indexOf("_selected_server_rack") != -1) {
+			$(this).attr("name", new_id)
+		}else{
+			//set the correct name
+			var current_name = $(this).attr('name').split('][');
+			current_name[1] = parseInt(current_name[1])+1;
+			var new_name = ''
+			for (var i = current_name.length - 1; i >= 0; i--){
+				new_name =  current_name[i] + new_name
+				if (i > 0) {
+					new_name = '][' + new_name
+				};
+			};
+			$(this).attr("name", new_name)
+		};
+	});
+	//append the new row
+	$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
+	//append the action for the cbo's
+	return false;
 }
 //get parameters from the querystring
 function getParameterByName( name )
