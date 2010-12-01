@@ -6,12 +6,12 @@
 
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
-
+require 'rake'                       # Dirty trick to run the preprepare task on the testDB so I can predict the Id's
+Racks::Application.load_tasks        # Dirty trick to run the preprepare task on the testDB so I can predict the Id's
 require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumber Unicode support
 require 'cucumber/rails/world'
 require 'cucumber/rails/active_record'
 require 'cucumber/web/tableish'
-
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
@@ -49,9 +49,16 @@ Cucumber::Rails::World.use_transactional_fixtures = true
 # How to clean your database when transactions are turned off. See
 # http://github.com/bmabey/database_cleaner for more info.
 if defined?(ActiveRecord::Base)
-  begin
-    require 'database_cleaner'
-    DatabaseCleaner.strategy = :truncation
-  rescue LoadError => ignore_if_database_cleaner_not_present
-  end
+	begin
+		require 'database_cleaner'
+		require 'database_cleaner/cucumber'
+		DatabaseCleaner.strategy = :truncation
+	end
 end
+Before do |scenario|
+	Rake.application.invoke_task('db:test:prepare')
+end
+# After do |scenario|
+# 	puts "clean db"
+# 	DatabaseCleaner.clean
+# end
