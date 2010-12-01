@@ -13,8 +13,8 @@ Factory.define(:device) do |d|
 end
 Factory.define(:unit) do |u|
 	u.sequence(:number) do |n|
-		if n>42
-			n=1
+		if (n/42) >= 1
+			n = n.remainder(42) + 1
 		end
 		n
 	end
