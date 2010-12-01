@@ -7,7 +7,7 @@ Background:
 	Given I am a user_with_acces
 	And I am using a regular browser
 	And a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
+	And a server_rack exist with datacenter: the datacenter, name: "devices testrack"
 
 Scenario: Create a device without any interfaces
 	Given 42 units exist with server_rack: the server_rack
@@ -200,7 +200,7 @@ Scenario: Connecting a device when creating it with multiple interfaces
 	And I should see "eth1 ~ eth0 on Testdevice"
 	
 @javascript
-Scenario: Try to connect an interface to an incompatible interface
+Scenario: When selecting an interface type, other types should be disabled
 	Given a device exists with name: "Testdevice"
 	And an interface exists with device: the device, interface_type: 2, name: "pw0"
 	And an interface exists with device: the device, interface_type: 1, name: "eth0"
@@ -227,3 +227,33 @@ Scenario: Try to connect an interface to an incompatible interface
 	Then I should see "3: Server: Testserver"
 	And I should see "PW0 ~ pw0 on Testdevice"
 	And I should see "eth1 ~ eth0 on Testdevice"
+
+@javascript
+Scenario: Connecting an interface to a device inside a different rack
+	Given a device exists with name: "Testdevice"
+	And an interface exists with device: the device, interface_type: 2, name: "pw0"
+	And an interface exists with device: the device, interface_type: 1, name: "eth0"
+	And 40 units exist with server_rack: the server_rack
+	And 2 units exist with server_rack: the server_rack, device: the device
+	And I am on the home page
+	When I follow "Add rack"
+	And I fill in "server_rack_name" with "Second rack"
+	And I fill in "server_rack_comment" with "I will try to connect something in this rack to the other rack"
+	And I fill in "number_of_units" with "42"
+	And I press "Create Server rack"
+	Then I should see "Second rack"
+	When I follow "Add device"
+	When I fill in "device_name" with "Second server"
+	And I fill in "device_comment" with "Some comment for the testserver"
+	And I select "1" from "device_unit_ids"
+	When I follow "Interfaces"
+	Then I should see "Interface Type?"
+	When I select "Ethernet" from "device_interfaces_attributes_0_interface_type"
+	Then the "device_interfaces_attributes_0_name" field should contain "eth0"
+	When I select "devices testrack" from "device_interfaces_attributes_0_selected_server_rack"
+	Then option "pw0 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be disabled
+	And option "eth0 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be enabled
+	When I select "eth0 on Testdevice" from "device_interfaces_attributes_0_connected_to"
+	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "black"
+	And I press "Create Device"
+	Then I should see "eth0 ~ eth0 on Testdevice"

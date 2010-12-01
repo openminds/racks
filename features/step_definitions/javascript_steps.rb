@@ -15,3 +15,8 @@ Then /^debugging_info$/ do
 		puts "Unit: #{unit.number}"
 	end
 end
+When /^I follow "([^"]*)" in the "([^"]*)" fieldset$/ do |link_name, fieldset_title|
+	within_fieldset(fieldset_title) do
+		click_link(link_name)
+	end
+end
