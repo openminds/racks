@@ -45,6 +45,26 @@ $(function(){
 	$("#add_interface").live("click", function(){
 		newInterfaceRow();
 	});
+	//create the link to add multiple interfaces
+	$("#create_interfaces").live("click", function(){
+		if ($("#count_ethernet_interfaces").val().length > 0 || $("#count_power_interfaces").val().length() > 0) {
+			var ethernetInterfaces = parseInt($("#count_ethernet_interfaces").val());
+			var powerInterfaces = parseInt($("#count_power_interfaces").val());
+			var totalInterfaces = ethernetInterfaces + powerInterfaces -1;
+			for (var i=0; i < totalInterfaces; i++) {
+				newInterfaceRow();
+			};
+			for (var i=0; i <= totalInterfaces; i++) {
+				if (i < ethernetInterfaces) {
+					$("#device_interfaces_attributes_"+i+"_interface_type").children('option[value=1]').attr("selected", "selected");
+				}else{
+					$("#device_interfaces_attributes_"+i+"_interface_type").children('option[value=2]').attr("selected", "selected");
+				};
+				$("#device_interfaces_attributes_"+i+"_interface_type").trigger('change');
+			};
+			$("#quickadd").remove();
+		};
+	});
 	//Create the links to load forms using ajax
 	$("a.remote").live('click', function(){
 		$("#modal_wrapper").load($(this).attr("href") +  " #modal_form", function(response, status, xhr){

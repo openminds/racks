@@ -169,7 +169,7 @@ a.menu {
 	float:left;
 	padding:5px;
 	margin:2px;
-	min-height:200px;
+	min-height:70px;
 }
 #modal_form form input{
 	width:99%;
@@ -194,5 +194,14 @@ a.menu {
 	border-width:1px;
 	border-color:#000000;
 }
-
+#modal_form #quickadd{
+	height:20px;
+	float:left;
+	width:99%;
+}
+#modal_form #quickadd p{
+	float:left;
+	width:48%;
+	margin:2px;
+}
 

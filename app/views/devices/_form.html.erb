@@ -27,6 +27,14 @@
 
 </div>
 <div id="interfaces">
+	<% unless device.interfaces.size > 1 %>
+	<fieldset id="quickadd">
+		<legend>Quickly add interfaces</legend>
+		<p>Ethernet interfaces:<input id="count_ethernet_interfaces" type="text"></input></p>
+		<p>Power interfaces:<input id="count_power_interfaces" type="text"></input></p>
+		<p><a href="#" id="create_interfaces" class="button">Create interfaces</a></p>
+	</fieldset>
+	<% end %> 
 	<fieldset style="float:left">
 		<legend>Interfaces</legend>
 		<table id='interface_form'>
