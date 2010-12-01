@@ -257,3 +257,20 @@ Scenario: Connecting an interface to a device inside a different rack
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "eth0 ~ eth0 on Testdevice"
+
+@javascript
+Scenario: Adding a device while quickly adding multiple interfaces
+	Given 42 units exist with server_rack: the server_rack
+	And I am on the home page
+	When I follow "Add device"
+	When I fill in "device_name" with "Testserver"
+	And I fill in "device_comment" with "Some comment for the testserver"
+	And I select "1" from "device_unit_ids"
+	When I follow "Interfaces"
+	Then I should see "Ethernet interfaces:"
+	When I fill in "count_ethernet_interfaces" with "24"
+	And I fill in "count_power_interfaces" with "12"
+	And I follow "Create interfaces"
+	And I press "Create Device"
+	Then the device should have "24" "Ethernet" interfaces
+	And the device should have "12" "Power" interfaces
