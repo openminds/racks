@@ -12,17 +12,17 @@ Background:
 Scenario: Connect two interfaces
 	And a device exists with name: "Testdevice"
 	And an interface exists with device: the device, interface_type: 1, name: "eth0"
-	And 38 units exist with server_rack: the server_rack
 	And 2 units exist with server_rack: the server_rack, device: the device
+	And 40 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Datacenter"
 	And I follow "Rack"
 	And I follow "Add device"
 	When I fill in "device_name" with "Connected server"
 	And I fill in "device_comment" with "This device is connected to the testserver"
-	And I check "unit_1"
+	And I check "3"
 	And I press "Save"
-	And I should see "1: Server: Connected server"
+	And I should see "3: Server: Connected server"
 	Given I am using an iPhone
 	And I am on the home page
 	When I follow "Datacenter"
@@ -44,6 +44,7 @@ Scenario: Disconnect an interface
 	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
+	And 38 units exist with server_rack: the server_rack
 	And I am on the home page
 	And I follow "Datacenter"
 	And I follow "Rack"

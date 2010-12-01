@@ -17,7 +17,7 @@ Scenario: Create a device
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
 	And I fill in "device_comment" with "Some comment for the restserver"
-	And I check "unit_1"
+	And I check "1"
 	And I press "Save"
 	And I should see "1: Server: Testserver"
 
@@ -64,7 +64,8 @@ Scenario: Create a device using 2 units
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
 	And I fill in "device_comment" with "Some comment for the restserver"
-	And I check "unit_1"
+	And I check "1"
+	And I check "2"
 	And I press "Save"
-	And I should see "1: Server: Testserver"
+	And I should see "1-2: Server: Testserver"
 

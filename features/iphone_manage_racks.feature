@@ -6,7 +6,7 @@ Feature: Manage racks
 Background:
 	Given I am a user_with_acces
 	Given I am using an iPhone
-	Given 10 datacenters exist
+	Given a datacenter exist
 	
 Scenario: Create a rack
 	And I am on the home page
@@ -20,7 +20,7 @@ Scenario: Create a rack
 	And I should see "New test rack"
 
 Scenario: Delete a rack
-	And 1 server_racks exist with datacenter_id: 1
+	And 1 server_racks exist with datacenter: the datacenter
 	And 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Datacenter"
@@ -29,10 +29,10 @@ Scenario: Delete a rack
 	And I should not see "Rack1"
 
 Scenario: Edit a rack
-	And 9 server_racks exist with datacenter_id: 1
+	And 9 server_racks exist with datacenter: the datacenter
 	And I am on the home page
 	When I follow "Datacenter"
-	And I follow "Rack"
+	And I follow "Rack1"
 	And I follow "Edit"
 	And I fill in "server_rack_name" with "Edited rack"
 	And I press "Save"
