@@ -244,7 +244,7 @@ Scenario: Connecting an interface to a device inside a different rack
 	Then I should see "Second rack"
 	When I follow "Add device"
 	When I fill in "device_name" with "Second server"
-	And I fill in "device_comment" with "Some comment for the testserver"
+	And I fill in "device_comment" with "Some comment for the testserverer"
 	And I select "1" from "device_unit_ids"
 	When I follow "Interfaces"
 	Then I should see "Interface Type?"
