@@ -47,9 +47,15 @@ $(function(){
 	});
 	//create the link to add multiple interfaces
 	$("#create_interfaces").live("click", function(){
-		if ($("#count_ethernet_interfaces").val().length > 0 || $("#count_power_interfaces").val().length() > 0) {
-			var ethernetInterfaces = parseInt($("#count_ethernet_interfaces").val());
-			var powerInterfaces = parseInt($("#count_power_interfaces").val());
+		if ($("#count_ethernet_interfaces").val().length > 0 || $("#count_power_interfaces").val().length > 0) {
+			var ethernetInterfaces = 0
+			var powerInterfaces = 0
+			if($("#count_ethernet_interfaces").val().length > 0){
+				ethernetInterfaces = parseInt($("#count_ethernet_interfaces").val());
+			};
+			if($("#count_power_interfaces").val().length > 0){
+				powerInterfaces = parseInt($("#count_power_interfaces").val());
+			};
 			var totalInterfaces = ethernetInterfaces + powerInterfaces -1;
 			for (var i=0; i < totalInterfaces; i++) {
 				newInterfaceRow();
