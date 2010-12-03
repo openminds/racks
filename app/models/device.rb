@@ -10,6 +10,7 @@ class Device < ActiveRecord::Base
 	define_index do
 		indexes :name, :sortable => true
 		indexes :comment
+		indexes companies.name
 	end
 
 	#after_save :update_cable_connection
