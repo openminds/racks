@@ -144,8 +144,6 @@ $(function(){
 				counter ++;
 			};
 		});
-		// it should start with 0
-		counter --;
 		if ($("#device_interfaces_attributes_"+ id + "_name").val() == "" ) {
 			if (selected == 1){
 				

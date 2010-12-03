@@ -166,22 +166,22 @@ Scenario: Adding a device with multiple interfaces
 	When I follow "Interfaces"
 	Then I should see "Interface Type?"
 	When I select "Ethernet" from "device_interfaces_attributes_0_interface_type"
-	Then the "device_interfaces_attributes_0_name" field should contain "eth0"
+	Then the "device_interfaces_attributes_0_name" field should contain "eth1"
 	When I follow "Add Interface"
 	Then I should see "Interface Type?"
 	When I select "Ethernet" from "device_interfaces_attributes_1_interface_type"
-	Then the "device_interfaces_attributes_1_name" field should contain "eth1"
+	Then the "device_interfaces_attributes_1_name" field should contain "eth2"
 	When I fill in "device_interfaces_attributes_1_name" with "adjusted"
 	When I press "Create Device"
 	Then I should see "Device was successfully created."
 	And I should see "1: Server: Testserver"
-	And I should see "eth0"
+	And I should see "eth1"
 	And I should see "adjusted"
 
 @javascript
 Scenario: Connecting a device when creating it with multiple interfaces
 	Given a device exists with name: "Testdevice"
-	And an interface exists with device: the device, interface_type: 1, name: "eth0"
+	And an interface exists with device: the device, interface_type: 1, name: "eth1"
 	And 40 units exist with server_rack: the server_rack
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And I am on the home page
@@ -193,17 +193,17 @@ Scenario: Connecting a device when creating it with multiple interfaces
 	And I select "Ethernet" from "device_interfaces_attributes_0_interface_type"
 	And I follow "Add Interface"
 	When I select "Ethernet" from "device_interfaces_attributes_1_interface_type"
-	And I select "eth0 on Testdevice" from "device_interfaces_attributes_1_connected_to"
+	And I select "eth1 on Testdevice" from "device_interfaces_attributes_1_connected_to"
 	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
-	And I should see "eth1 ~ eth0 on Testdevice"
+	And I should see "eth2 ~ eth1 on Testdevice"
 	
 @javascript
 Scenario: When selecting an interface type, other types should be disabled
 	Given a device exists with name: "Testdevice"
-	And an interface exists with device: the device, interface_type: 2, name: "pw0"
-	And an interface exists with device: the device, interface_type: 1, name: "eth0"
+	And an interface exists with device: the device, interface_type: 2, name: "pw1"
+	And an interface exists with device: the device, interface_type: 1, name: "eth1"
 	And 40 units exist with server_rack: the server_rack
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And I am on the home page
@@ -213,26 +213,26 @@ Scenario: When selecting an interface type, other types should be disabled
 	And I select "3" from "device_unit_ids"
 	When I follow "Interfaces"
 	And I select "Power" from "device_interfaces_attributes_0_interface_type"
-	Then option "pw0 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be enabled
-	And option "eth0 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be disabled
+	Then option "pw1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be enabled
+	And option "eth1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be disabled
 	And I follow "Add Interface"
 	When I select "Ethernet" from "device_interfaces_attributes_1_interface_type"
-	Then option "pw0 on Testdevice" from "device_interfaces_attributes_1_connected_to" should be disabled
-	And option "eth0 on Testdevice" from "device_interfaces_attributes_1_connected_to" should be enabled
-	When I select "pw0 on Testdevice" from "device_interfaces_attributes_0_connected_to"
+	Then option "pw1 on Testdevice" from "device_interfaces_attributes_1_connected_to" should be disabled
+	And option "eth1 on Testdevice" from "device_interfaces_attributes_1_connected_to" should be enabled
+	When I select "pw1 on Testdevice" from "device_interfaces_attributes_0_connected_to"
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "black"
-	And I select "eth0 on Testdevice" from "device_interfaces_attributes_1_connected_to"
+	And I select "eth1 on Testdevice" from "device_interfaces_attributes_1_connected_to"
 	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
-	And I should see "PW0 ~ pw0 on Testdevice"
-	And I should see "eth0 ~ eth0 on Testdevice"
+	And I should see "PW1 ~ pw1 on Testdevice"
+	And I should see "eth1 ~ eth1 on Testdevice"
 
 @javascript
 Scenario: Connecting an interface to a device inside a different rack
 	Given a device exists with name: "Testdevice"
-	And an interface exists with device: the device, interface_type: 2, name: "pw0"
-	And an interface exists with device: the device, interface_type: 1, name: "eth0"
+	And an interface exists with device: the device, interface_type: 2, name: "pw1"
+	And an interface exists with device: the device, interface_type: 1, name: "eth1"
 	And 40 units exist with server_rack: the server_rack
 	And 2 units exist with server_rack: the server_rack, device: the device
 	And I am on the home page
@@ -249,14 +249,14 @@ Scenario: Connecting an interface to a device inside a different rack
 	When I follow "Interfaces"
 	Then I should see "Interface Type?"
 	When I select "Ethernet" from "device_interfaces_attributes_0_interface_type"
-	Then the "device_interfaces_attributes_0_name" field should contain "eth0"
+	Then the "device_interfaces_attributes_0_name" field should contain "eth1"
 	When I select "devices testrack" from "device_interfaces_attributes_0_selected_server_rack"
-	Then option "pw0 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be disabled
-	And option "eth0 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be enabled
-	When I select "eth0 on Testdevice" from "device_interfaces_attributes_0_connected_to"
+	Then option "pw1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be disabled
+	And option "eth1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be enabled
+	When I select "eth1 on Testdevice" from "device_interfaces_attributes_0_connected_to"
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "black"
 	And I press "Create Device"
-	Then I should see "eth0 ~ eth0 on Testdevice"
+	Then I should see "eth1 ~ eth1 on Testdevice"
 
 @javascript
 Scenario: Adding a device while quickly adding multiple interfaces
