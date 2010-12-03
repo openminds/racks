@@ -7,7 +7,7 @@
 
 <div id="content" data-role="content">	
 	<%= render :partial => "form", :locals => {:device => @device, :form => form}%>
-	<div class="fieldcontain" data-role="collapsible" data-state="collapsed">
+	<div class="fieldcontain" data-role="collapsible" data-collapsed="true">
 		<h3>Units</h3>
 		<fieldset data-role="controlgroup">
 		<%= form.fields_for :unit_ids do |unit_id|%>

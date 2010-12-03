@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
 	before_filter :authorize
+	respond_to :iphone, :html
 	def search
 		@searchword = params[:s] || params[:term]
 		respond_to do |format|
@@ -18,9 +19,17 @@ class SearchController < ApplicationController
 				@found_companies = Company.search("*#{@searchword}*")
 				@found_devices = Device.search("*#{@searchword}*")
 			end
+			format.iphone do
+				@found_server_racks = ServerRack.search("*#{@searchword}*")
+				@found_datacenters = Datacenter.search("*#{@searchword}*")
+				@found_devices = Device.search("*#{@searchword}*")
+			end
 		end
 	end
-
+	
+	def iphone_search
+	end
+	
 	def find_colors
 		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").map(&:color)
 		@colors.uniq!
