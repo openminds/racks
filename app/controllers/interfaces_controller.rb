@@ -1,6 +1,7 @@
 class InterfacesController < ApplicationController
 	respond_to :iphone
 	before_filter :authorize
+	cache_sweeper :device_sweeper, :only => [:create, :update, :destroy]
 	def new
 		@interface = current_device.interfaces.build
 		@interfaces = current_server_rack.available_interfaces - @interface.device.interfaces
