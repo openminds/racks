@@ -43,7 +43,7 @@ class Interface < ActiveRecord::Base
 	end
 
 	def to_s
-		"#{self.name} on #{self.device.name}"
+		"#{self.device.name}: #{self.name}"
 	end
 
 	def destroy_cable_connections

@@ -68,13 +68,13 @@ Scenario: Create a device with an interface and a connection
 	And I fill in "device_comment" with "This device is connected to the testserver"
 	And I select "3" from "device_unit_ids"
 	And I fill in "device_interfaces_attributes_0_name" with "eth0"
-	And I select "eth0 on Testdevice" from "device_interfaces_attributes_0_connected_to"
+	And I select "Testdevice: eth0" from "device_interfaces_attributes_0_connected_to"
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "yellow"
 	And I press "Create Device"
 	Then I should see "Device was successfully created."
 	And I should see "3: Server: Connected server"
-	And I should see "eth0 ~ eth0 on Testdevice"
-	And I should see "eth0 ~ eth0 on Connected server"
+	And I should see "eth0 ~ Testdevice: eth0"
+	And I should see "eth0 ~ Connected server: eth0"
 
 Scenario: Disconnect an interface
 	Given a device exists with name: "Left device"
@@ -86,14 +86,14 @@ Scenario: Disconnect an interface
 	And a cable connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
 	And 38 units exist with server_rack: the server_rack
 	And I am on the home page
-	Then I should see "left ethernet ~ right ethernet on right device"
-	And I should see "right ethernet ~ left ethernet on Left device"
+	Then I should see "left ethernet ~ right device: right ethernet"
+	And I should see "right ethernet ~ Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
 	And I select "disconnect" from "device_interfaces_attributes_0_connected_to" 
 	And I press "Update Device"
 	Then I should see "Device was successfully updated."
-	And I should not see "left ethernet ~ right ethernet on right device"
-	And I should not see "right ethernet ~ left ethernet on Left device"
+	And I should not see "left ethernet ~ right device: right ethernet"
+	And I should not see "right ethernet ~ Left device: left ethernet"
 
 Scenario: Delete an interface with a connection
 	Given a device exists with name: "Left device"
@@ -105,14 +105,14 @@ Scenario: Delete an interface with a connection
 	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
 	And 38 units exist with server_rack: the server_rack
 	And I am on the home page
-	Then I should see "left ethernet ~ right ethernet on right device"
-	And I should see "ight ethernet ~ left ethernet on Left device"
+	Then I should see "left ethernet ~ right device: right ethernet"
+	And I should see "ight ethernet ~ Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
 	And I check "device_interfaces_attributes_0__destroy" 
 	And I press "Update Device"
 	Then I should see "Device was successfully updated."
 	And I should not see "~"
-	And I should not see "right ethernet ~ left ethernet on Left device"
+	And I should not see "right ethernet ~ Left device: left ethernet"
 	When I follow "Datacenter management"
 	Then I should see "right ethernet"
 
@@ -129,13 +129,13 @@ Scenario: reconnect an interface
 	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
 	And 36 units exist with server_rack: the server_rack
 	And I am on the home page
-	Then I should see "left ethernet ~ right ethernet on right device"
-	And I should see "right ethernet ~ left ethernet on Left device"
+	Then I should see "left ethernet ~ right device: right ethernet"
+	And I should see "right ethernet ~ Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
-	And I select "new connection on Third device" from "device_interfaces_attributes_0_connected_to" 
+	And I select "Third device: new connection" from "device_interfaces_attributes_0_connected_to" 
 	And I press "Update Device"
-	Then I should see "left ethernet ~ new connection on Third device"
-	And I should not see "right ethernet ~ left ethernet on Left device"
+	Then I should see "left ethernet ~ Third device: new connection"
+	And I should not see "right ethernet ~ Left device: left ethernet"
 
 Scenario: Trying to create an invalid device
 	Given 42 units exist with server_rack: the server_rack
@@ -193,11 +193,11 @@ Scenario: Connecting a device when creating it with multiple interfaces
 	And I select "Ethernet" from "device_interfaces_attributes_0_interface_type"
 	And I follow "Add Interface"
 	When I select "Ethernet" from "device_interfaces_attributes_1_interface_type"
-	And I select "eth1 on Testdevice" from "device_interfaces_attributes_1_connected_to"
+	And I select "Testdevice: eth1" from "device_interfaces_attributes_1_connected_to"
 	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
-	And I should see "eth2 ~ eth1 on Testdevice"
+	And I should see "eth2 ~ Testdevice: eth1"
 	
 @javascript
 Scenario: When selecting an interface type, other types should be disabled
@@ -213,20 +213,20 @@ Scenario: When selecting an interface type, other types should be disabled
 	And I select "3" from "device_unit_ids"
 	When I follow "Interfaces"
 	And I select "Power" from "device_interfaces_attributes_0_interface_type"
-	Then option "pw1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be enabled
-	And option "eth1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be disabled
+	Then option "Testdevice: pw1" from "device_interfaces_attributes_0_connected_to" should be enabled
+	And option "Testdevice: eth1" from "device_interfaces_attributes_0_connected_to" should be disabled
 	And I follow "Add Interface"
 	When I select "Ethernet" from "device_interfaces_attributes_1_interface_type"
-	Then option "pw1 on Testdevice" from "device_interfaces_attributes_1_connected_to" should be disabled
-	And option "eth1 on Testdevice" from "device_interfaces_attributes_1_connected_to" should be enabled
-	When I select "pw1 on Testdevice" from "device_interfaces_attributes_0_connected_to"
+	Then option "Testdevice: pw1" from "device_interfaces_attributes_1_connected_to" should be disabled
+	And option "Testdevice: eth1" from "device_interfaces_attributes_1_connected_to" should be enabled
+	When I select "Testdevice: pw1" from "device_interfaces_attributes_0_connected_to"
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "black"
-	And I select "eth1 on Testdevice" from "device_interfaces_attributes_1_connected_to"
+	And I select "Testdevice: eth1" from "device_interfaces_attributes_1_connected_to"
 	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
-	And I should see "PW1 ~ pw1 on Testdevice"
-	And I should see "eth1 ~ eth1 on Testdevice"
+	And I should see "PW1 ~ Testdevice: pw1"
+	And I should see "eth1 ~ Testdevice: eth1"
 
 @javascript
 Scenario: Connecting an interface to a device inside a different rack
@@ -251,12 +251,12 @@ Scenario: Connecting an interface to a device inside a different rack
 	When I select "Ethernet" from "device_interfaces_attributes_0_interface_type"
 	Then the "device_interfaces_attributes_0_name" field should contain "eth1"
 	When I select "devices testrack" from "device_interfaces_attributes_0_selected_server_rack"
-	Then option "pw1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be disabled
-	And option "eth1 on Testdevice" from "device_interfaces_attributes_0_connected_to" should be enabled
-	When I select "eth1 on Testdevice" from "device_interfaces_attributes_0_connected_to"
+	Then option "Testdevice: pw1" from "device_interfaces_attributes_0_connected_to" should be disabled
+	And option "Testdevice: eth1" from "device_interfaces_attributes_0_connected_to" should be enabled
+	When I select "Testdevice: eth1" from "device_interfaces_attributes_0_connected_to"
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "black"
 	And I press "Create Device"
-	Then I should see "eth1 ~ eth1 on Testdevice"
+	Then I should see "eth1 ~ Testdevice: eth1"
 
 @javascript
 Scenario: Adding a device while quickly adding multiple interfaces

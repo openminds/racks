@@ -30,11 +30,11 @@ Scenario: Connect two interfaces
 	And I follow "Connected server"
 	And I follow "Add interface"
 	When I fill in "interface_name" with "eth0"
-	And I select "eth0 on Testdevice" from "interface_connected_to"
+	And I select "Testdevice: eth0" from "interface_connected_to"
 	And I fill in "interface_cable_connection_color" with "Blue"
 	And I press "Save"
-	And I should see "eth0 ~ eth0 on Testdevice"
-	And I should see "eth0 ~ eth0 on Connected server"
+	And I should see "eth0 ~ Testdevice: eth0"
+	And I should see "eth0 ~ Connected server: eth0"
 
 Scenario: Disconnect an interface
 	And a device exists with name: "Left device"
@@ -49,6 +49,7 @@ Scenario: Disconnect an interface
 	And I follow "Datacenter"
 	And I follow "Rack"
 	And I follow "Left device"
+	Then show me the page
 	Then I should see "left ethernet right ethernet on right device"
 	When I follow "Edit" within "[@class='ui-block-a']"
 	And I select "disconnect" from "interface_connected_to" 
@@ -89,7 +90,7 @@ Scenario: reconnect an interface
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
 	When I follow "Edit" within "[@class='ui-block-a']"
-	And I select "new connection on Third device" from "interface_connected_to" 
+	And I select "Third device: new connection" from "interface_connected_to" 
 	And I press "Save"
-	Then I should see "left ethernet ~ new connection on Third device"
-	And I should not see "right ethernet ~ left ethernet on Left device"
+	Then I should see "left ethernet ~ Third device: new connection"
+	And I should not see "right ethernet ~ Left device: left ethernet"
