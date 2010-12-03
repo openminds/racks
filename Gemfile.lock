@@ -20,12 +20,12 @@ GIT
 
 GIT
   remote: http://github.com/freelancing-god/thinking-sphinx.git
-  revision: 8afd67556f45c50f6cdf8638fd0ff7108c9d2952
+  revision: 822854aeaa0a580f7c19f6837433e697b2529048
   branch: rails3
   specs:
-    thinking-sphinx (2.0.0.rc2)
-      activerecord (>= 3.0.0)
-      riddle (>= 1.0.12)
+    thinking-sphinx (2.0.1)
+      activerecord (>= 3.0.3)
+      riddle (>= 1.2.1)
 
 GIT
   remote: http://github.com/rails/exception_notification.git
@@ -65,7 +65,7 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
-    arel (2.0.4)
+    arel (2.0.6)
     aruba (0.2.4)
       background_process
       cucumber (~> 0.9.3)
@@ -166,7 +166,7 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     responders (0.6.2)
-    riddle (1.1.0)
+    riddle (1.2.1)
     rspec (2.1.0)
       rspec-core (~> 2.1.0)
       rspec-expectations (~> 2.1.0)
