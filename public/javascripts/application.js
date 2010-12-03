@@ -131,12 +131,22 @@ $(function(){
 		var id = $(this).attr("id").split("_")[3];
 		var selected = $(this).val();
 		disableInterfaces(id);
+		var counter = 0;
+		//count the interfaces with the selected type
+		$("select[id$=_interface_type]").children("option[value='"+selected+"']").each(function (){
+			if ($(this).attr("selected") == true){
+				counter ++;
+			};
+		});
+		// it should start with 0
+		counter --;
 		if ($("#device_interfaces_attributes_"+ id + "_name").val() == "" ) {
 			if (selected == 1){
-				$("#device_interfaces_attributes_"+ id + "_name").val("eth" + id);
+				
+				$("#device_interfaces_attributes_"+ id + "_name").val("eth" + counter);
 			};
 			if (selected == 2){
-				$("#device_interfaces_attributes_"+ id + "_name").val("PW" + id);
+				$("#device_interfaces_attributes_"+ id + "_name").val("PW" + counter);
 			};
 		};
 		return false;

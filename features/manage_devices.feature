@@ -226,7 +226,7 @@ Scenario: When selecting an interface type, other types should be disabled
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
 	And I should see "PW0 ~ pw0 on Testdevice"
-	And I should see "eth1 ~ eth0 on Testdevice"
+	And I should see "eth0 ~ eth0 on Testdevice"
 
 @javascript
 Scenario: Connecting an interface to a device inside a different rack
