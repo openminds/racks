@@ -49,7 +49,6 @@ Scenario: Disconnect an interface
 	And I follow "Datacenter"
 	And I follow "Rack"
 	And I follow "Left device"
-	Then show me the page
 	Then I should see "left ethernet right ethernet on right device"
 	When I follow "Edit" within "[@class='ui-block-a']"
 	And I select "disconnect" from "interface_connected_to" 
