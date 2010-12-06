@@ -2,6 +2,8 @@ module ServerRacksHelper
 	def show_info_for_server_rack(server_rack)
 		comment =  content_tag :p, server_rack.comment
 		concat(comment)
+		lock_code = content_tag :p, "Lock code: #{server_rack.lock_code}"
+		concat(lock_code)
 		available_units = content_tag :p, "Available units: #{server_rack.units.available.size}/#{server_rack.units.size}"
 		concat(available_units)
 		if server_rack.units.available.any?
