@@ -11,7 +11,9 @@
 		<div id='rack_info'>
 			<p><%= @server_rack.comment %></p>
 			<p>Available units: <%= "#{@server_rack.units.available.count}/#{@server_rack.units.count}" %></p>
-			
+			<p>
+				Biggest space: <%= "#{server_rack.biggest_available_space.size}U (#{server_rack.biggest_available_space.first.number} - #{server_rack.biggest_available_space.last.number})" %>
+			</p>
 			<%= link_to 'Edit', [:edit, @server_rack.datacenter, @server_rack], :class => 'remote' %> |
 			<%= link_to 'Back', [@server_rack.datacenter, :server_racks] %>
 		</div>

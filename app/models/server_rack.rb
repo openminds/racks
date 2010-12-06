@@ -37,4 +37,13 @@ class ServerRack < ActiveRecord::Base
 	def search_label
 		"#{self.name} in #{self.datacenter.name}"
 	end
+	
+	def biggest_available_space
+		units.available.inject([]) do |space, unit|
+			if space.last.try(:number) != unit.number - 1
+				space = []
+			end
+			space << unit
+		end
+	end
 end

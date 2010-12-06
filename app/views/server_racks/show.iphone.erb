@@ -8,6 +8,9 @@
 	<div data-inline='true'>
 		<p><%= @server_rack.comment %></p>
 		<p>Available units: <%= "#{@server_rack.units.available.size}/#{@server_rack.units.size}" %></p>
+		<p>
+			Biggest space: <%= "#{server_rack.biggest_available_space.size}U (#{server_rack.biggest_available_space.first.number} - #{server_rack.biggest_available_space.last.number})" %>
+		</p>
 	</div>
 
 	<%= link_to "Edit", [:edit, @server_rack.datacenter, @server_rack], {"data-role" => "button"} %>
