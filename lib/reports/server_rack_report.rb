@@ -28,25 +28,27 @@ class ServerRackReport < Prawn::Document
 
 			text "#{device.comment}", :indent_paragraphs => indent
 			text " Used by: #{device.company_names}", :indent_paragraphs => indent
-
-			font("Helvetica", :style => :bold, :size => 14) do
-				text "Interfaces", :indent_paragraphs => indent
-			end
-			#interfaces
-			interfaces = []
-			device.interfaces.each do |interface|
-				arr = []
-				arr[0] = interface.name
-				if interface.other && interface.cable_connection
-					arr[1] = "(#{interface.cable_connection.color}) connected to"
-					arr[2] = "#{interface.other.to_s}"
-				else
-					arr[1] = " "
-					arr[2] = " "
+			if device.interfaces.any?
+				font("Helvetica", :style => :bold, :size => 14) do
+					text "Interfaces", :indent_paragraphs => indent
 				end
-				interfaces << arr
+				#interfaces
+				interfaces = []
+				device.interfaces.each do |interface|
+					arr = []
+					arr[0] = interface.name
+					if interface.other && interface.cable_connection
+						arr[1] = "(#{interface.cable_connection.color}) connected to"
+						arr[2] = "#{interface.other.to_s}"
+					else
+						arr[1] = " "
+						arr[2] = " "
+					end
+					interfaces << arr
+				end
+				table(interfaces, :width => 400)
 			end
-			table(interfaces, :width => 400)
+
 		end
 		# Render it!
 		render
