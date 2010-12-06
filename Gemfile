@@ -10,6 +10,7 @@ gem 'thinking-sphinx', :git => 'http://github.com/freelancing-god/thinking-sphin
 gem 'whenever'
 gem 'devise'
 gem 'state_machine'
+gem 'prawn', :git => "git://github.com/sandal/prawn", :tag => '0.10.2', :submodules => true
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

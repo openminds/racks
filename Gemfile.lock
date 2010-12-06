@@ -19,6 +19,15 @@ GIT
       cucumber (~> 0.9.0)
 
 GIT
+  remote: git://github.com/sandal/prawn
+  revision: 89ba0ebf7ac3705756330a25ab4c88e4c71e36d8
+  tag: 0.10.2
+  submodules: true
+  specs:
+    prawn (0.10.2)
+      pdf-reader (>= 0.8.1)
+
+GIT
   remote: http://github.com/freelancing-god/thinking-sphinx.git
   revision: 822854aeaa0a580f7c19f6837433e697b2529048
   branch: rails3
@@ -36,6 +45,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    Ascii85 (1.0.0)
     aaronh-chronic (0.3.9)
     abstract (1.0.0)
     actionmailer (3.0.3)
@@ -139,6 +149,8 @@ GEM
       net-ssh (>= 1.99.1)
     nokogiri (1.4.3.1)
     openminds_deploy (0.0.5)
+    pdf-reader (0.9.0)
+      Ascii85 (>= 0.9)
     pickle (0.4.3)
       cucumber (>= 0.8)
       rake
@@ -218,6 +230,7 @@ DEPENDENCIES
   mysql
   openminds_deploy
   pickle
+  prawn!
   railroady
   rails (= 3.0.3)
   responders

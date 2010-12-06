@@ -12,6 +12,13 @@ class ServerRacksController < ApplicationController
 	end
 	def show
 		@server_rack = ServerRack.find(params[:id])
+		respond_with @server_rack.datacenter, @server_rack do |format|
+			format.html
+			format.pdf do
+				pdf_report = ServerRackReport.new(:page_size => "A4").to_pdf(@server_rack)
+				send_data pdf_report, :filename => "#{@server_rack.name}.pdf", :type => "application/pdf"
+			end
+		end
 	end
 
 	def new
