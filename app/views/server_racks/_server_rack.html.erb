@@ -1,11 +1,7 @@
 <% cache dom_id(server_rack) do %>
 <fieldset title="<%= server_rack.name %>">
 	<legend><%= server_rack.name %></legend>
-	<p><%= server_rack.comment %></p>
-	<p>Available units: <%= "#{server_rack.units.available.size}/#{server_rack.units.size}" %></p>
-	<p>
-		Biggest space: <%= "#{server_rack.biggest_available_space.size}U (#{server_rack.biggest_available_space.first.number} - #{server_rack.biggest_available_space.last.number})" %>
-	</p>
+	<% show_info_for_server_rack server_rack %>
 	<p>
 		<%= link_to 'Show',  [server_rack.datacenter, server_rack] %>
     	<%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack], :class => "remote" %>
