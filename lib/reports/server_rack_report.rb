@@ -13,12 +13,18 @@ class ServerRackReport < Prawn::Document
 		text server_rack.comment
 		text "Units: #{server_rack.units.available.size} / #{server_rack.units.size}"
 		text "Biggest available space: #{server_rack.biggest_available_space.size} (#{server_rack.biggest_available_space.first.number} - #{server_rack.biggest_available_space.last.number})"
+		text "Lock: #{server_rack.lock_code}"
 
 		# Devices
 		server_rack.devices.each do |device|
 			move_down 20
 			font("Helvetica", :style => :bold, :size => 16) do
-				text "#{device.units.first.number} - #{device.units.last.number}: #{device.device_type(:name)}: #{device.name}"
+				device_title = "#{device.units.first.number}"
+				if device.units.size > 1
+					device_title += " - #{device.units.last.number}"
+				end
+				device_title += ": #{device.device_type(:name)}: #{device.name}"
+				text device_title
 			end
 
 			text "#{device.comment}", :indent_paragraphs => indent
