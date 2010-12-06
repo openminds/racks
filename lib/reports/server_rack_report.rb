@@ -1,5 +1,4 @@
 class ServerRackReport < Prawn::Document
-
 	def to_pdf(server_rack)
 		#font settings
 		self.font_size = 12
@@ -38,7 +37,7 @@ class ServerRackReport < Prawn::Document
 			device.interfaces.each do |interface|
 				arr = []
 				arr[0] = interface.name
-				if interface.other
+				if interface.other && interface.cable_connection
 					arr[1] = "(#{interface.cable_connection.color}) connected to"
 					arr[2] = "#{interface.other.to_s}"
 				else
@@ -49,7 +48,6 @@ class ServerRackReport < Prawn::Document
 			end
 			table(interfaces, :width => 400)
 		end
-	
 		# Render it!
 		render
 	end
