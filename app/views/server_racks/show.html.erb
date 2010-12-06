@@ -10,6 +10,7 @@
 		</ul>
 		<div id='rack_info'>
 			<% show_info_for_server_rack @server_rack %>
+			<%= link_to 'Generate PDF',  datacenter_server_rack_path(server_rack.datacenter, server_rack, :format => :pdf) %>
 			<%= link_to 'Edit', [:edit, @server_rack.datacenter, @server_rack], :class => 'remote' %> |
 			<%= link_to 'Back', [@server_rack.datacenter, :server_racks] %>
 		</div>
