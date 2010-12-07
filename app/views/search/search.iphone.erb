@@ -1,13 +1,13 @@
 
 <div data-role="header" data-position="fixed" >
-	<%= link_to "Back", datacenters_path, {"data-icon" => "arrow-l", :rel=>"", "data-transition"=>"flip"}%>
+	<%= link_to "Back", datacenters_path, {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
 	<h1>Search</h1>
 </div><!-- /header -->
 
 <div id="content" data-role="content">	
 	<%= form_tag(search_path, :method => :get) do |form| %>
 	<%= label_tag :term, "search: " -%>
-	<%= text_field_tag :term %>
+	<%= search_field_tag :term %>
 	<%#= submit_tag "Search" %>
 	<%end%>
 	<div id="resultsplaceholder">
