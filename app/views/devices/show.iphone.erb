@@ -24,7 +24,7 @@
 			<p style="float:left;"><%= interface.name %></p>
 		</div>
 		<div class="ui-block-b">
-			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device], :style => "text-decoration:none;background-color:#{interface.cable_connection.color};") if interface.cable_connection, :rel => "external" %>
+			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device], :rel => "external", :style => "text-decoration:none;background-color:#{interface.cable_connection.color};") if interface.cable_connection %>
 			<%= "not connected" if interface.cable_connection == nil  %>
 		</div>
 		<%end%>
