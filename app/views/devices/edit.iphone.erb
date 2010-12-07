@@ -1,6 +1,6 @@
 <%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
 <div data-role="header"  data-position="fixed">
-	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack, @device], {"data-icon" => "arrow-l", :rel=>"", "data-transition"=>"flip"}%>
+	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack, @device], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
 	<h1>Edit device</h1>
 </div><!-- /header -->
 
@@ -10,7 +10,8 @@
 		<h3>Units</h3>
 		<fieldset data-role="controlgroup">
 		<%= form.fields_for :unit_ids do |unit_id|%>
-			<% (@device.units+@device.server_rack.units.available).each do |unit|%>
+			<% units = (@device.units + @device.server_rack.units.available) %>
+			<% units.each do |unit|%>
 				<%= unit_id.check_box "", {:id => "unit_#{unit.id}", :checked => ("checked" if @device.units.include?(unit))}, unit.id, nil %> 
 				<label for='<%="unit_#{unit.id}"%>'><%=unit.number%></label>
 			<% end %>

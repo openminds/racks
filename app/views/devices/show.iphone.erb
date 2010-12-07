@@ -1,5 +1,5 @@
 <div data-role="header" data-position="fixed"  >
-	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel=>"", "data-transition"=>"pop"}%>
+	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"pop"}%>
 	<h1><%= @device.server_rack.datacenter.name%>::<%= @device.server_rack.name %>::<%=@device.name%></h1>
 	<%= link_to "Delete", [@device.server_rack.datacenter, @device.server_rack, @device], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
@@ -11,7 +11,7 @@
 		
 	</div>
 
-	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button"} %>
+	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button", :rel => "external"} %>
 	<br>
 	<div class="ui-grid-a">
 		<%@device.interfaces.each do |interface|%>
@@ -24,7 +24,7 @@
 			<p style="float:left;"><%= interface.name %></p>
 		</div>
 		<div class="ui-block-b">
-			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device], :style => "text-decoration:none;background-color:#{interface.cable_connection.color};") if interface.cable_connection %>
+			<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device], :style => "text-decoration:none;background-color:#{interface.cable_connection.color};") if interface.cable_connection, :rel => "external" %>
 			<%= "not connected" if interface.cable_connection == nil  %>
 		</div>
 		<%end%>

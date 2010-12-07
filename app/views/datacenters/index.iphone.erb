@@ -1,12 +1,12 @@
 <div data-role="header"  data-nobackbtn="true" data-position="fixed">
 	<h1>Datacenters</h1>
-	<%= link_to "Lookup", search_path, {"data-icon" => "star", :class => "ui-btn-right", :rel=>""} %>
+	<%= link_to "Lookup", search_path, {"data-icon" => "star", :class => "ui-btn-right", :rel => "external"} %>
 </div><!-- /header -->
 
 <div id="content" data-role="content">	
 	<ul data-role='listview' data-filter="true">
 		<%@datacenters.each do |datacenter|%>
-		<li><%= link_to datacenter.name, [datacenter, :server_racks]%></li>
+		<li><%= link_to datacenter.name, [datacenter, :server_racks], {:rel => "external"}%></li>
 		<%end%>
 	</ul>
 </div><!-- /content -->
