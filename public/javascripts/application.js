@@ -2,7 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 $(function(){
 	//init tabs
-	// $("#server_rack_info").tabs();
 	$('.tabs').tabs();
 	$(".devices_accordion").accordion({collapsible:true, active:false, icons:false, autoHeight:false});
 	//Select the devices tab by default
@@ -177,8 +176,8 @@ $(function(){
 				disableInterfaces(id);
 			}
 		});
-		
 	});
+	startKonami();
 });
 //A custom search autocomplete (using categories)
 $.widget( "custom.catcomplete", $.ui.autocomplete, {
@@ -259,4 +258,23 @@ function split( val ) {
 function extractLast( term ) {
 	return split( term ).pop();
 }
-
+function loadJavascript(filename){
+	var fileref=document.createElement('script')
+	fileref.setAttribute("type","text/javascript")
+	fileref.setAttribute("src", filename)
+	document.getElementsByTagName("head")[0].appendChild(fileref)
+}
+function startKonami(){
+	var pattern="3838404037393739656613"
+	var entered=""
+	$("body").live("keyup", function(){
+		entered += event.keyCode
+		if(event.keyCode == "27"){
+			entered="";
+		}
+		if(entered == pattern){
+			entered = "";
+			loadJavascript("/javascripts/asteroids.min.js");
+		}
+	});
+}
