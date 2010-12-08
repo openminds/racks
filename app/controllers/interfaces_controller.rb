@@ -56,8 +56,5 @@ class InterfacesController < ApplicationController
 			format.iphone {redirect_to [current_datacenter, current_server_rack, current_device]}
 		end
 	end
-	
-
-	
 
 end
