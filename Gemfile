@@ -48,6 +48,7 @@ group :production do
 end
 group :development, :test do
 	gem 'railroady'
+	gem 'yUMLmeRails',  :git => "http://github.com/tute/yUMLmeRails.git"
 end
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
