@@ -9,4 +9,3 @@ db/sphinx/*
 log/**
 log/**/*
 test/fixtures/*.yml
-Gemfile.lock
