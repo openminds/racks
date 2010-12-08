@@ -12,7 +12,7 @@
 		<fieldset data-role="controlgroup">
 		<%= form.fields_for :unit_ids do |unit_id|%>
 			<% @device.server_rack.units.available.each do |unit|%>
-				<%= unit_id.check_box "", {:id => "unit_#{unit.id}"}, unit.id, nil %> 
+				<%= unit_id.check_box "", {:id => "unit_#{unit.id}", :checked => ("checked" if @device.units.include?(unit))}, unit.id, nil %> 
 				<label for='<%="unit_#{unit.id}"%>'><%=unit.number%></label>
 			<% end %>
 		<% end %>
