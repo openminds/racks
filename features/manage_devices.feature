@@ -8,9 +8,9 @@ Background:
 	And I am using a regular browser
 	And a datacenter exist
 	And a server_rack exist with datacenter: the datacenter, name: "devices testrack"
+	And 42 units exist with server_rack: the server_rack
 
 Scenario: Create a device without any interfaces
-	Given 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
@@ -22,8 +22,7 @@ Scenario: Create a device without any interfaces
 
 	
 Scenario: Delete a device
-	Given 12 devices exist
-	And 42 units exist with server_rack: the server_rack, device: a device
+	Given a  "42"U device exists inside the server_rack with name: "Device1"
 	And I am on the datacenters page
 	Then I should see "Available units: 0/42"
 	When I follow "Destroy" within "fieldset/div/div"
@@ -31,8 +30,7 @@ Scenario: Delete a device
 	And I should see "Available units: 42/42"
 
 Scenario: Update a device
-	Given 12 devices exist
-	And 42 units exist with server_rack: the server_rack, device: a device
+	Given a  "42"U device exists inside the server_rack with name: "Device1"
 	And I am on the home page
 	Then I should see "Available units: 0/42"
 	When I follow "Edit" within "fieldset/div/div"
@@ -45,7 +43,6 @@ Scenario: Update a device
 	
 
 Scenario: Create a device with an interface
-	Given 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
@@ -58,10 +55,9 @@ Scenario: Create a device with an interface
 	And I should see "eth0"
 
 Scenario: Create a device with an interface and a connection
-	Given a device exists with name: "Testdevice"
+	Given a  "1"U device exists inside the server_rack with name: "Testdevice"
+	Then a device should exist
 	And an interface exists with device: the device, interface_type: 1, name: "eth0"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And 40 units exist with server_rack: the server_rack
 	And I am on the home page
 	And I follow "Add device"
 	When I fill in "device_name" with "Connected server"
@@ -77,14 +73,11 @@ Scenario: Create a device with an interface and a connection
 	And I should see "eth0 ~ Connected server: eth0"
 
 Scenario: Disconnect an interface
-	Given a device exists with name: "Left device"
-	And an interface: "left ethernet" exists with name: "left ethernet", device: the device, interface_type: 1
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "right device"
-	And an interface: "right ethernet" exists with name: "right ethernet", device: the device, interface_type: 1
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a cable connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
-	And 38 units exist with server_rack: the server_rack
+	Given a  "1"U device exists inside the server_rack with name: "Left device"
+	And an interface: "left ethernet" exists with name: "left ethernet", device_id: 1, interface_type: 1
+	Given a  "1"U device exists inside the server_rack with name: "right device"
+	And an interface: "right ethernet" exists with name: "right ethernet", device_id: 2, interface_type: 1
+	And a cable_connection between the two with color: "Yellow"
 	And I am on the home page
 	Then I should see "left ethernet ~ right device: right ethernet"
 	And I should see "right ethernet ~ Left device: left ethernet"
@@ -96,14 +89,11 @@ Scenario: Disconnect an interface
 	And I should not see "right ethernet ~ Left device: left ethernet"
 
 Scenario: Delete an interface with a connection
-	Given a device exists with name: "Left device"
-	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "right device"
-	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
-	And 38 units exist with server_rack: the server_rack
+	Given a  "1"U device exists inside the server_rack with name: "Left device"
+	And an interface: "left ethernet" exists with name: "left ethernet", device_id: 1, interface_type: 1
+	Given a  "1"U device exists inside the server_rack with name: "right device"
+	And an interface: "right ethernet" exists with name: "right ethernet", device_id: 2, interface_type: 1
+	And a cable_connection between the two with color: "Yellow"
 	And I am on the home page
 	Then I should see "left ethernet ~ right device: right ethernet"
 	And I should see "ight ethernet ~ Left device: left ethernet"
@@ -117,17 +107,13 @@ Scenario: Delete an interface with a connection
 	Then I should see "right ethernet"
 
 Scenario: reconnect an interface
-	Given a device exists with name: "Left device"
-	And an interface exists with device: the device, interface_type: 1, name: "left ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "right device"
-	And an interface exists with device: the device, interface_type: 1, name: "right ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "Third device"
-	And an interface exists with device: the device, interface_type: 1, name: "new connection"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
-	And 36 units exist with server_rack: the server_rack
+	Given a  "1"U device exists inside the server_rack with name: "Left device"
+	And an interface: "left ethernet" exists with name: "left ethernet", device_id: 1, interface_type: 1
+	Given a  "1"U device exists inside the server_rack with name: "right device"
+	And an interface: "right ethernet" exists with name: "right ethernet", device_id: 2, interface_type: 1
+	And a cable_connection between the two with color: "Yellow"
+	And a  "1"U device exists inside the server_rack with name: "Third device"
+	And an interface exists with device_id: 3, interface_type: 1, name: "new connection"
 	And I am on the home page
 	Then I should see "left ethernet ~ right device: right ethernet"
 	And I should see "right ethernet ~ Left device: left ethernet"
@@ -138,15 +124,13 @@ Scenario: reconnect an interface
 	And I should not see "right ethernet ~ Left device: left ethernet"
 
 Scenario: Trying to create an invalid device
-	Given 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Add device"
 	And I press "Create Device"
 	Then I should see "Name can't be blank"
 
 Scenario: Trying to make an existing device invalid
-	Given 12 devices exist
-	And 42 units exist with server_rack: the server_rack, device: a device
+	Given a  "42"U device exists inside the server_rack with name: "Device1"
 	And I am on the home page
 	Then I should see "Available units: 0/42"
 	When I follow "Edit" within "fieldset/div/div"
@@ -157,7 +141,6 @@ Scenario: Trying to make an existing device invalid
 	
 @javascript
 Scenario: Adding a device with multiple interfaces
-	Given 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
@@ -180,10 +163,8 @@ Scenario: Adding a device with multiple interfaces
 
 @javascript
 Scenario: Connecting a device when creating it with multiple interfaces
-	Given a device exists with name: "Testdevice"
-	And an interface exists with device: the device, interface_type: 1, name: "eth1"
-	And 40 units exist with server_rack: the server_rack
-	And 2 units exist with server_rack: the server_rack, device: the device
+	Given a  "2"U device exists inside the server_rack with name: "Testdevice"
+	And an interface exists with device_id: 1, interface_type: 1, name: "eth1"
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
@@ -201,11 +182,9 @@ Scenario: Connecting a device when creating it with multiple interfaces
 	
 @javascript
 Scenario: When selecting an interface type, other types should be disabled
-	Given a device exists with name: "Testdevice"
-	And an interface exists with device: the device, interface_type: 2, name: "pw1"
-	And an interface exists with device: the device, interface_type: 1, name: "eth1"
-	And 40 units exist with server_rack: the server_rack
-	And 2 units exist with server_rack: the server_rack, device: the device
+	Given a  "2"U device exists inside the server_rack with name: "Testdevice"
+	And an interface exists with device_id: 1, interface_type: 2, name: "pw1"
+	And an interface exists with device_id: 1, interface_type: 1, name: "eth1"
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
@@ -230,11 +209,9 @@ Scenario: When selecting an interface type, other types should be disabled
 
 @javascript
 Scenario: Connecting an interface to a device inside a different rack
-	Given a device exists with name: "Testdevice"
-	And an interface exists with device: the device, interface_type: 2, name: "pw1"
-	And an interface exists with device: the device, interface_type: 1, name: "eth1"
-	And 40 units exist with server_rack: the server_rack
-	And 2 units exist with server_rack: the server_rack, device: the device
+	Given a  "2"U device exists inside the server_rack with name: "Testdevice"
+	And an interface exists with device_id: 1, interface_type: 2, name: "pw1"
+	And an interface exists with device_id: 1, interface_type: 1, name: "eth1"
 	And I am on the home page
 	When I follow "Add rack"
 	And I fill in "server_rack_name" with "Second rack"
@@ -260,7 +237,6 @@ Scenario: Connecting an interface to a device inside a different rack
 
 @javascript
 Scenario: Adding a device while quickly adding multiple interfaces
-	Given 42 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"

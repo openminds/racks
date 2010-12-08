@@ -25,8 +25,8 @@ Scenario: Create a device
 Scenario: Delete a device
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
-	And 12 devices exist
-	And 42 units exist with server_rack: the server_rack, device: a device
+	And 42 units exist with server_rack: the server_rack
+	And a  "42"U device exists inside the server_rack with name: "Device1"
 	And I am on the home page
 	When I follow "Datacenter"
 	And I follow "Rack"
@@ -38,8 +38,8 @@ Scenario: Delete a device
 Scenario: Update a device
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
-	And a device exists
-	And 42 units exist with server_rack: the server_rack, device: the device
+	And 42 units exist with server_rack: the server_rack
+	And a  "42"U device exists inside the server_rack with name: "Device1"
 	And I am on the home page
 	When I follow "Datacenter"
 	And I follow "Rack"

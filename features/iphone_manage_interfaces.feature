@@ -7,13 +7,13 @@ Background:
 	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
-	And a server_rack exist with datacenter: the datacenter
+	And a server_rack exist with name: "Rack", datacenter: the datacenter
+	And 42 units exist with server_rack: the server_rack
 
 Scenario: Connect two interfaces
-	And a device exists with name: "Testdevice"
+	And a  "2"U device exists inside the server_rack with name: "Testdevice"
+	Then a device should exist
 	And an interface exists with device: the device, interface_type: 1, name: "eth0"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And 40 units exist with server_rack: the server_rack
 	And I am on the home page
 	When I follow "Datacenter"
 	And I follow "Rack"
@@ -37,33 +37,29 @@ Scenario: Connect two interfaces
 	And I should see "eth0 ~ Connected server: eth0"
 
 Scenario: Disconnect an interface
-	And a device exists with name: "Left device"
+	And a  "2"U device exists inside the server_rack with name: "Left device"
+	Then a device should exist with name: "Left device"
 	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "right device"
+	And a  "2"U device exists inside the server_rack with name: "Right device"
+	Then a device should exist with name: "Right device"
 	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
-	And 38 units exist with server_rack: the server_rack
+	And a cable_connection between the two with color: "Yellow"
 	And I am on the home page
 	And I follow "Datacenter"
 	And I follow "Rack"
 	And I follow "Left device"
-	Then I should see "left ethernet right ethernet on right device"
+	Then I should see "left ethernet right ethernet on Right device"
 	When I follow "Edit" within "[@class='ui-block-a']"
 	And I select "disconnect" from "interface_connected_to" 
 	And I press "Save"
 	Then I should see "left ethernet"
 
-
 Scenario: Delete an interface with a connection
-	And a device exists with name: "Left device"
-	And an interface "left_ethernet" exists with device: the device, interface_type: 1, name: "left ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "right device"
-	And an interface "right_ethernet" exists with device: the device, interface_type: 1, name: "right ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
+	And a  "2"U device exists inside the server_rack with name: "Left device"
+	And an interface "left_ethernet" exists with device_id: 1, interface_type: 1, name: "left ethernet"
+	And a  "2"U device exists inside the server_rack with name: "right device"
+	And an interface "right_ethernet" exists with device_id: 2, interface_type: 1, name: "right ethernet"
+	And a cable_connection between the two with color: "Yellow"
 	And I am on the home page
 	And I follow "Datacenter"
 	And I follow "Rack"
@@ -73,16 +69,13 @@ Scenario: Delete an interface with a connection
 	Then I should not see "left ethernet"
 
 Scenario: reconnect an interface
-	And a device exists with name: "Left device"
-	And an interface exists with device: the device, interface_type: 1, name: "left ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "right device"
-	And an interface exists with device: the device, interface_type: 1, name: "right ethernet"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a device exists with name: "Third device"
-	And an interface exists with device: the device, interface_type: 1, name: "new connection"
-	And 2 units exist with server_rack: the server_rack, device: the device
-	And a cable_connection exists with left_interface_id: 1, right_interface_id: 2, color: "Yellow"
+	And a  "2"U device exists inside the server_rack with name: "Left device"
+	And an interface "left_ethernet" exists with device_id: 1, interface_type: 1, name: "left ethernet"
+	And a  "2"U device exists inside the server_rack with name: "right device"
+	And an interface "right_ethernet" exists with device_id: 2, interface_type: 1, name: "right ethernet"
+	And a cable_connection between the two with color: "Yellow"
+	And a  "2"U device exists inside the server_rack with name: "Third device"
+	And an interface exists with device_id: 3, interface_type: 1, name: "new connection"
 	And I am on the home page
 	And I follow "Datacenter"
 	And I follow "Rack"

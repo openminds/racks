@@ -7,9 +7,9 @@ Background:
 	Given a company exists with customer_number: 123, name: "Testcompany"
 	And a datacenter exists with name: "A datacenter"
 	And a server_rack exists with name: "R1", datacenter: the datacenter
-	And a device exists with name: "testdevice", company_names: "Testcompany"
-	And a unit exist with server_rack: the server_rack, device: the device
-	And 41 units exist with server_rack: the server_rack
+	And 42 units exist with server_rack: the server_rack
+	And a  "2"U device exists inside the server_rack with name: "testdevice", company_names: "Testcompany"
+	
 	 
 Scenario: Get the data for the customer
 	Given I post a correct secret and existing customer number
