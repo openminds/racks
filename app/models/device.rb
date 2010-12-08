@@ -3,8 +3,9 @@ class Device < ActiveRecord::Base
 	has_and_belongs_to_many :companies
 	has_many :interfaces, :dependent => :destroy
 	accepts_nested_attributes_for :interfaces, :allow_destroy => true, :reject_if => :all_blank
-
+	
 	validates_presence_of :name, :message => "can't be blank"
+	validate :validate_units
 
 
 	define_index do
@@ -71,5 +72,10 @@ class Device < ActiveRecord::Base
 
 	def search_label
 		"#{self.name} (#{company_names})"
+	end
+	
+	private
+	def validate_units
+		errors.add(:units, "can't be empty") if self.units.empty?
 	end
 end

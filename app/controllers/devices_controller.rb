@@ -30,11 +30,14 @@ class DevicesController < ApplicationController
 				@device.interfaces.build
 			end
 		end
+		if @device.units.empty?
+			@device.units << current_server_rack.units.available.first
+		end
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
 			format.iphone do
 				if @device.errors.any?
-					redirect_to [@device.server_rack.datacenter, @device.server_rack, @device, :new]
+					redirect_to new_datacenter_server_rack_device_path(@device.server_rack.datacenter, @device.server_rack, @device)
 				else
 					redirect_to [@device.server_rack.datacenter, @device.server_rack, @device]
 				end
@@ -50,6 +53,9 @@ class DevicesController < ApplicationController
 			if !@device.interfaces.any?
 				@device.interfaces.build
 			end
+		end
+		if @device.units.empty?
+			@device.units << current_server_rack.units.available.first
 		end
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
