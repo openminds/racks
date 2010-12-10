@@ -96,13 +96,14 @@ html[xmlns] .clearfix {
 	display:block;
 	position:absolute;
 	top:40px;
-	left:60%;
+	left:750px;
+	width:400px;
 }
 #search form {
 
 }
 #search #s{
-	width:300px;
+	width:250px;
 }
 #content {
 	position:absolute;
