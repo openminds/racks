@@ -27,9 +27,6 @@ class SearchController < ApplicationController
 		end
 	end
 	
-	def iphone_search
-	end
-	
 	def find_colors
 		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").map(&:color)
 		@colors.uniq!
