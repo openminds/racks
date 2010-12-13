@@ -20,7 +20,9 @@ namespace :db do
 			router_counter = 0
 			switch_counter = 0
 			power_bar_counter = 0
-			
+			firewall_counter = 0
+			sts_counter = 0
+
 			Device.where('device_type IS NULL').each do |device|
 				if device.name.downcase.include?("server") || device.comment.downcase.include?("server")
 					device.device_type = 1;
@@ -41,6 +43,16 @@ namespace :db do
 					device.device_type = 4;
 					device.save!
 					power_bar_counter +=1
+				end
+				if device.name.downcase.include?("firewall") || device.comment.downcase.include?("firewall")
+					device.device_type = 5;
+					device.save!
+					power_bar_counter +=1
+				end
+				if device.name.downcase.include?("sts") || device.comment.downcase.include?("sts")
+					device.device_type = 6;
+					device.save!
+					sts_counter +=1
 				end
 			end
 			puts "Updated #{server_counter} servers"
