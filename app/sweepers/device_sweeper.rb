@@ -4,6 +4,10 @@ class DeviceSweeper < ActionController::Caching::Sweeper
 	def after_save(device)
 		expire_cache(device)
 	end
+	
+	def after_create(device)
+		expire_cache(device)
+	end
 
 	def after_destroy(device)
 		expire_cache(device)
