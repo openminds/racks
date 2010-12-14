@@ -28,7 +28,7 @@ class SearchController < ApplicationController
 	end
 	
 	def find_colors
-		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").map(&:color)
+		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").map{ |cable| cable.color.downcase}
 		@colors.uniq!
 		respond_to do |format|
 			format.json {render :json => @colors }
