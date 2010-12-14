@@ -19,7 +19,7 @@
 			<td><%= interface.name %></td>
 			<td>
 				<% if interface.cable_connection %>
-				<em style="background-color:<%= interface.cable_connection.color%>;">&#126</em>
+				<span class="connection" style="background-color:<%= interface.cable_connection.color%>;"></span>
 				<% end %>
 			</td>
 			<td>
