@@ -23,8 +23,7 @@ class DevicesController < ApplicationController
 
 	def create
 		@device = Device.new(params[:device])
-		@device.save
-		if request.format == :html
+		if @device.save && request.format == :html 
 			@device.update_cable_connection
 			if !@device.interfaces.any?
 				@device.interfaces.build
@@ -47,8 +46,8 @@ class DevicesController < ApplicationController
 
 	def update
 		@device = Device.find(params[:id])
-		@device.update_attributes(params[:device])
-		if request.format == :html
+		
+		if @device.update_attributes(params[:device]) && request.format == :html
 			@device.update_cable_connection
 			if !@device.interfaces.any?
 				@device.interfaces.build

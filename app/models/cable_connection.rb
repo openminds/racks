@@ -11,4 +11,5 @@ class CableConnection < ActiveRecord::Base
 			other_interface = Interface.find(self.left_interface_id)
 		end
 	end
+	
 end
