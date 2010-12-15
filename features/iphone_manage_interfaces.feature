@@ -33,8 +33,8 @@ Scenario: Connect two interfaces
 	And I select "Testdevice: eth0" from "interface_connected_to"
 	And I fill in "interface_cable_connection_color" with "Blue"
 	And I press "Save"
-	And I should see "eth0 ~ Testdevice: eth0"
-	And I should see "eth0 ~ Connected server: eth0"
+	And I should see "eth0 Testdevice: eth0"
+	And I should see "eth0 Connected server: eth0"
 
 Scenario: Disconnect an interface
 	And a  "2"U device exists inside the server_rack with name: "Left device"
@@ -49,7 +49,7 @@ Scenario: Disconnect an interface
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on Right device"
-	When I follow "Edit" within "[@class='ui-block-a']"
+	When I follow "Edit" within "[@class='interface_controls']"
 	And I select "disconnect" from "interface_connected_to" 
 	And I press "Save"
 	Then I should see "left ethernet"
@@ -65,7 +65,7 @@ Scenario: Delete an interface with a connection
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Delete" within "[@class='ui-block-a']"
+	When I follow "Delete" within "[@class='interface_controls']"
 	Then I should not see "left ethernet"
 
 Scenario: reconnect an interface
@@ -81,8 +81,8 @@ Scenario: reconnect an interface
 	And I follow "Rack"
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
-	When I follow "Edit" within "[@class='ui-block-a']"
+	When I follow "Edit" within "[@class='interface_controls']"
 	And I select "Third device: new connection" from "interface_connected_to" 
 	And I press "Save"
-	Then I should see "left ethernet ~ Third device: new connection"
-	And I should not see "right ethernet ~ Left device: left ethernet"
+	Then I should see "left ethernet Third device: new connection"
+	And I should not see "right ethernet Left device: left ethernet"

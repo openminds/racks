@@ -14,7 +14,7 @@ Scenario: Create a device without any interfaces
 	And I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
-	And I fill in "device_comment" with "Some comment for the restserver"
+	And I fill in "device_comment" with "Some comment for ipthe restserver"
 	And I select "1" from "device_unit_ids"
 	And I press "Create Device"
 	Then I should see "Device was successfully created."
@@ -65,12 +65,12 @@ Scenario: Create a device with an interface and a connection
 	And I select "3" from "device_unit_ids"
 	And I fill in "device_interfaces_attributes_0_name" with "eth0"
 	And I select "Testdevice: eth0" from "device_interfaces_attributes_0_connected_to"
-	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "yellow"
+	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "Yellow"
 	And I press "Create Device"
 	Then I should see "Device was successfully created."
 	And I should see "3: Server: Connected server"
-	And I should see "eth0 ~ Testdevice: eth0"
-	And I should see "eth0 ~ Connected server: eth0"
+	And I should see "eth0 Testdevice: eth0"
+	And I should see "eth0 Connected server: eth0"
 
 Scenario: Disconnect an interface
 	Given a  "1"U device exists inside the server_rack with name: "Left device"
@@ -79,14 +79,14 @@ Scenario: Disconnect an interface
 	And an interface: "right ethernet" exists with name: "right ethernet", device_id: 2, interface_type: 1
 	And a cable_connection between the two with color: "Yellow"
 	And I am on the home page
-	Then I should see "left ethernet ~ right device: right ethernet"
-	And I should see "right ethernet ~ Left device: left ethernet"
+	Then I should see "left ethernet right device: right ethernet"
+	And I should see "right ethernet Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
 	And I select "disconnect" from "device_interfaces_attributes_0_connected_to" 
 	And I press "Update Device"
 	Then I should see "Device was successfully updated."
-	And I should not see "left ethernet ~ right device: right ethernet"
-	And I should not see "right ethernet ~ Left device: left ethernet"
+	And I should not see "left ethernet right device: right ethernet"
+	And I should not see "right ethernet Left device: left ethernet"
 
 Scenario: Delete an interface with a connection
 	Given a  "1"U device exists inside the server_rack with name: "Left device"
@@ -95,14 +95,13 @@ Scenario: Delete an interface with a connection
 	And an interface: "right ethernet" exists with name: "right ethernet", device_id: 2, interface_type: 1
 	And a cable_connection between the two with color: "Yellow"
 	And I am on the home page
-	Then I should see "left ethernet ~ right device: right ethernet"
-	And I should see "ight ethernet ~ Left device: left ethernet"
+	Then I should see "left ethernet right device: right ethernet"
+	And I should see "ight ethernet Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
 	And I check "device_interfaces_attributes_0__destroy" 
 	And I press "Update Device"
 	Then I should see "Device was successfully updated."
-	And I should not see "~"
-	And I should not see "right ethernet ~ Left device: left ethernet"
+	And I should not see "right ethernet Left device: left ethernet"
 	When I follow "Datacenter management"
 	Then I should see "right ethernet"
 
@@ -115,13 +114,13 @@ Scenario: reconnect an interface
 	And a  "1"U device exists inside the server_rack with name: "Third device"
 	And an interface exists with device_id: 3, interface_type: 1, name: "new connection"
 	And I am on the home page
-	Then I should see "left ethernet ~ right device: right ethernet"
-	And I should see "right ethernet ~ Left device: left ethernet"
+	Then I should see "left ethernet right device: right ethernet"
+	And I should see "right ethernet Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
 	And I select "Third device: new connection" from "device_interfaces_attributes_0_connected_to" 
 	And I press "Update Device"
-	Then I should see "left ethernet ~ Third device: new connection"
-	And I should not see "right ethernet ~ Left device: left ethernet"
+	Then I should see "left ethernet Third device: new connection"
+	And I should not see "right ethernet Left device: left ethernet"
 
 Scenario: Trying to create an invalid device
 	And I am on the home page
@@ -178,7 +177,7 @@ Scenario: Connecting a device when creating it with multiple interfaces
 	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
-	And I should see "eth2 ~ Testdevice: eth1"
+	And I should see "eth2 Testdevice: eth1"
 	
 @javascript
 Scenario: When selecting an interface type, other types should be disabled
@@ -204,8 +203,8 @@ Scenario: When selecting an interface type, other types should be disabled
 	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
-	And I should see "PW1 ~ Testdevice: pw1"
-	And I should see "eth1 ~ Testdevice: eth1"
+	And I should see "PW1 Testdevice: pw1"
+	And I should see "eth1 Testdevice: eth1"
 
 @javascript
 Scenario: Connecting an interface to a device inside a different rack
@@ -233,7 +232,7 @@ Scenario: Connecting an interface to a device inside a different rack
 	When I select "Testdevice: eth1" from "device_interfaces_attributes_0_connected_to"
 	And I fill in "device_interfaces_attributes_0_cable_connection_color" with "black"
 	And I press "Create Device"
-	Then I should see "eth1 ~ Testdevice: eth1"
+	Then I should see "eth1 Testdevice: eth1"
 
 @javascript
 Scenario: Adding a device while quickly adding multiple interfaces
