@@ -60,7 +60,7 @@ class Interface < ActiveRecord::Base
 				new_connection.right_interface_id = self.id
 				new_connection.left_interface_id = self.connected_to
 				new_connection.color = self.cable_connection_color
-				new_connection.save!
+				new_connection.save
 			end
 		else
 			to_update = cable_connection
