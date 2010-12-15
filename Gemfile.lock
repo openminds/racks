@@ -5,6 +5,12 @@ GIT
     acts_as_url (0.1.0)
 
 GIT
+  remote: git://github.com/Reprazent/convert_colors.git
+  revision: f474a559fe81b5c74aaa3a2bcb757e1fc2734bbe
+  specs:
+    convert_colors (0.0.1)
+
+GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: 0d334c37f5d9f51831809b02a0e80de83bfb25b6
   specs:
@@ -225,6 +231,7 @@ DEPENDENCIES
   acts_as_url!
   capistrano
   capybara
+  convert_colors!
   cucumber-rails!
   database_cleaner!
   devise
