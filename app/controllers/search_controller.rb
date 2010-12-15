@@ -28,8 +28,11 @@ class SearchController < ApplicationController
 	end
 	
 	def find_colors
-		@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").map{ |cable| cable.color.downcase}
-		@colors.uniq!
+		#@colors = CableConnection.where("color LIKE :term", :term => "%#{params[:term]}%").map{ |cable| cable.color.downcase}
+		@colors = ConvertColors.colors.map(&:name).collect do |color|
+			color if color.downcase.include?(params[:term].downcase)
+		end.compact!
+		logger.debug @colors
 		respond_to do |format|
 			format.json {render :json => @colors }
 		end
