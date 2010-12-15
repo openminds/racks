@@ -12,4 +12,7 @@ class CableConnection < ActiveRecord::Base
 		end
 	end
 	
+	def self.possible_colors
+		ConvertColors.colors.map(&:name)
+	end
 end

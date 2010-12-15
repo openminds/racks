@@ -59,7 +59,12 @@ class Interface < ActiveRecord::Base
 				new_connection = CableConnection.new
 				new_connection.right_interface_id = self.id
 				new_connection.left_interface_id = self.connected_to
-				new_connection.color = self.cable_connection_color
+				if CableConnection.possible_colors.collect{|c| c.downcase}.include? self.cable_connection_color
+					new_connection.color = self.cable_connection_color
+				else
+					new_connection.color = ""
+				end
+				
 				new_connection.save!
 			end
 		else
