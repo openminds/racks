@@ -249,3 +249,19 @@ Scenario: Adding a device while quickly adding multiple interfaces
 	And I press "Create Device"
 	Then the device should have "24" "Ethernet" interfaces
 	And the device should have "12" "Power" interfaces
+
+@javascript	
+Scenario: Trying to add a de no name but wited interfaces
+	Given a  "2"U device exists inside the server_rack with name: "Testdevice"
+	And an interface exists with device_id: 1, interface_type: 1, name: "eth1"
+	And I am on the home page
+	When I follow "Add device"
+	And I select "3" from "device_unit_ids"
+	When I follow "Interfaces"
+	And I select "Ethernet" from "device_interfaces_attributes_0_interface_type"
+	And I follow "Add Interface"
+	When I select "Ethernet" from "device_interfaces_attributes_1_interface_type"
+	And I select "Testdevice: eth1" from "device_interfaces_attributes_1_connected_to"
+	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
+	And I press "Create Device"
+	Then I should see "Name can't be blank"
