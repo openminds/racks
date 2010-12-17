@@ -17,3 +17,7 @@ secret=[Digest::MD5.hexdigest("pre_shared_key" + Date.today.to_s + customer_numb
 The shared secret is saved into a "secrets.yml" file in the config folder, the file has one entry:
 pre_shared_key: [pre_shared_key]
 For obvious reasons this file isn't under version control.
+
+Todo:
+_______
+- Automate the entry of interface names on the iPhone layout.
