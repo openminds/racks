@@ -23,14 +23,17 @@ class DevicesController < ApplicationController
 
 	def create
 		@device = Device.new(params[:device])
-		if @device.save && request.format == :html 
-			@device.update_cable_connection
+		if @device.save
+			if request.format == :html
+				@device.update_cable_connection
+			end
+		else
+			if !@device.units.any?
+				@device.units << current_server_rack.units.available.first
+			end
 			if !@device.interfaces.any?
 				@device.interfaces.build
 			end
-		end
-		if @device.units.empty?
-			@device.units << current_server_rack.units.available.first
 		end
 		respond_with @device.server_rack.datacenter, @device.server_rack, @device do |format|
 			format.html
