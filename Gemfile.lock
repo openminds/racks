@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/Reprazent/convert_colors.git
-  revision: f474a559fe81b5c74aaa3a2bcb757e1fc2734bbe
+  revision: 0489d05e93453b88489e2501ae3110d29e313d50
   specs:
     convert_colors (0.0.1)
 

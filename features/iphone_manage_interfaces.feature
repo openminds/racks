@@ -31,7 +31,7 @@ Scenario: Connect two interfaces
 	And I follow "Add interface"
 	When I fill in "interface_name" with "eth0"
 	And I select "Testdevice: eth0" from "interface_connected_to"
-	And I fill in "interface_cable_connection_color" with "Blue"
+	And I select "Blue" from "interface_cable_connection_color"
 	And I press "Save"
 	And I should see "eth0 Testdevice: eth0"
 	And I should see "eth0 Connected server: eth0"
