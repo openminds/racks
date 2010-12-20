@@ -33,7 +33,7 @@ function showInterfaceValues(selected){
 		$("#interface_name").val("eth" + $("#ethernet").html());
 	};
 	if (selected == 2) {
-		$("#interface_name").val("PW" + $("#ethernet").html());
+		$("#interface_name").val("PW" + $("#power").html());
 	};
 	return false;
 }
