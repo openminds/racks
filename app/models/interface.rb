@@ -11,6 +11,9 @@ class Interface < ActiveRecord::Base
 		value :id => 1, :name => 'Ethernet'
 		value :id => 2, :name => 'Power'
 	end
+	
+	scope :ethernet, where(:interface_type => 1)
+	scope :power, where(:interface_type => 2)
 
 	class << self
 		def available
