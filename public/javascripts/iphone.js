@@ -1,4 +1,5 @@
 $(function(){
+	//Search stuff
 	$("#term").live("keyup", function(){
 		if ($("#term").val().length > 2) {
 			$("#resultsplaceholder").load("/search/search?s="+$("#term").val()+" #searchresults", function(){
@@ -7,14 +8,17 @@ $(function(){
 			});
 		};
 	});
-	
+	//Show the correct values when an interface type is selected
 	$("select[id$=_interface_type]").live("change", function(){
 		var selected = $(this).val()
 		showInterfaceValues(selected);
-		$("#interface_connected_to").selectmenu("refresh", true)
-		//Fill in a default name
+		//only refresh the menu when it is already loaded
+		if ($("#interface_connected_to-button").length > 0) {
+			$("#interface_connected_to").selectmenu("refresh", true)
+		};
 	});
-	showInterfaceValues($("select[id$=_interface_type]").val());
+	//Trigger the event onload to only display possible values
+	$("select[id$=_interface_type]").trigger("change");
 });
 function showInterfaceValues(selected){
 	//Remove options of diffrent type
@@ -29,11 +33,13 @@ function showInterfaceValues(selected){
 		}
 	});
 	//Fill in a default name
-	if (selected == 1) {
-		$("#interface_name").val("eth" + $("#ethernet").html());
-	};
-	if (selected == 2) {
-		$("#interface_name").val("PW" + $("#power").html());
+	if ($("#interface_name").val().length == 0 || $("form[class='new_interface']").length == 1) {
+		if (selected == 1) {
+			$("#interface_name").val("eth" + $("#ethernet").html());
+		};
+		if (selected == 2) {
+			$("#interface_name").val("PW" + $("#power").html());
+		};
 	};
 	return false;
 }
