@@ -12,7 +12,7 @@
 </div>
 <div class="fieldcontain">
 	<%= form.label :cable_connection_color%>
-	<%= form.select :cable_connection_color, ConvertColors.base_colors.map {|color| color.name}, {:prompt => 'Select a color?', :selected => interface.cable_connection.try(:color) }  %>
+	<%= form.select :cable_connection_color, ConvertColors.base_colors.map {|color| [color.name, color.name.downcase]}, {:prompt => 'Select a color?', :selected => interface.cable_connection.try(:color) }  %>
 </div>
 <div id="hiddenOptions" style="display: none;">
 	

@@ -62,7 +62,7 @@ class Interface < ActiveRecord::Base
 				new_connection = CableConnection.new
 				new_connection.right_interface_id = self.id
 				new_connection.left_interface_id = self.connected_to
-				new_connection.color = self.cable_connection_color
+				new_connection.color = self.cable_connection_color.downcase
 				
 				new_connection.save!
 			end
@@ -72,9 +72,9 @@ class Interface < ActiveRecord::Base
 				to_update.destroy
 			else
 				if to_update.right_interface_id == self.id
-					to_update.update_attributes(:left_interface_id => self.connected_to, :color => self.cable_connection_color)
+					to_update.update_attributes(:left_interface_id => self.connected_to, :color => self.cable_connection_color.downcase)
 				else
-					to_update.update_attributes(:right_interface_id => self.connected_to, :color => self.cable_connection_color)
+					to_update.update_attributes(:right_interface_id => self.connected_to, :color => self.cable_connection_color.downcase)
 				end
 			end
 		end

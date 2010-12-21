@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206102859) do
+ActiveRecord::Schema.define(:version => 20101221095353) do
 
   create_table "cable_connections", :force => true do |t|
     t.integer  "left_interface_id",  :null => false
