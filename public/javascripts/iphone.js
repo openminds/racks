@@ -16,10 +16,6 @@ $(function(){
 		if ($("#interface_connected_to-button").length > 0) {
 			$("#interface_connected_to").selectmenu("refresh", true)
 		};
-<<<<<<< HEAD
-=======
-		
->>>>>>> refs/remotes/origin/master
 	});
 	//Trigger the event onload to only display possible values
 	$("select[id$=_interface_type]").trigger("change");
