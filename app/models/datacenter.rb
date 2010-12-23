@@ -2,6 +2,7 @@ class Datacenter < ActiveRecord::Base
 	has_many :server_racks, :dependent => :destroy
 	validates_presence_of :name, :message => "can't be blank"
 	
+	default_scope :order => "name ASC"
 	
 	define_index do
 		indexes :name, :sortable => true
