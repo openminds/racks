@@ -88,17 +88,7 @@ $(function(){
 				minHeight:300
 			});
 			$('#modal_form > form > div.tabs ').tabs();
-			$(".connection_color").autocomplete({
-				source: function(request, response){
-					$.ajax({
-						url: "/search/find_colors",
-						data: {term: request.term},
-						success: function(data){
-							response(data);
-						}
-					})
-				}
-			});
+			createColorAutocomplete();
 			
 			// load the company names autocomplete fields, but only if the element exists
 			if ($("#device_company_names").length > 0) {
@@ -237,7 +227,7 @@ function newInterfaceRow(){
 	});
 	//append the new row
 	$interface_table.append('<tr class="interface_row">' + $interface_row.html() + '</tr>')
-	//append the action for the cbo's
+	createColorAutocomplete();
 	return false;
 }
 //get parameters from the querystring
@@ -257,6 +247,19 @@ function split( val ) {
 }
 function extractLast( term ) {
 	return split( term ).pop();
+}
+function createColorAutocomplete(){
+	$(".connection_color").autocomplete({
+		source: function(request, response){
+			$.ajax({
+				url: "/search/find_colors",
+				data: {term: request.term},
+				success: function(data){
+					response(data);
+				}
+			})
+		}
+	});
 }
 function loadJavascript(filename){
 	var fileref=document.createElement('script')

@@ -10,15 +10,16 @@ Background:
 	And a server_rack exist with datacenter: the datacenter, name: "devices testrack"
 	And 42 units exist with server_rack: the server_rack
 
-Scenario: Create a device without any interfaces
-	And I am on the home page
+Scenario: Create a device
+	Given I am on the home page
 	When I follow "Add device"
 	When I fill in "device_name" with "Testserver"
-	And I fill in "device_comment" with "Some comment for ipthe restserver"
-	And I select "1" from "device_unit_ids"
-	And I press "Create Device"
+	And I fill in "device_comment" with "Some comment"
+	And I select 1 from "device_unit_ids"
+	And I press "Create device"
 	Then I should see "Device was successfully created."
 	And I should see "1: Server: Testserver"
+
 
 	
 Scenario: Delete a device
