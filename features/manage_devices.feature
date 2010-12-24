@@ -20,8 +20,6 @@ Scenario: Create a device
 	Then I should see "Device was successfully created."
 	And I should see "1: Server: Testserver"
 
-
-	
 Scenario: Delete a device
 	Given a  "42"U device exists inside the server_rack with name: "Device1"
 	And I am on the datacenters page
@@ -247,6 +245,9 @@ Scenario: Adding a device while quickly adding multiple interfaces
 	When I fill in "count_ethernet_interfaces" with "24"
 	And I fill in "count_power_interfaces" with "12"
 	And I follow "Create interfaces"
+	When I fill in "device_interfaces_attributes_5_cable_connection_color" with "bl"
+	Then I should see "Black"
+	And I should see "Blue"
 	And I press "Create Device"
 	Then the device should have "24" "Ethernet" interfaces
 	And the device should have "12" "Power" interfaces
@@ -266,3 +267,6 @@ Scenario: Trying to add a de no name but wited interfaces
 	And I fill in "device_interfaces_attributes_1_cable_connection_color" with "black"
 	And I press "Create Device"
 	Then I should see "Name can't be blank"
+
+
+
