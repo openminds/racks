@@ -52,4 +52,6 @@ Racks::Application.configure do
 	:exception_recipients => %w(devel@openminds.be bob.vanlanduyt@scarlet.be),
 	:sender_address =>       %("Openminds Racks Error" <racks@openminds.be>),
 	:email_prefix => "[RACKS] "
+	
+	config.action_mailer.default_url_options = { :host => 'racks2010.openminds.be' }
 end

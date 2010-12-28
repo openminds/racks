@@ -15,7 +15,7 @@ Racks::Application.configure do
 	config.action_controller.perform_caching = true
 
 	# Don't care if the mailer can't send
-	config.action_mailer.raise_delivery_errors = false
+	config.action_mailer.raise_delivery_errors = true
 
 	# Print deprecation notices to the Rails logger
 	config.active_support.deprecation = :log
@@ -28,5 +28,12 @@ Racks::Application.configure do
 	# config.to_prepare do
 	# 	Thread.current.keys.each{ |k| Thread.current[k] = nil if k.to_s =~ /_scoped_methods$/ }
 	# end
+	
+	# Mailer
+	config.action_mailer.default_url_options = { :host => 'racks.bob.om' }
+	ActionMailer::Base.smtp_settings = {
+	:address => 'mail.scarlet.be',
+	:port => 25
+	}
 end
 

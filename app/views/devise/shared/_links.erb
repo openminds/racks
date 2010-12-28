@@ -5,3 +5,7 @@
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <%= link_to "Sign up", new_registration_path(resource_name) %><br />
 <% end -%>
+
+<%- if devise_mapping.registerable? && controller_name == 'sessions' && request.format == :html %>
+  <%= link_to "Forgot your password", new_user_password_path %><br />
+<% end -%>

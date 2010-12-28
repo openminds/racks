@@ -32,4 +32,11 @@ Racks::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+	# Mailer
+	config.action_mailer.default_url_options = { :host => 'racks.bob.om' }
+	ActionMailer::Base.smtp_settings = {
+	:address => 'mail.scarlet.be',
+	:port => 25
+	}
 end
