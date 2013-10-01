@@ -22,13 +22,13 @@ Racks::Application.configure do
 
 	# Only use best-standards-support built into browsers
 	config.action_dispatch.best_standards_support = :builtin
-	
-	# Basically, it clears out all the cached default scope on each request for all models. 
+
+	# Basically, it clears out all the cached default scope on each request for all models.
 	# Dirty fix, but waiting for the rails people to take a look at it
 	# config.to_prepare do
 	# 	Thread.current.keys.each{ |k| Thread.current[k] = nil if k.to_s =~ /_scoped_methods$/ }
 	# end
-	
+
 	# Mailer
 	config.action_mailer.default_url_options = { :host => 'racks.bob.om' }
 	ActionMailer::Base.smtp_settings = {

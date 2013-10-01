@@ -6,7 +6,7 @@ class ApiController < ApplicationController
 			render :text => "No customer found with this number"
 		end
 	end
-	
+
 	private
 	def authenticate_user!
 		pre_shared_key = API_SECRET['pre_shared_key']

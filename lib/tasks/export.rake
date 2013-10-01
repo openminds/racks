@@ -1,4 +1,4 @@
-desc 'Create YAML test fixtures from data in an existing database.  
+desc 'Create YAML test fixtures from data in an existing database.
 Defaults to development database.  Set RAILS_ENV to override.'
 
 task :extract_fixtures => :environment do

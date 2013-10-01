@@ -11,5 +11,5 @@ class DevicesCompanies < ActiveRecord::Migration
 		add_column :devices, :company_id, :integer
 		drop_table :companies_devices
 	end
-	
+
 end

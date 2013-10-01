@@ -80,7 +80,7 @@ Scenario: Disconnect an interface
 	Then I should see "left ethernet right device: right ethernet"
 	And I should see "right ethernet Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
-	And I select "disconnect" from "device_interfaces_attributes_0_connected_to" 
+	And I select "disconnect" from "device_interfaces_attributes_0_connected_to"
 	And I press "Update Device"
 	Then I should see "Device was successfully updated."
 	And I should not see "left ethernet right device: right ethernet"
@@ -96,7 +96,7 @@ Scenario: Delete an interface with a connection
 	Then I should see "left ethernet right device: right ethernet"
 	And I should see "ight ethernet Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
-	And I check "device_interfaces_attributes_0__destroy" 
+	And I check "device_interfaces_attributes_0__destroy"
 	And I press "Update Device"
 	Then I should see "Device was successfully updated."
 	And I should not see "right ethernet Left device: left ethernet"
@@ -115,7 +115,7 @@ Scenario: reconnect an interface
 	Then I should see "left ethernet right device: right ethernet"
 	And I should see "right ethernet Left device: left ethernet"
 	When I follow "Edit" within "fieldset/div/div"
-	And I select "Third device: new connection" from "device_interfaces_attributes_0_connected_to" 
+	And I select "Third device: new connection" from "device_interfaces_attributes_0_connected_to"
 	And I press "Update Device"
 	Then I should see "left ethernet Third device: new connection"
 	And I should not see "right ethernet Left device: left ethernet"
@@ -135,7 +135,7 @@ Scenario: Trying to make an existing device invalid
 	And I fill in "device_comment" with "Updated device comment"
 	And I press "Update Device"
 	Then I should see "Name can't be blank"
-	
+
 @javascript
 Scenario: Adding a device with multiple interfaces
 	And I am on the home page
@@ -176,7 +176,7 @@ Scenario: Connecting a device when creating it with multiple interfaces
 	And I press "Create Device"
 	Then I should see "3: Server: Testserver"
 	And I should see "eth2 Testdevice: eth1"
-	
+
 @javascript
 Scenario: When selecting an interface type, other types should be disabled
 	Given a  "2"U device exists inside the server_rack with name: "Testdevice"
@@ -251,7 +251,7 @@ Scenario: Adding a device while quickly adding multiple interfaces
 	Then the device should have "24" "Ethernet" interfaces
 	And the device should have "12" "Power" interfaces
 
-@javascript	
+@javascript
 Scenario: Trying to add a de no name but wited interfaces
 	Given a  "2"U device exists inside the server_rack with name: "Testdevice"
 	And an interface exists with device_id: 1, interface_type: 1, name: "eth1"

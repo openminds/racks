@@ -3,12 +3,12 @@ class DatacentersController < ApplicationController
 	before_filter :authorize
 	def index
 		respond_to do |format|
-			format.html { 
+			format.html {
 				if Datacenter.all.empty?
 					redirect_to new_datacenter_path
-					
+
 				else
-					redirect_to [current_datacenter, :server_racks] 
+					redirect_to [current_datacenter, :server_racks]
 				end
 			}
 			format.iphone

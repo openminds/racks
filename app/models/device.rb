@@ -3,7 +3,7 @@ class Device < ActiveRecord::Base
 	has_and_belongs_to_many :companies
 	has_many :interfaces, :dependent => :destroy
 	accepts_nested_attributes_for :interfaces, :allow_destroy => true, :reject_if => :all_blank
-	
+
 	validates_presence_of :name, :message => "can't be blank"
 	validate :validate_units
 
@@ -41,7 +41,7 @@ class Device < ActiveRecord::Base
 			i.update_cable_connection
 		end
 	end
-	
+
 
 	def my_path
 		[self.server_rack.datacenter, self.server_rack, self]
@@ -51,7 +51,7 @@ class Device < ActiveRecord::Base
 		if companies.any?
 			names = ""
 			companies.each do |company|
-				names += "#{company.name}, " 
+				names += "#{company.name}, "
 			end
 			names
 		else
@@ -68,12 +68,12 @@ class Device < ActiveRecord::Base
 		end
 		self.companies = companies_to_add
 	end
-	
+
 
 	def search_label
 		"#{self.name} (#{company_names})"
 	end
-	
+
 	private
 	def validate_units
 		errors.add(:units, "can't be empty") if self.units.empty?

@@ -77,7 +77,7 @@ $(function(){
 			$("option[disabled='false']").attr("disabled", "");
 			$("#modal_form").dialog({
 				modal: true,
-				close: function(event, ui) { 
+				close: function(event, ui) {
 					$("#modal_form > form > div.tabs").tabs("destroy");
 					$("#modal_form > form > div.tabs").empty().remove();
 					$("#modal_form").dialog("destroy");
@@ -89,7 +89,7 @@ $(function(){
 			});
 			$('#modal_form > form > div.tabs ').tabs();
 			createColorAutocomplete();
-			
+
 			// load the company names autocomplete fields, but only if the element exists
 			if ($("#device_company_names").length > 0) {
 				$.get("/search/company_names.json", function(data){
@@ -116,13 +116,13 @@ $(function(){
 						}
 					});
 				});
-			};	
+			};
 		});
 		return false;
 	});
 	//Update the forms when an interface_type is selected
 	$("select[id$=_interface_type]").live("change", function(){
-		
+
 		var id = $(this).attr("id").split("_")[3];
 		var selected = $(this).val();
 		disableInterfaces(id);
@@ -135,7 +135,7 @@ $(function(){
 		});
 		if ($("#device_interfaces_attributes_"+ id + "_name").val() == "" ) {
 			if (selected == 1){
-				
+
 				$("#device_interfaces_attributes_"+ id + "_name").val("eth" + counter);
 			};
 			if (selected == 2){
@@ -202,9 +202,9 @@ function newInterfaceRow(){
 		current_id[3] = parseInt(current_id[3])+1;
 		var new_id = ''
 		for (var i = current_id.length - 1; i >= 0; i--){
-			new_id =  current_id[i] + new_id 
+			new_id =  current_id[i] + new_id
 			if (i>0) {
-				new_id = '_' + new_id 
+				new_id = '_' + new_id
 			};
 		};
 		$(this).attr("id", new_id)

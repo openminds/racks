@@ -2,7 +2,7 @@ Feature: Manage Companies
 	In order to see which company uses wich device
 	as a system admin
 	I want to manage the companies
-	
+
 Background:
 	Given I am a user_with_acces
 	Given I am using a regular browser
@@ -49,5 +49,5 @@ Scenario: Delete an existing company
 	| Servaco	| Labo			|
 	And I am on the companies page
 	When I follow "Delete"
-	Then I should not see "Except" 
+	Then I should not see "Except"
 	And I should see "Company was successfully destroyed."

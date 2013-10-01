@@ -7,7 +7,7 @@ class AdminController < ApplicationController
 	def index
 		@users = User.all(:order => 'created_at DESC')
 	end
-	
+
 	def grant_user_rights
 		@user = User.find(params[:user_id])
 		@user.rights = 'acces_granted'
@@ -28,8 +28,8 @@ class AdminController < ApplicationController
 		flash[:notice] = 'User deleted'
 		redirect_to request.referrer
 	end
-	
-	private 
+
+	private
 	def authorize
 		if user_signed_in?
 			unless current_user.admin?

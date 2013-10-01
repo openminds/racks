@@ -11,7 +11,7 @@ class CableConnection < ActiveRecord::Base
 			other_interface = Interface.find(self.left_interface_id)
 		end
 	end
-	
+
 	def self.possible_colors
 		ConvertColors.colors.map(&:name)
 	end

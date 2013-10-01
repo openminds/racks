@@ -11,7 +11,7 @@ class Interface < ActiveRecord::Base
 		value :id => 1, :name => 'Ethernet'
 		value :id => 2, :name => 'Power'
 	end
-	
+
 	scope :ethernet, where(:interface_type => 1)
 	scope :power, where(:interface_type => 2)
 
@@ -23,7 +23,7 @@ class Interface < ActiveRecord::Base
 			end
 		end
 	end
-	
+
 	def other
 	 	if cable_connection
 			other = cable_connection.other_interface(self)
@@ -50,7 +50,7 @@ class Interface < ActiveRecord::Base
 	end
 
 	def destroy_cable_connections
-		unless cable_connection.nil? 
+		unless cable_connection.nil?
 			to_destroy = cable_connection
 			to_destroy.destroy
 		end
@@ -63,7 +63,7 @@ class Interface < ActiveRecord::Base
 				new_connection.right_interface_id = self.id
 				new_connection.left_interface_id = self.connected_to
 				new_connection.color = self.cable_connection_color.downcase
-				
+
 				new_connection.save!
 			end
 		else

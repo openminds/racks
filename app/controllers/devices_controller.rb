@@ -49,7 +49,7 @@ class DevicesController < ApplicationController
 
 	def update
 		@device = Device.find(params[:id])
-		
+
 		if @device.update_attributes(params[:device]) && request.format == :html
 			@device.update_cable_connection
 			if !@device.interfaces.any?
@@ -91,7 +91,7 @@ class DevicesController < ApplicationController
 		end
 
 		@collection = []
-		
+
 		@interfaces.each do |interface|
 			@collection << {:value => interface.id, :type => interface.interface_type, :label => interface.to_s, :selected => (('selected') if interface.other == current_interface )}
 		end

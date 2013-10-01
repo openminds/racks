@@ -29,7 +29,7 @@ Scenario: Edit a datacenter
 	And I fill in "datacenter_comment" with "Some comment"
 	And I press "Update Datacenter"
 	Then I should see "Datacenter was successfully updated."
-	And I should see "Just a datacenter"	
+	And I should see "Just a datacenter"
 
 Scenario: Trying to create an invalid datacenter
 	Given I am on the new datacenter page

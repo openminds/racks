@@ -10,7 +10,7 @@
 		<%= device.comment %>
 	</p>
 	<p>
-		Used by: 
+		Used by:
 		<%= device.company_names %>
 	</p>
 	<table>
@@ -33,6 +33,6 @@
 	<p><%= link_to 'Show',  [device.server_rack.datacenter, device.server_rack, device] %>
 		<%= link_to 'Edit', [:edit, device.server_rack.datacenter, device.server_rack, device], :class => 'remote' %>
 		<%= link_to 'Destroy', [device.server_rack.datacenter, device.server_rack, device], :confirm => 'Are you sure?', :method => :delete %>
-	</p>	
+	</p>
 </div>
 <% end %>

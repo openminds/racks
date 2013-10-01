@@ -8,7 +8,7 @@
 	<div data-inline='true'>
 		<p>Used by: <%= @device.company_names %></p>
 		<p><%= @device.comment %></p>
-		
+
 	</div>
 
 	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button", :rel => "external"} %>
@@ -21,7 +21,7 @@
 					<%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", "data-role" => "button", "data-iconpos"=>"notext" , :rel=>"external" %>
 					<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], "data-icon" => "gear", "data-role" => "button", "data-iconpos"=>"notext" %>
 				</div>
-				
+
 			</td>
 			<td>
 				<p><%= interface.name %></p>

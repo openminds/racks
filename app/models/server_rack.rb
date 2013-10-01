@@ -4,9 +4,9 @@ class ServerRack < ActiveRecord::Base
 	has_many :devices, :through => :units, :uniq => true
 	# has_many :interfaces, :through => :devices // Not working
 	validates_presence_of :name, :message => "can't be blank"
-	
+
 	default_scope :order => "name ASC"
-	
+
 	define_index do
 		indexes :name, :sortable => true
 		indexes :comment
@@ -29,15 +29,15 @@ class ServerRack < ActiveRecord::Base
 		end
 		connections.uniq.compact
 	end
-	
+
 	def my_path
 		[self.datacenter, self]
 	end
-	
+
 	def search_label
 		"#{self.name} in #{self.datacenter.name}"
 	end
-	
+
 	def biggest_available_space
 		units.available.inject([]) do |space, unit|
 			if space.last.try(:number) != unit.number - 1

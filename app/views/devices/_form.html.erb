@@ -34,20 +34,20 @@
 		<p>Power interfaces:<input id="count_power_interfaces" type="text"></input></p>
 		<a href="#" id="create_interfaces" class="button" style="height:15px;display:block;">Create interfaces</a>
 	</fieldset>
-	<% end %> 
+	<% end %>
 	<fieldset style="float:left">
 		<legend>Interfaces</legend>
 		<table id='interface_form'>
 			<tr>
 				<th>Type</th>
 				<th>Name</th>
-				
+
 				<th>
 				<% unless form.object.new_record? %>
 					Remove?
 				<%end%>
 				</th>
-				
+
 				<th>Connection inside</th>
 				<th>Connected to</th>
 				<th>Connection color</th>
@@ -60,20 +60,20 @@
 				<td class="field">
 					<%= interface_form.text_field :name %>
 				</td>
-			
+
 				<td class="field">
 					<% unless interface_form.object.new_record? %>
-					<%= interface_form.hidden_field :id %>	
+					<%= interface_form.hidden_field :id %>
 					<%= interface_form.check_box :_destroy %>
 					<%= interface_form.label :_destroy, 'Remove' %>
 					<% end %>
 				</td >
-				
+
 				<td class="field">
 					<%= select_tag "device_interfaces_attributes_#{interface_form.object_name.gsub(/[^0-9]+/,'')}_selected_server_rack", options_from_collection_for_select(@current_datacenter.server_racks, :id, :name,
-					if interface_form.object.other 
-						interface_form.object.other.device.server_rack.id 
-					else 
+					if interface_form.object.other
+						interface_form.object.other.device.server_rack.id
+					else
 						form.object.server_rack.id
 					end
 					)%>

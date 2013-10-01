@@ -2,10 +2,10 @@
 <div data-role="header" data-position="fixed" >
 	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
 	<h1>New datacenter</h1>
-	
+
 </div><!-- /header -->
 
-<div id="content" data-role="content">	
+<div id="content" data-role="content">
 	<%= render :partial => "form", :locals => {:datacenter => @datacenter, :f => form}%>
 	<%= form.submit "Save" %>
 </div><!-- /content -->

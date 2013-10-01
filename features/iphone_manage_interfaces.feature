@@ -3,7 +3,7 @@ Feature: Manage interfaces
   as a mobile system admin
   I want to manage the interfaces and their connections
 
-Background: 
+Background:
 	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
@@ -50,7 +50,7 @@ Scenario: Disconnect an interface
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on Right device"
 	When I follow "Edit" within "[@class='interface_controls']"
-	And I select "disconnect" from "interface_connected_to" 
+	And I select "disconnect" from "interface_connected_to"
 	And I press "Save"
 	Then I should see "left ethernet"
 
@@ -82,7 +82,7 @@ Scenario: reconnect an interface
 	And I follow "Left device"
 	Then I should see "left ethernet right ethernet on right device"
 	When I follow "Edit" within "[@class='interface_controls']"
-	And I select "Third device: new connection" from "interface_connected_to" 
+	And I select "Third device: new connection" from "interface_connected_to"
 	And I press "Save"
 	Then I should see "left ethernet Third device: new connection"
 	And I should not see "right ethernet Left device: left ethernet"

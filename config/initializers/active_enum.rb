@@ -4,7 +4,7 @@
 
 ActiveEnum.setup do |config|
 
-  # Extend classes to add enumerate method 
+  # Extend classes to add enumerate method
   config.extend_classes = [ ActiveRecord::Base ]
 
   # Return name string as value for attribute method

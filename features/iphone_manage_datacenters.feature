@@ -31,4 +31,4 @@ Scenario: Edit a datacenter
 	And I fill in "datacenter_location" with "Brussels"
 	And I fill in "datacenter_comment" with "Some comment"
 	And I press "Save"
-	And I should see "Just a datacenter"	
+	And I should see "Just a datacenter"

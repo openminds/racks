@@ -7,7 +7,7 @@ Background:
 	Given I am a user_with_acces
 	Given I am using an iPhone
 	Given a datacenter exist
-	
+
 Scenario: Create a rack
 	And I am on the home page
 	When I follow "Datacenter"
@@ -25,7 +25,7 @@ Scenario: Delete a rack
 	And I am on the home page
 	When I follow "Datacenter"
 	And I follow "Rack"
-	When I follow "Delete" 
+	When I follow "Delete"
 	And I should not see "Rack1"
 
 Scenario: Edit a rack
@@ -36,4 +36,4 @@ Scenario: Edit a rack
 	And I follow "Edit"
 	And I fill in "server_rack_name" with "Edited rack"
 	And I press "Save"
-	And I should see "Edited rack"	
+	And I should see "Edited rack"

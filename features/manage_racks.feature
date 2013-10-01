@@ -23,7 +23,7 @@ Scenario: Delete a rack
 	Given 1 server_racks exist with datacenter: the datacenter
 	And 42 units exist with server_rack: the server_rack
 	And I am on the home page
-	When I follow "Destroy" within "fieldset" 
+	When I follow "Destroy" within "fieldset"
 	Then I should see "Server rack was successfully destroyed."
 	And I should not see "Rack1"
 
@@ -35,7 +35,7 @@ Scenario: Edit a rack
 	And I press "Update Server rack"
 	Then I should see "Server rack was successfully updated."
 	And I should see "Edited rack"
-	
+
 Scenario: Trying to create an invalid rack
 	Given I am on the home page
 	And I follow "Add rack"

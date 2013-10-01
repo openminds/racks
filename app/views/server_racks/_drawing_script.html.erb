@@ -6,8 +6,8 @@
 	var interfaceLocations = []; //[x,y]
 	var interfaceIds = [];
 	var deviceConnections = []; //[device id,[leftid, rightid, color]]
-	
-	
+
+
 	var connections;
 	window.onload = function(){
 		paper = Raphael("connections", window.innerWidth, window.innerHeight);
@@ -15,7 +15,7 @@
 		drawAlldevices();
 		drawAllConnections();
 	}
-	
+
 	function drawConnection(leftX, leftY, rightX, rightY, color){
 		var centerX = (300 + 500)/2;
 		var strokeDash = ""
@@ -26,7 +26,7 @@
 			color = "gray"
 		};
 		connectionSet.push(
-			paper.path("M" + leftX + " " + leftY + 
+			paper.path("M" + leftX + " " + leftY +
 				"C" +  centerX + " " + leftY + " " + centerX + " " + rightY + " " + rightX + " " + rightY).attr("stroke", color).attr("stroke-width", 3).attr("stroke-dasharray", strokeDash)
 		);
 	}
@@ -39,7 +39,7 @@
 		var yPos = 0;
 		var xPos = 0;
 		var counter = 0;
-		
+
 		var leftDeviceHeight = 0;
 		var rightDeviceHeight = 0;
 		var leftY = 0;
@@ -100,7 +100,7 @@
 			<% device.cable_connections.each do |cable_connection| %>
 				deviceConnections.push([<%= device.id %>, [<%= cable_connection.left_interface_id %>, <%= cable_connection.right_interface_id %>, "<%= cable_connection.color %>"]])
 			<% end %>
-			
+
 			counter++;
 			deviceRect<%= device.id %>.node.onmousedown = function(){
 				if (deviceRect<%= device.id %>.attr("stroke") == "#000") {
@@ -126,7 +126,7 @@
 					drawConnection(leftX,leftY, rightX,rightY,deviceConnections[i][1][2])
 				};
 			};
-			
+
 		};
 	}
 	function drawAllConnections(){
@@ -137,7 +137,7 @@
 				var rightX = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)][0];
 				var rightY = interfaceLocations[interfaceIds.indexOf(<%= cable_connection.right_interface_id %>)][1];
 				drawConnection(leftX,leftY, rightX,rightY,"<%= cable_connection.color %>")
-			};	
+			};
 		<% end %>
 	}
 </script>

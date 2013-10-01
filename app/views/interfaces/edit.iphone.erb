@@ -2,10 +2,10 @@
 <div data-role="header" data-position="fixed" >
 	<%= link_to "Back", [@interface.device.server_rack.datacenter, @interface.device.server_rack, @interface.device], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
 	<h1>Edit Interface</h1>
-	
+
 </div><!-- /header -->
 
-<div id="content" data-role="content">	
+<div id="content" data-role="content">
 	<%= render :partial => "form", :locals => {:interface => @interface, :form => form, :interfaces => @interfaces}%>
 	<%= form.submit "Save" %>
 </div><!-- /content -->

@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
 			transition any => :admin
 		end
 	end
-	
+
 	def first_user_is_admin
 		if User.all.size ==0
 			self.rights = 'admin'
 		end
 	end
-	
+
 end

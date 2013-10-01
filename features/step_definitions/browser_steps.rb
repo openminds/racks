@@ -6,5 +6,5 @@ end
 Given /^I am using a regular browser$/ do
 	if Capybara.current_driver.to_s != "selenium"
 		add_headers('HTTP_USER_AGENT' => "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-us) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5")
-	end 
+	end
 end

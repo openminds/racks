@@ -21,7 +21,7 @@ Scenario: Create a device
 	And I press "Save"
 	And I should see "1: Server: Testserver"
 
-	
+
 Scenario: Delete a device
 	Given a datacenter exist
 	And a server_rack exist with datacenter: the datacenter
@@ -51,7 +51,7 @@ Scenario: Update a device
 	And I press "Save"
 	And I should see "Updated device name"
 	And I should see "Updated device comment"
-	
+
 
 Scenario: Create a device using 2 units
 	Given a datacenter exist
