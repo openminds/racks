@@ -34,15 +34,6 @@ GIT
       pdf-reader (>= 0.8.1)
 
 GIT
-  remote: http://github.com/freelancing-god/thinking-sphinx.git
-  revision: cefc90a150d532ef769d3b6a7f4690147fcc0675
-  branch: rails3
-  specs:
-    thinking-sphinx (2.0.1)
-      activerecord (>= 3.0.3)
-      riddle (>= 1.2.1)
-
-GIT
   remote: http://github.com/rails/exception_notification.git
   revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
   specs:
@@ -209,6 +200,9 @@ GEM
     state_machine (0.9.4)
     term-ansicolor (1.0.5)
     test-unit (2.1.2)
+    thinking-sphinx (2.0.1)
+      activerecord (>= 3.0.3)
+      riddle (>= 1.2.1)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -250,7 +244,7 @@ DEPENDENCIES
   sqlite3-ruby
   state_machine
   test-unit
-  thinking-sphinx!
+  thinking-sphinx (= 2.0.1)
   whenever
   will_paginate (~> 3.0.beta)
   yUMLmeRails!
