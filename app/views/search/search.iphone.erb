@@ -1,53 +1,53 @@
 
 <div data-role="header" data-position="fixed" >
-	<%= link_to "Back", datacenters_path, {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
-	<h1>Search</h1>
+  <%= link_to "Back", datacenters_path, {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
+  <h1>Search</h1>
 </div><!-- /header -->
 
 <div id="content" data-role="content">
-	<%= form_tag(search_path, :method => :get) do |form| %>
-	<%= label_tag :term, "search: " -%>
-	<%= search_field_tag :term %>
-	<%#= submit_tag "Search" %>
-	<%end%>
-	<div id="resultsplaceholder">
-		<div id="searchresults">
-			<div class="fieldcontain" data-role="collapsible" data-collapsed="false">
-				<h3>Devices (<%= @found_devices.size %>)</h3>
+  <%= form_tag(search_path, :method => :get) do |form| %>
+  <%= label_tag :term, "search: " -%>
+  <%= search_field_tag :term %>
+  <%#= submit_tag "Search" %>
+  <%end%>
+  <div id="resultsplaceholder">
+    <div id="searchresults">
+      <div class="fieldcontain" data-role="collapsible" data-collapsed="false">
+        <h3>Devices (<%= @found_devices.size %>)</h3>
 
-				<ul data-role='listview'>
-					<% @found_devices.each do |device| %>
-					<li>
-						<%= link_to device.name, [device.server_rack.datacenter, device.server_rack, device] %> (<%= "#{device.server_rack.name}, #{device.server_rack.datacenter.name}" %>)
-					</li>
-					<% end %>
-				</ul>
+        <ul data-role='listview'>
+          <% @found_devices.each do |device| %>
+          <li>
+            <%= link_to device.name, [device.server_rack.datacenter, device.server_rack, device] %> (<%= "#{device.server_rack.name}, #{device.server_rack.datacenter.name}" %>)
+          </li>
+          <% end %>
+        </ul>
 
-			</div>
-			<div class="fieldcontain" data-role="collapsible" data-collapsed="true">
-				<h3>Racks (<%= @found_server_racks.size %>)</h3>
-				<fieldset data-role="controlgroup">
-					<ul data-role='listview'>
-						<% @found_server_racks.each do |server_rack| %>
-						<li>
-							<%= link_to server_rack.name, [server_rack.datacenter, server_rack] %> (<%= server_rack.datacenter.name %>)
-						</li>
-						<% end %>
-					</ul>
-				</fieldset>
-			</div>
-			<div class="fieldcontain" data-role="collapsible" data-collapsed="true">
-				<h3>Datacenters (<%= @found_datacenters.size %>)</h3>
-				<fieldset data-role="controlgroup">
-					<ul data-role='listview'>
-						<% @found_datacenters.each do |datacenter| %>
-						<li>
-							<%= link_to datacenter.name, [datacenter] %>
-						</li>
-						<% end %>
-					</ul>
-				</fieldset>
-			</div>
-		</div>
-	</div>
+      </div>
+      <div class="fieldcontain" data-role="collapsible" data-collapsed="true">
+        <h3>Racks (<%= @found_server_racks.size %>)</h3>
+        <fieldset data-role="controlgroup">
+          <ul data-role='listview'>
+            <% @found_server_racks.each do |server_rack| %>
+            <li>
+              <%= link_to server_rack.name, [server_rack.datacenter, server_rack] %> (<%= server_rack.datacenter.name %>)
+            </li>
+            <% end %>
+          </ul>
+        </fieldset>
+      </div>
+      <div class="fieldcontain" data-role="collapsible" data-collapsed="true">
+        <h3>Datacenters (<%= @found_datacenters.size %>)</h3>
+        <fieldset data-role="controlgroup">
+          <ul data-role='listview'>
+            <% @found_datacenters.each do |datacenter| %>
+            <li>
+              <%= link_to datacenter.name, [datacenter] %>
+            </li>
+            <% end %>
+          </ul>
+        </fieldset>
+      </div>
+    </div>
+  </div>
 </div>

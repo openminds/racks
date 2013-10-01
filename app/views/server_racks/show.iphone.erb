@@ -1,22 +1,22 @@
 <div data-role="header" data-position="fixed"  >
-	<%= link_to "Back", [@server_rack.datacenter, :server_racks], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"pop"}%>
-	<h1><%= @server_rack.datacenter.name%>::<%= @server_rack.name %></h1>
-	<%= link_to "Delete", [@server_rack.datacenter, @server_rack], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
+  <%= link_to "Back", [@server_rack.datacenter, :server_racks], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"pop"}%>
+  <h1><%= @server_rack.datacenter.name%>::<%= @server_rack.name %></h1>
+  <%= link_to "Delete", [@server_rack.datacenter, @server_rack], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
 
 <div id="content" data-role="content" >
-	<div data-inline='true'>
-		<% show_info_for_server_rack @server_rack %>
-	</div>
+  <div data-inline='true'>
+    <% show_info_for_server_rack @server_rack %>
+  </div>
 
-	<%= link_to "Edit", [:edit, @server_rack.datacenter, @server_rack], {"data-role" => "button"} %>
-	<br>
-	<ul data-role='listview' data-filter="true">
-		<%@server_rack.devices.each do |device|%>
-		<li><%= device.units.first.number %><%= "-#{device.units.last.number}" if device.units.size > 1 %>: <%= link_to device.name, [@server_rack.datacenter, @server_rack, device], {:rel => "external"}%></li>
-		<%end%>
-	</ul>
+  <%= link_to "Edit", [:edit, @server_rack.datacenter, @server_rack], {"data-role" => "button"} %>
+  <br>
+  <ul data-role='listview' data-filter="true">
+    <%@server_rack.devices.each do |device|%>
+    <li><%= device.units.first.number %><%= "-#{device.units.last.number}" if device.units.size > 1 %>: <%= link_to device.name, [@server_rack.datacenter, @server_rack, device], {:rel => "external"}%></li>
+    <%end%>
+  </ul>
 </div><!-- /content -->
 <div data-role="footer"  data-position="fixed">
-	<%= link_to "Add device", [:new, @server_rack.datacenter, @server_rack, :device], { "data-icon" => "plus", :rel=>"external", "data-transition"=>"flip"} %>
+  <%= link_to "Add device", [:new, @server_rack.datacenter, @server_rack, :device], { "data-icon" => "plus", :rel=>"external", "data-transition"=>"flip"} %>
 </div><!-- /header -->

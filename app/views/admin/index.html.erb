@@ -1,28 +1,28 @@
 <div>
-	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-		<span class='ui-dialog-title'>Grant users access...</span>
-	</div>
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+    <span class='ui-dialog-title'>Grant users access...</span>
+  </div>
 <table class='datatable'>
-	<% @users.each do |user| %>
-	<tr>
-		<td>
-			<%= user.email %>
-		</td>
-		<td>
-			<%= user.created_at.strftime('%d/%m/%Y') %>
-		</td>
-		<td>
-			<%= user.rights %>
-		</td>
-		<td>
-			<% unless user == current_user %>
-				<%= link_to 'Grant user rights' , grant_user_rights_path(user.id) %><br />
-				<%= link_to 'Grant admin rights', grant_admin_rights_path(user.id) %><br />
-				<%= link_to 'Delete user', delete_user_path(user.id) %>
-			<%end%>
-		</td>
+  <% @users.each do |user| %>
+  <tr>
+    <td>
+      <%= user.email %>
+    </td>
+    <td>
+      <%= user.created_at.strftime('%d/%m/%Y') %>
+    </td>
+    <td>
+      <%= user.rights %>
+    </td>
+    <td>
+      <% unless user == current_user %>
+        <%= link_to 'Grant user rights' , grant_user_rights_path(user.id) %><br />
+        <%= link_to 'Grant admin rights', grant_admin_rights_path(user.id) %><br />
+        <%= link_to 'Delete user', delete_user_path(user.id) %>
+      <%end%>
+    </td>
 
-	</tr>
-	<% end %>
+  </tr>
+  <% end %>
 </table>
 </div>

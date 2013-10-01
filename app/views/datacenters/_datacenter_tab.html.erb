@@ -1,13 +1,13 @@
 <div class='clearfix' id="datacenter">
-	<p>Location: <%= datacenter.location %></p>
-	<p>Comment: <%= datacenter.comment %></p>
-	<p>
-		<%= link_to "Edit", [:edit, datacenter], :class => 'remote' %>
-		<%= link_to "Destroy", datacenter, :method => :delete, :confirm => 'Are you sure?' %>
-	</p>
-	<p>
-		<%= link_to 'Add rack', new_datacenter_server_rack_path(datacenter),  :class => "remote button" %>
-	</p>
-	<%= will_paginate server_racks %>
-	<%= render :partial => 'server_racks/server_rack', :collection => server_racks, :as => :server_rack %>
+  <p>Location: <%= datacenter.location %></p>
+  <p>Comment: <%= datacenter.comment %></p>
+  <p>
+    <%= link_to "Edit", [:edit, datacenter], :class => 'remote' %>
+    <%= link_to "Destroy", datacenter, :method => :delete, :confirm => 'Are you sure?' %>
+  </p>
+  <p>
+    <%= link_to 'Add rack', new_datacenter_server_rack_path(datacenter),  :class => "remote button" %>
+  </p>
+  <%= will_paginate server_racks %>
+  <%= render :partial => 'server_racks/server_rack', :collection => server_racks, :as => :server_rack %>
 </div>

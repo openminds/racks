@@ -1,18 +1,18 @@
 <div class="fieldcontain">
-	<%= form.label :interface_type%>
-	<%= form.select :interface_type, Interface::InterfaceType.to_select %>
+  <%= form.label :interface_type%>
+  <%= form.select :interface_type, Interface::InterfaceType.to_select %>
 </div>
 <div class="fieldcontain">
-	<%= form.label :name%>
-	<%= form.text_field :name %>
+  <%= form.label :name%>
+  <%= form.text_field :name %>
 </div>
 <div class="fieldcontain">
-	<%= form.label :connected_to %>
-	<%= form.select :connected_to, [["disconnect", nil]] + interfaces.map {|i| [i.to_s, i.id, {:type => i.interface_type}]  }, {:selected => interface.other.try(:id)} %>
+  <%= form.label :connected_to %>
+  <%= form.select :connected_to, [["disconnect", nil]] + interfaces.map {|i| [i.to_s, i.id, {:type => i.interface_type}]  }, {:selected => interface.other.try(:id)} %>
 </div>
 <div class="fieldcontain">
-	<%= form.label :cable_connection_color%>
-	<%= form.select :cable_connection_color, ConvertColors.base_colors.map {|color| [color.name, color.name.downcase]}, {:prompt => 'Select a color?', :selected => interface.cable_connection.try(:color) }  %>
+  <%= form.label :cable_connection_color%>
+  <%= form.select :cable_connection_color, ConvertColors.base_colors.map {|color| [color.name, color.name.downcase]}, {:prompt => 'Select a color?', :selected => interface.cable_connection.try(:color) }  %>
 </div>
 <div id="hiddenOptions" style="display: none;">
 

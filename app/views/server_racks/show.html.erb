@@ -1,34 +1,34 @@
 <div class='ui-dialog ui-widget ui-widget-content ui-corner-all' style='width:98%; '>
-	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
-		<span class='ui-dialog-title'><%= "#{@server_rack.name} in #{@server_rack.datacenter.name} (#{@server_rack.datacenter.location})" %></span>
-	</div>
-	<div id="server_rack_info" class='tabs'>
-		<ul>
-			<li><a href='#rack_info'>Rack info</a></li>
-			<li><a href='#devices_list'>Devices</a></li>
-			<li><a href='#connections'>Connections</a></li>
-		</ul>
-		<div id='rack_info'>
-			<% show_info_for_server_rack @server_rack %>
-			<%= link_to 'Generate PDF',  datacenter_server_rack_path(@server_rack.datacenter, @server_rack, :format => :pdf) %>
-			<%= link_to 'Edit', [:edit, @server_rack.datacenter, @server_rack], :class => 'remote' %> |
-			<%= link_to 'Back', [@server_rack.datacenter, :server_racks] %>
-		</div>
+  <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+    <span class='ui-dialog-title'><%= "#{@server_rack.name} in #{@server_rack.datacenter.name} (#{@server_rack.datacenter.location})" %></span>
+  </div>
+  <div id="server_rack_info" class='tabs'>
+    <ul>
+      <li><a href='#rack_info'>Rack info</a></li>
+      <li><a href='#devices_list'>Devices</a></li>
+      <li><a href='#connections'>Connections</a></li>
+    </ul>
+    <div id='rack_info'>
+      <% show_info_for_server_rack @server_rack %>
+      <%= link_to 'Generate PDF',  datacenter_server_rack_path(@server_rack.datacenter, @server_rack, :format => :pdf) %>
+      <%= link_to 'Edit', [:edit, @server_rack.datacenter, @server_rack], :class => 'remote' %> |
+      <%= link_to 'Back', [@server_rack.datacenter, :server_racks] %>
+    </div>
 
-		<div id='devices_list'>
-			<% if @server_rack.units.available.any? %>
-			<p>
-				<%= link_to 'Add device', [:new, @server_rack.datacenter, @server_rack, :device], :class => 'remote button' %>
-			</p>
-			<%end%>
-			<div class='devices_accordion'>
-				<%= render :partial => 'devices/device', :collection => @server_rack.devices, :as => :device %>
-			</div>
+    <div id='devices_list'>
+      <% if @server_rack.units.available.any? %>
+      <p>
+        <%= link_to 'Add device', [:new, @server_rack.datacenter, @server_rack, :device], :class => 'remote button' %>
+      </p>
+      <%end%>
+      <div class='devices_accordion'>
+        <%= render :partial => 'devices/device', :collection => @server_rack.devices, :as => :device %>
+      </div>
 
-		</div>
-		<%= render :partial => 'drawing_script', :locals => {:server_rack => @server_rack}%>
-		<div id='connections' class='clearfix'>
+    </div>
+    <%= render :partial => 'drawing_script', :locals => {:server_rack => @server_rack}%>
+    <div id='connections' class='clearfix'>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

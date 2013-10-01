@@ -1,17 +1,17 @@
 <%= form_for([@server_rack.datacenter, @server_rack]) do |form| %>
 <div data-role="header" data-position="fixed" >
-	<%= link_to "Back", [@server_rack.datacenter, :server_racks], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
-	<h1>New rack</h1>
+  <%= link_to "Back", [@server_rack.datacenter, :server_racks], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
+  <h1>New rack</h1>
 
 </div><!-- /header -->
 
 <div id="content" data-role="content">
-	<%= render :partial => "form", :locals => {:server_rack => @server_rack, :form => form}%>
-	<div class="fieldcontain">
-		<%= label 'number_of_units', :number_of_units %><br />
-		<%= range_field_tag :number_of_units, 42, {:min => 1, :max => 50} %>
-	</div>
-	<%= form.submit "Save" %>
+  <%= render :partial => "form", :locals => {:server_rack => @server_rack, :form => form}%>
+  <div class="fieldcontain">
+    <%= label 'number_of_units', :number_of_units %><br />
+    <%= range_field_tag :number_of_units, 42, {:min => 1, :max => 50} %>
+  </div>
+  <%= form.submit "Save" %>
 </div><!-- /content -->
 
 <%end%>

@@ -1,24 +1,24 @@
 <div data-role="header" data-position="fixed">
-	<%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l", "data-transition"=>"pop", :rel => ""}%>
-	<h1><%= @current_datacenter.name%></h1>
-	<%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
+  <%= link_to "Back", [:datacenters], {"data-icon" => "arrow-l", "data-transition"=>"pop", :rel => ""}%>
+  <h1><%= @current_datacenter.name%></h1>
+  <%= link_to "Delete", @current_datacenter, :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
 
 <div id="content" data-role="content"  >
-	<div data-inline='true'>
-		<p>Location: <%= @current_datacenter.location %></p>
-		<p>Comment: <%= @current_datacenter.comment %></p>
+  <div data-inline='true'>
+    <p>Location: <%= @current_datacenter.location %></p>
+    <p>Comment: <%= @current_datacenter.comment %></p>
 
-	</div>
+  </div>
 
-	<%= link_to "Edit", [:edit, @current_datacenter], {"data-role" => "button", :rel => "external"} %>
-	<br/>
-	<ul data-role='listview' data-filter="true">
-		<%@current_datacenter.server_racks.each do |server_rack|%>
-		<li><%= link_to server_rack.name, [@current_datacenter, server_rack], {:rel => "external"}%></li>
-		<%end%>
-	</ul>
+  <%= link_to "Edit", [:edit, @current_datacenter], {"data-role" => "button", :rel => "external"} %>
+  <br/>
+  <ul data-role='listview' data-filter="true">
+    <%@current_datacenter.server_racks.each do |server_rack|%>
+    <li><%= link_to server_rack.name, [@current_datacenter, server_rack], {:rel => "external"}%></li>
+    <%end%>
+  </ul>
 </div><!-- /content -->
 <div data-role="footer" data-position="fixed">
-	<%= link_to "Add rack", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>"external", "data-transition"=>"flip"} %>
+  <%= link_to "Add rack", [:new, @current_datacenter, :server_rack], { "data-icon" => "plus", :rel=>"external", "data-transition"=>"flip"} %>
 </div><!-- /footer -->

@@ -1,16 +1,16 @@
 <div data-role="header"  data-nobackbtn="true" data-position="fixed">
-	<h1>Datacenters</h1>
-	<%= link_to "Lookup", search_path, {"data-icon" => "star", :class => "ui-btn-right", :rel => "external"} %>
+  <h1>Datacenters</h1>
+  <%= link_to "Lookup", search_path, {"data-icon" => "star", :class => "ui-btn-right", :rel => "external"} %>
 </div><!-- /header -->
 
 <div id="content" data-role="content">
-	<ul data-role='listview' data-filter="true">
-		<%@datacenters.each do |datacenter|%>
-		<li><%= link_to datacenter.name, [datacenter, :server_racks], {:rel => "external"}%></li>
-		<%end%>
-	</ul>
+  <ul data-role='listview' data-filter="true">
+    <%@datacenters.each do |datacenter|%>
+    <li><%= link_to datacenter.name, [datacenter, :server_racks], {:rel => "external"}%></li>
+    <%end%>
+  </ul>
 </div><!-- /content -->
 <div data-role="footer" data-position="fixed">
-	<%= link_to "New datacenter", [:new, :datacenter], {"data-icon" => "plus", :class => "ui-btn-right", :rel=>"external", "data-transition"=>"flip"} %>
+  <%= link_to "New datacenter", [:new, :datacenter], {"data-icon" => "plus", :class => "ui-btn-right", :rel=>"external", "data-transition"=>"flip"} %>
 </div><!-- /header -->
 

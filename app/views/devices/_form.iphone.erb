@@ -1,16 +1,16 @@
 <div class="fieldcontain">
-	<%= form.label :name %><br />
-	<%= form.text_field :name %>
+  <%= form.label :name %><br />
+  <%= form.text_field :name %>
 </div>
 <div class="fieldcontain">
-	<%= form.label :company_names %><br />
-	<%= form.text_field :company_names %>
+  <%= form.label :company_names %><br />
+  <%= form.text_field :company_names %>
 </div>
 <div class="fieldcontain">
-	<%= form.label :device_type %><br />
-	<%= form.select :device_type, DeviceType.to_select %>
+  <%= form.label :device_type %><br />
+  <%= form.select :device_type, DeviceType.to_select %>
 </div>
 <div class="fieldcontain">
-	<%= form.label :comment %><br />
-	<%= form.text_area :comment, {:size => '90x4'} %>
+  <%= form.label :comment %><br />
+  <%= form.text_area :comment, {:size => '90x4'} %>
 </div>

@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 set :output, nil
 every 5.minutes do
-	rake "ts:in"
+  rake "ts:in"
 end

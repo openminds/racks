@@ -1,67 +1,67 @@
 <div class='tabs clearfix' style='width:95%; '>
-	<ul>
-		<li><a href='#contact_information'>Contact information</a></li>
-		<li><a href='#other'>Other</a></li>
-		<li><a href='#devices'>Devices</a></li>
-	</ul>
-	<div id="contact_information">
-	<p>
-	  <b>Name:</b>
-	  <%= @company.name %>
-	</p>
-	<p>
-	  <b>Customer Number:</b>
-	  <%= @company.customer_number %>
-	</p>
-	<p>
-	  <b>Address:</b>
-	  <%= @company.address %>
-	</p>
+  <ul>
+    <li><a href='#contact_information'>Contact information</a></li>
+    <li><a href='#other'>Other</a></li>
+    <li><a href='#devices'>Devices</a></li>
+  </ul>
+  <div id="contact_information">
+  <p>
+    <b>Name:</b>
+    <%= @company.name %>
+  </p>
+  <p>
+    <b>Customer Number:</b>
+    <%= @company.customer_number %>
+  </p>
+  <p>
+    <b>Address:</b>
+    <%= @company.address %>
+  </p>
 
-	<p>
-	  <b>Postal code:</b>
-	  <%= @company.postal_code %>
-	</p>
+  <p>
+    <b>Postal code:</b>
+    <%= @company.postal_code %>
+  </p>
 
-	<p>
-	  <b>City:</b>
-	  <%= @company.city %>
-	</p>
+  <p>
+    <b>City:</b>
+    <%= @company.city %>
+  </p>
 
-	<p>
-	  <b>Telephone:</b>
-	  <%= @company.telephone %>
-	</p>
-	</div>
-	<div id="other">
-	<p>
-	  <b>Url:</b>
-	  <%= @company.url %>
-	</p>
+  <p>
+    <b>Telephone:</b>
+    <%= @company.telephone %>
+  </p>
+  </div>
+  <div id="other">
+  <p>
+    <b>Url:</b>
+    <%= @company.url %>
+  </p>
 
-	<p>
-	  <b>Btw nr:</b>
-	  <%= @company.btw_nr %>
-	</p>
+  <p>
+    <b>Btw nr:</b>
+    <%= @company.btw_nr %>
+  </p>
 
-	<p>
-	  <b>Comment:</b>
-	  <%= @company.comment %>
-	</p>
-	</div>
-	<div id="devices" >
-		<b>Devices:</b>
-		<ul>
-			<% @company.devices.each do |device| %>
-			<li>
-				<%= link_to device.name, [device.server_rack.datacenter, device.server_rack, device] %> (<%= link_to device.server_rack.name, [device.server_rack.datacenter, device.server_rack]%> in <%= link_to device.server_rack.datacenter.name, device.server_rack.datacenter%>)
-			</li>
-			<% end %>
-		</ul>
-	</div>
+  <p>
+    <b>Comment:</b>
+    <%= @company.comment %>
+  </p>
+  </div>
+  <div id="devices" >
+    <b>Devices:</b>
+    <ul>
+      <% @company.devices.each do |device| %>
+      <li>
+        <%= link_to device.name, [device.server_rack.datacenter, device.server_rack, device] %> (<%= link_to device.server_rack.name, [device.server_rack.datacenter, device.server_rack]%> in <%= link_to device.server_rack.datacenter.name, device.server_rack.datacenter%>)
+      </li>
+      <% end %>
+    </ul>
+  </div>
 
 
-	<%= link_to 'Edit', edit_company_path(@company), {:class => "remote"} %> |
-	<%= link_to 'Back', companies_path %>
+  <%= link_to 'Edit', edit_company_path(@company), {:class => "remote"} %> |
+  <%= link_to 'Back', companies_path %>
 
 </div>

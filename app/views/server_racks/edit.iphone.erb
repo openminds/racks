@@ -1,13 +1,13 @@
 <%= form_for([@server_rack.datacenter, @server_rack]) do |form| %>
 <div data-role="header" data-position="fixed" >
-	<%= link_to "Back", [@server_rack.datacenter, @server_rack], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
-	<h1>Edit rack</h1>
+  <%= link_to "Back", [@server_rack.datacenter, @server_rack], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
+  <h1>Edit rack</h1>
 
 </div><!-- /header -->
 
 <div id="content" data-role="content">
-	<%= render :partial => "form", :locals => {:server_rack => @server_rack, :form => form}%>
-	<%= form.submit "Save" %>
+  <%= render :partial => "form", :locals => {:server_rack => @server_rack, :form => form}%>
+  <%= form.submit "Save" %>
 </div><!-- /content -->
 
 <%end%>

@@ -1,13 +1,13 @@
 <div id='modal_form' title="New device">
-	<%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
-	<div class='tabs clearfix'>
-		<ul>
-			<li><a href='#device_info'>Device Info</a></li>
-			<li><a href='#interfaces'>Interfaces</a></li>
-		</ul>
-		<%= render :partial => 'form', :locals => {:device => @device, :interfaces => possible_interfaces, :form => form} %>
+  <%= form_for([@device.server_rack.datacenter, @device.server_rack, @device]) do |form| %>
+  <div class='tabs clearfix'>
+    <ul>
+      <li><a href='#device_info'>Device Info</a></li>
+      <li><a href='#interfaces'>Interfaces</a></li>
+    </ul>
+    <%= render :partial => 'form', :locals => {:device => @device, :interfaces => possible_interfaces, :form => form} %>
 
-	</div>
-	<%= form.submit %>
-	<% end %>
+  </div>
+  <%= form.submit %>
+  <% end %>
 </div>

@@ -1,22 +1,22 @@
 <% cache dom_id(server_rack) do %>
 <fieldset title="<%= server_rack.name %>">
-	<legend><%= server_rack.name %></legend>
-	<% show_info_for_server_rack server_rack %>
-	<p>
-		<%= link_to 'Show',  [server_rack.datacenter, server_rack] %>
-		<%= link_to 'Generate PDF',  datacenter_server_rack_path(server_rack.datacenter, server_rack, :format => :pdf) %>
-    	<%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack], :class => "remote" %>
-    	<%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %>
-	</p>
-	<% if server_rack.units.available.any? %>
-	<p>
-		<%= link_to 'Add device', [:new, server_rack.datacenter, server_rack, :device], :class => 'button remote' %>
-	</p>
-	<% end %>
+  <legend><%= server_rack.name %></legend>
+  <% show_info_for_server_rack server_rack %>
+  <p>
+    <%= link_to 'Show',  [server_rack.datacenter, server_rack] %>
+    <%= link_to 'Generate PDF',  datacenter_server_rack_path(server_rack.datacenter, server_rack, :format => :pdf) %>
+      <%= link_to 'Edit', [:edit, server_rack.datacenter, server_rack], :class => "remote" %>
+      <%= link_to 'Destroy', [server_rack.datacenter, server_rack], :confirm => 'Are you sure?', :method => :delete %>
+  </p>
+  <% if server_rack.units.available.any? %>
+  <p>
+    <%= link_to 'Add device', [:new, server_rack.datacenter, server_rack, :device], :class => 'button remote' %>
+  </p>
+  <% end %>
 
-	<div class='devices_accordion'>
-		<%= render :partial => 'devices/device', :collection => server_rack.devices, :as => :device %>
-	</div>
+  <div class='devices_accordion'>
+    <%= render :partial => 'devices/device', :collection => server_rack.devices, :as => :device %>
+  </div>
 
 </fieldset>
 <%end%>

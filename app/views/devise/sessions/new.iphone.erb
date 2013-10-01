@@ -1,16 +1,16 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 <div data-role="header" data-position="fixed" >
-	<h1>Sign in</h1>
+  <h1>Sign in</h1>
 
 </div>
 <div id="content" data-role="content">
-	<p>
-	<%= f.label :email %><br />
-	<%= f.email_field :email %>
+  <p>
+  <%= f.label :email %><br />
+  <%= f.email_field :email %>
 </p>
 
 <p><%= f.label :password %><br />
-	<%= f.password_field :password %>
+  <%= f.password_field :password %>
 </p>
 
 <% if devise_mapping.rememberable? -%>

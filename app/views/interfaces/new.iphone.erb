@@ -1,13 +1,13 @@
 <%= form_for([@interface.device.server_rack.datacenter, @interface.device.server_rack, @interface.device, @interface]) do |form| %>
 <div data-role="header" data-position="fixed" >
-	<%= link_to "Back", [@interface.device.server_rack.datacenter, @interface.device.server_rack, @interface.device], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
-	<h1>New Interface</h1>
+  <%= link_to "Back", [@interface.device.server_rack.datacenter, @interface.device.server_rack, @interface.device], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"flip"}%>
+  <h1>New Interface</h1>
 
 </div><!-- /header -->
 
 <div id="content" data-role="content">
-	<%= render :partial => "form", :locals => {:interface => @interface, :form => form, :interfaces => @interfaces}%>
-	<%= form.submit "Save" %>
+  <%= render :partial => "form", :locals => {:interface => @interface, :form => form, :interfaces => @interfaces}%>
+  <%= form.submit "Save" %>
 </div><!-- /content -->
 
 <%end%>

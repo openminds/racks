@@ -1,93 +1,93 @@
 <% show_errors_for device %>
 <div id="device_info">
-	<fieldset  style="float:left;">
-		<legend>Rack</legend>
-		<%= form.label :unit_ids %><br />
-		<%= form.collection_select :unit_ids,  (@device.units+@device.server_rack.units.available).uniq , :id, :number, {},{:size => 10, :multiple => 'multiple'} %>
-	</fieldset>
-	<fieldset style="float:left">
-		<legend>The device</legend>
-		<div class="ui-widget">
-			<%= form.label :company_names %><br />
-			<%= form.text_field :company_names %>
-		</div>
-		<div class="field">
-			<%= form.label :device_type %><br />
-			<%= form.select :device_type, DeviceType.to_select %>
-		</div>
-		<div class="field">
-			<%= form.label :name %><br />
-			<%= form.text_field :name %>
-		</div>
-		<div class="field">
-			<%= form.label :comment %><br />
-			<%= form.text_area :comment, {:size => '90x3'} %>
-		</div>
-	</fieldset>
+  <fieldset  style="float:left;">
+    <legend>Rack</legend>
+    <%= form.label :unit_ids %><br />
+    <%= form.collection_select :unit_ids,  (@device.units+@device.server_rack.units.available).uniq , :id, :number, {},{:size => 10, :multiple => 'multiple'} %>
+  </fieldset>
+  <fieldset style="float:left">
+    <legend>The device</legend>
+    <div class="ui-widget">
+      <%= form.label :company_names %><br />
+      <%= form.text_field :company_names %>
+    </div>
+    <div class="field">
+      <%= form.label :device_type %><br />
+      <%= form.select :device_type, DeviceType.to_select %>
+    </div>
+    <div class="field">
+      <%= form.label :name %><br />
+      <%= form.text_field :name %>
+    </div>
+    <div class="field">
+      <%= form.label :comment %><br />
+      <%= form.text_area :comment, {:size => '90x3'} %>
+    </div>
+  </fieldset>
 
 </div>
 <div id="interfaces">
-	<% unless device.interfaces.size > 1 %>
-	<fieldset id="quickadd" class="clearfix">
-		<legend>Quickly add interfaces</legend>
-		<p>Ethernet interfaces:<input id="count_ethernet_interfaces" type="text"></input></p>
-		<p>Power interfaces:<input id="count_power_interfaces" type="text"></input></p>
-		<a href="#" id="create_interfaces" class="button" style="height:15px;display:block;">Create interfaces</a>
-	</fieldset>
-	<% end %>
-	<fieldset style="float:left">
-		<legend>Interfaces</legend>
-		<table id='interface_form'>
-			<tr>
-				<th>Type</th>
-				<th>Name</th>
+  <% unless device.interfaces.size > 1 %>
+  <fieldset id="quickadd" class="clearfix">
+    <legend>Quickly add interfaces</legend>
+    <p>Ethernet interfaces:<input id="count_ethernet_interfaces" type="text"></input></p>
+    <p>Power interfaces:<input id="count_power_interfaces" type="text"></input></p>
+    <a href="#" id="create_interfaces" class="button" style="height:15px;display:block;">Create interfaces</a>
+  </fieldset>
+  <% end %>
+  <fieldset style="float:left">
+    <legend>Interfaces</legend>
+    <table id='interface_form'>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
 
-				<th>
-				<% unless form.object.new_record? %>
-					Remove?
-				<%end%>
-				</th>
+        <th>
+        <% unless form.object.new_record? %>
+          Remove?
+        <%end%>
+        </th>
 
-				<th>Connection inside</th>
-				<th>Connected to</th>
-				<th>Connection color</th>
-			</tr>
-			<%= form.fields_for :interfaces do |interface_form| %>
-			<tr class='interface_row'>
-				<td class="field">
-					<%= interface_form.select :interface_type, Interface::InterfaceType.to_select,{:prompt => 'Interface Type?'} %>
-				</td>
-				<td class="field">
-					<%= interface_form.text_field :name %>
-				</td>
+        <th>Connection inside</th>
+        <th>Connected to</th>
+        <th>Connection color</th>
+      </tr>
+      <%= form.fields_for :interfaces do |interface_form| %>
+      <tr class='interface_row'>
+        <td class="field">
+          <%= interface_form.select :interface_type, Interface::InterfaceType.to_select,{:prompt => 'Interface Type?'} %>
+        </td>
+        <td class="field">
+          <%= interface_form.text_field :name %>
+        </td>
 
-				<td class="field">
-					<% unless interface_form.object.new_record? %>
-					<%= interface_form.hidden_field :id %>
-					<%= interface_form.check_box :_destroy %>
-					<%= interface_form.label :_destroy, 'Remove' %>
-					<% end %>
-				</td >
+        <td class="field">
+          <% unless interface_form.object.new_record? %>
+          <%= interface_form.hidden_field :id %>
+          <%= interface_form.check_box :_destroy %>
+          <%= interface_form.label :_destroy, 'Remove' %>
+          <% end %>
+        </td >
 
-				<td class="field">
-					<%= select_tag "device_interfaces_attributes_#{interface_form.object_name.gsub(/[^0-9]+/,'')}_selected_server_rack", options_from_collection_for_select(@current_datacenter.server_racks, :id, :name,
-					if interface_form.object.other
-						interface_form.object.other.device.server_rack.id
-					else
-						form.object.server_rack.id
-					end
-					)%>
-				</td>
-				<td class="field">
-					<%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, {:type => i.interface_type}, {:disabled => ((i.interface_type != interface_form.object.interface_type) ? "disabled" : "false") } ] } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => interface_form.object.other.try(:id) } %>
-				</td >
-				<td class="field">
-					<%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection), :class => "connection_color"  %>
-				</td>
-			</tr>
-			<% end %>
-		</table>
-		<%= link_to 'Add Interface','#', :id => 'add_interface' %>
-	</fieldset>
+        <td class="field">
+          <%= select_tag "device_interfaces_attributes_#{interface_form.object_name.gsub(/[^0-9]+/,'')}_selected_server_rack", options_from_collection_for_select(@current_datacenter.server_racks, :id, :name,
+          if interface_form.object.other
+            interface_form.object.other.device.server_rack.id
+          else
+            form.object.server_rack.id
+          end
+          )%>
+        </td>
+        <td class="field">
+          <%= interface_form.select :connected_to, interfaces.map {|i| [i.to_s, i.id, {:type => i.interface_type}, {:disabled => ((i.interface_type != interface_form.object.interface_type) ? "disabled" : "false") } ] } << ["disconnect", nil],{:prompt => 'Connect this interface?', :selected => interface_form.object.other.try(:id) } %>
+        </td >
+        <td class="field">
+          <%= interface_form.text_field :cable_connection_color, :value => (interface_form.object.cable_connection.color if interface_form.object.cable_connection), :class => "connection_color"  %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <%= link_to 'Add Interface','#', :id => 'add_interface' %>
+  </fieldset>
 </div>
 

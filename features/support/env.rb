@@ -49,16 +49,16 @@ Cucumber::Rails::World.use_transactional_fixtures = true
 # How to clean your database when transactions are turned off. See
 # http://github.com/bmabey/database_cleaner for more info.
 if defined?(ActiveRecord::Base)
-	begin
-		require 'database_cleaner'
-		require 'database_cleaner/cucumber'
-		DatabaseCleaner.strategy = :truncation
-	end
+  begin
+    require 'database_cleaner'
+    require 'database_cleaner/cucumber'
+    DatabaseCleaner.strategy = :truncation
+  end
 end
 Before do |scenario|
-	Rake.application.invoke_task('db:test:prepare')
+  Rake.application.invoke_task('db:test:prepare')
 end
 # After do |scenario|
-# 	puts "clean db"
-# 	DatabaseCleaner.clean
+#   puts "clean db"
+#   DatabaseCleaner.clean
 # end

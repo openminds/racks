@@ -1,50 +1,50 @@
 <?xml version="1.0"?>
 <devices>
-	<% @customer.devices.each do |device| %>
-	<device>
-		<name>
-			<%= device.name %>
-		</name>
-		<comment>
-			<%=device.comment %>
-		</comment>
-		<location>
-			<datacenter>
-				<%= device.server_rack.datacenter.name %>
-			</datacenter>
-			<rack>
-				<%= device.server_rack.name %>
-			</rack>
-			<units>
-				<% device.units.each do |unit| %>
-				<unit>
-					<%= unit.number %>
-				</unit>
-				<% end %>
-			</units>
-		</location>
-		<interfaces>
-			<% device.interfaces.each do |interface| %>
-			<interface>
-				<type>
-					<%= interface.interface_type(:name)%>
-				</type>
-				<name>
-					<%= interface.name %>
-				</name>
-				<% if interface.other %>
-				<connection>
-					<other>
-						<%= interface.other.to_s%>
-					</other>
-					<color>
-						<%= interface.cable_connection.color %>
-					</color>
-				</connection>
-				<% end %>
-			</interface>
-		<% end %>
-		</interfaces>
-	</device>
-	<% end %>
+  <% @customer.devices.each do |device| %>
+  <device>
+    <name>
+      <%= device.name %>
+    </name>
+    <comment>
+      <%=device.comment %>
+    </comment>
+    <location>
+      <datacenter>
+        <%= device.server_rack.datacenter.name %>
+      </datacenter>
+      <rack>
+        <%= device.server_rack.name %>
+      </rack>
+      <units>
+        <% device.units.each do |unit| %>
+        <unit>
+          <%= unit.number %>
+        </unit>
+        <% end %>
+      </units>
+    </location>
+    <interfaces>
+      <% device.interfaces.each do |interface| %>
+      <interface>
+        <type>
+          <%= interface.interface_type(:name)%>
+        </type>
+        <name>
+          <%= interface.name %>
+        </name>
+        <% if interface.other %>
+        <connection>
+          <other>
+            <%= interface.other.to_s%>
+          </other>
+          <color>
+            <%= interface.cable_connection.color %>
+          </color>
+        </connection>
+        <% end %>
+      </interface>
+    <% end %>
+    </interfaces>
+  </device>
+  <% end %>
 </devices>

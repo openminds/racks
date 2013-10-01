@@ -1,44 +1,44 @@
 <div data-role="header" data-position="fixed"  >
-	<%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"pop"}%>
-	<h1><%= @device.server_rack.datacenter.name%>::<%= @device.server_rack.name %>::<%=@device.name%></h1>
-	<%= link_to "Delete", [@device.server_rack.datacenter, @device.server_rack, @device], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
+  <%= link_to "Back", [@device.server_rack.datacenter, @device.server_rack], {"data-icon" => "arrow-l", :rel => "", "data-transition"=>"pop"}%>
+  <h1><%= @device.server_rack.datacenter.name%>::<%= @device.server_rack.name %>::<%=@device.name%></h1>
+  <%= link_to "Delete", [@device.server_rack.datacenter, @device.server_rack, @device], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", :class => "ui-btn-right", :rel=>"external" %>
 </div><!-- /header -->
 
 <div id="content" data-role="content" >
-	<div data-inline='true'>
-		<p>Used by: <%= @device.company_names %></p>
-		<p><%= @device.comment %></p>
+  <div data-inline='true'>
+    <p>Used by: <%= @device.company_names %></p>
+    <p><%= @device.comment %></p>
 
-	</div>
+  </div>
 
-	<%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button", :rel => "external"} %>
-	<br>
-	<table>
-		<%@device.interfaces.each do |interface|%>
-		<tr>
-			<td style="width:50px;">
-				<div class="interface_controls" data-role="controlgroup" data-type="horizontal" style="display:block;">
-					<%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", "data-role" => "button", "data-iconpos"=>"notext" , :rel=>"external" %>
-					<%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], "data-icon" => "gear", "data-role" => "button", "data-iconpos"=>"notext" %>
-				</div>
+  <%= link_to "Edit", [:edit, @device.server_rack.datacenter, @device.server_rack, @device], {"data-role" => "button", :rel => "external"} %>
+  <br>
+  <table>
+    <%@device.interfaces.each do |interface|%>
+    <tr>
+      <td style="width:50px;">
+        <div class="interface_controls" data-role="controlgroup" data-type="horizontal" style="display:block;">
+          <%= link_to "Delete", [interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], :method => :delete, :confirm => 'Are you sure?', "data-icon" => "delete", "data-role" => "button", "data-iconpos"=>"notext" , :rel=>"external" %>
+          <%= link_to "Edit", [:edit, interface.device.server_rack.datacenter, interface.device.server_rack, interface.device, interface], "data-icon" => "gear", "data-role" => "button", "data-iconpos"=>"notext" %>
+        </div>
 
-			</td>
-			<td>
-				<p><%= interface.name %></p>
-			</td>
-			<td>
-				<span class="connection" style="background-color:<%= interface.cable_connection.color if interface.cable_connection %>;"></span>
-			</td>
-			<td>
-				<%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device], :rel => "external", :style => "text-decoration:none;") if interface.cable_connection %>
-				<%= "not connected" if interface.cable_connection == nil  %>
-			</td>
-		</tr>
-		<%end%>
-	</table>
+      </td>
+      <td>
+        <p><%= interface.name %></p>
+      </td>
+      <td>
+        <span class="connection" style="background-color:<%= interface.cable_connection.color if interface.cable_connection %>;"></span>
+      </td>
+      <td>
+        <%= (link_to "#{interface.other.name} on #{interface.other.device.name}", [interface.other.device.server_rack.datacenter, interface.other.device.server_rack, interface.other.device], :rel => "external", :style => "text-decoration:none;") if interface.cable_connection %>
+        <%= "not connected" if interface.cable_connection == nil  %>
+      </td>
+    </tr>
+    <%end%>
+  </table>
 </div><!-- /content -->
 <div data-role="footer"  data-position="fixed">
-	<%= link_to "Add interface", [:new, @device.server_rack.datacenter, @device.server_rack, @device, :interface], { "data-icon" => "plus", :rel=>"external", "data-transition"=>"flip"} %>
+  <%= link_to "Add interface", [:new, @device.server_rack.datacenter, @device.server_rack, @device, :interface], { "data-icon" => "plus", :rel=>"external", "data-transition"=>"flip"} %>
 </div><!-- /header -->
 
 

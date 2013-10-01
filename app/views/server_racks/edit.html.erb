@@ -1,10 +1,10 @@
 <div id="modal_form" title="Edit rack">
-	<%= form_for [@server_rack.datacenter, @server_rack] do |form| %>
-	<%= render :partial => 'form', :locals => {:server_rack => @server_rack, :form => form} %>
+  <%= form_for [@server_rack.datacenter, @server_rack] do |form| %>
+  <%= render :partial => 'form', :locals => {:server_rack => @server_rack, :form => form} %>
 
 
-	<div class="actions">
-		<%= form.submit %>
-	</div>
-	<% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %>
 </div>

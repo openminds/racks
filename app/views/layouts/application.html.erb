@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Racks</title>
-	<%= stylesheet_link_tag :all %>
-	<%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"%>
-	<%= javascript_include_tag :defaults%>
-	<%#= javascript_include_tag "rails" %>
-	<link type="text/css" href="/stylesheets/custom-theme/jquery-ui-1.8.5.custom.css" rel="stylesheet" />
-	<script src="/javascripts/raphael-min.js" type="text/javascript"></script>
-	<script src="/javascripts/cufon-yui.js" type="text/javascript"></script>
+  <title>Racks</title>
+  <%= stylesheet_link_tag :all %>
+  <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"%>
+  <%= javascript_include_tag :defaults%>
+  <%#= javascript_include_tag "rails" %>
+  <link type="text/css" href="/stylesheets/custom-theme/jquery-ui-1.8.5.custom.css" rel="stylesheet" />
+  <script src="/javascripts/raphael-min.js" type="text/javascript"></script>
+  <script src="/javascripts/cufon-yui.js" type="text/javascript"></script>
 
-	<script src="/javascripts/Verdana_400-Verdana_700-Verdana_italic_400-Verdana_italic_700.font.js" type="text/javascript"></script>
+  <script src="/javascripts/Verdana_400-Verdana_700-Verdana_italic_400-Verdana_italic_700.font.js" type="text/javascript"></script>
 
 
-	<%= csrf_meta_tag %>
+  <%= csrf_meta_tag %>
 </head>
 <body>
-	<div id="wrapper">
-		<div id="header">
-			<div id="logo">
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo">
 
-			</div>
-			<div id="title">
-				Racks
-			</div>
-			<div id="menu">
-				<%= link_to "Datacenter management", root_path, {:class => 'menu'} %>
-				<%= link_to "Companies", companies_path, {:class => 'menu'} %>
-				<% if user_signed_in? %>
+      </div>
+      <div id="title">
+        Racks
+      </div>
+      <div id="menu">
+        <%= link_to "Datacenter management", root_path, {:class => 'menu'} %>
+        <%= link_to "Companies", companies_path, {:class => 'menu'} %>
+        <% if user_signed_in? %>
 
-					<%= link_to('Logout', destroy_user_session_path, {:class => 'menu'}) %>
+          <%= link_to('Logout', destroy_user_session_path, {:class => 'menu'}) %>
 
-					<% if current_user.admin? %>
+          <% if current_user.admin? %>
 
-						<%= link_to('Admin', admin_index_path, {:class => 'menu'}) %>
+            <%= link_to('Admin', admin_index_path, {:class => 'menu'}) %>
 
-					<% end %>
-				<% else %>
+          <% end %>
+        <% else %>
 
-					<%= link_to('Login', new_user_session_path, {:class => 'menu'})  %>
+          <%= link_to('Login', new_user_session_path, {:class => 'menu'})  %>
 
-				<% end %>
+        <% end %>
 
-			</div>
-			<div id="search">
-				<%= form_tag(search_path, :method => 'get') do %>
-				<%= text_field_tag :s, nil %>
-				<%= submit_tag "Find!", :name => nil, :id => 'search-submit', :class => 'button'%>
-				<% end %>
-			</div>
-			<div id='notice'>
-				<% if flash[:notice] %>
-				<%= render :partial => 'shared/notice' %>
-				<% end %>
-			</div>
-			<div id="header bottom">
+      </div>
+      <div id="search">
+        <%= form_tag(search_path, :method => 'get') do %>
+        <%= text_field_tag :s, nil %>
+        <%= submit_tag "Find!", :name => nil, :id => 'search-submit', :class => 'button'%>
+        <% end %>
+      </div>
+      <div id='notice'>
+        <% if flash[:notice] %>
+        <%= render :partial => 'shared/notice' %>
+        <% end %>
+      </div>
+      <div id="header bottom">
 
-			</div>
+      </div>
 
-		</div>
-		<div id="content">
-			<div class=' ui-tabs ui-widget ui-widget-content ui-corner-all'>
-				<% if request.fullpath.include? "datacenters"  %>
-				<ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
-					<% @datacenters.each do |datacenter| %>
-					<li class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if (datacenter == @current_datacenter && !request.fullpath.include?('new')) %>'>
-						<%= link_to datacenter.name, datacenter_server_racks_path(datacenter) %>
-					</li>
-					<% end %>
-					<li class="right ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if request.fullpath == new_datacenter_path %>">
-						<%= link_to "New Datacenter", new_datacenter_path %>
-					</li>
-				</ul>
-				<%end%>
+    </div>
+    <div id="content">
+      <div class=' ui-tabs ui-widget ui-widget-content ui-corner-all'>
+        <% if request.fullpath.include? "datacenters"  %>
+        <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
+          <% @datacenters.each do |datacenter| %>
+          <li class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if (datacenter == @current_datacenter && !request.fullpath.include?('new')) %>'>
+            <%= link_to datacenter.name, datacenter_server_racks_path(datacenter) %>
+          </li>
+          <% end %>
+          <li class="right ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all <%= "ui-state-active" if request.fullpath == new_datacenter_path %>">
+            <%= link_to "New Datacenter", new_datacenter_path %>
+          </li>
+        </ul>
+        <%end%>
 
-				<%= yield %>
-			</div>
-			<div id="modal_wrapper">
+        <%= yield %>
+      </div>
+      <div id="modal_wrapper">
 
-			</div>
-		</div>
-		<div id="bottom"></div>
-	</div>
+      </div>
+    </div>
+    <div id="bottom"></div>
+  </div>
 </body>
 </html>
