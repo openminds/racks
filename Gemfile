@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+
 gem 'active_enum'
 gem 'jquery-rails'
 gem 'acts_as_url', :git => 'git://github.com/Reprazent/acts_as_url.git'
@@ -10,51 +11,33 @@ gem 'thinking-sphinx', '2.0.1'
 gem 'whenever'
 gem 'devise'
 gem 'state_machine'
-gem 'prawn', :git => "git://github.com/sandal/prawn", :tag => '0.10.2', :submodules => true
-gem 'convert_colors', :git => "git://github.com/Reprazent/convert_colors.git"
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'prawn', :git => 'git://github.com/sandal/prawn', :tag => '0.10.2', :submodules => true
+gem 'convert_colors', :git => 'git://github.com/Reprazent/convert_colors.git'
 
-# gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-gem 'capistrano'
-gem 'openminds_deploy'
-
-# To use debugger
-# gem 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-group :test do
-	gem "sqlite3-ruby", :require => 'sqlite3'
-	gem 'capybara'
-	gem 'database_cleaner', :git => 'git://github.com/bmabey/database_cleaner.git'
-	gem 'cucumber-rails', :git => 'git://github.com/robholland/cucumber-rails.git'
-	gem "factory_girl" #, :git => "git://github.com/thoughtbot/factory_girl_rails.git"
-	gem "factory_girl_rails"
-	gem "test-unit"
-	gem "launchy"
-	gem "pickle"
-end
 group :production do
-	gem 'exception_notification', :git => 'http://github.com/rails/exception_notification.git', :require => 'exception_notifier'
+  gem 'exception_notification', :git => 'http://github.com/rails/exception_notification.git', :require => 'exception_notifier'
 end
-group :development, :test do
-	gem 'railroady'
-	gem 'yUMLmeRails',  :git => "http://github.com/tute/yUMLmeRails.git"
-end
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
 
+group :test do
+  gem "sqlite3-ruby", :require => 'sqlite3'
+  gem 'capybara'
+  gem 'database_cleaner', :git => 'git://github.com/bmabey/database_cleaner.git'
+  gem 'cucumber-rails', :git => 'git://github.com/robholland/cucumber-rails.git'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'test-unit'
+  gem 'launchy'
+  gem 'pickle'
+end
+
+group :development, :test do
+  gem 'railroady'
+  gem 'yUMLmeRails', :git => 'http://github.com/tute/yUMLmeRails.git'
+end
+
+group :development do
+  gem 'capistrano'
+  gem 'openminds_deploy'
+end
